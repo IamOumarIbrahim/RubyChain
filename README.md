@@ -54,11 +54,21 @@ The team is evaluating three high-impact use cases from the official competition
 
 ---
 
+## Technology Stack & Environment
+
+- **Primary Language & Framework:** Ruby on Rails (Ruby 4.0+)
+- **Frontend / Real-Time Reactivity:** Hotwire (Turbo Streams / Stimulus) for zero-reload live badge updates (e.g., flipping status from `VERIFIED` to `RECALLED` / `DELAYED`)
+- **API & Integration Layer:** RESTful JSON client (`Faraday` / `Net::HTTP`) connecting to IDS Sandbox endpoints & webhooks
+- **Database:** SQLite (local rapid prototyping) / PostgreSQL
+
+---
+
 ## Action Checklist
 
 - [ ] **Attend Pre-Orientation:** Friday, 18 Sep (`10:00 – 12:00`). Record technical terms, architecture diagrams, and platform hints.
 - [ ] **Master IDS & SSI:** Review Issuer-Holder-Verifier flow, DIDs, VCs, and revocation registries.
 - [ ] **Review Core CS:** Asymmetric keys, hashing, HTTP status codes, and code tracing.
+- [ ] **Pre-install Ruby on Rails Environment:** Verify local Ruby 4.0+, install Rails (`gem install rails`), and prepare a minimal starter template before sprint day.
 - [ ] **Setup & Redundancy:** Test stable Wi-Fi + mobile hotspot backup; set up dual screens for fast reference.
 
 ---

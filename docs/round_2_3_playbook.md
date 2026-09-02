@@ -178,10 +178,10 @@ The 3-hour development sprint accommodates all 10 required competition activitie
 
 | Time Slot | Phase & Activities Covered | Operational Focus & Deliverables | Owner Lead |
 | :---: | :--- | :--- | :--- |
-| **00:00 – 00:20**<br>*(20 min)* | **1. Challenge Understanding & Scoping**<br>• Understanding the challenge<br>• Brainstorming<br>• Research | Review official problem statement, confirm Use Case #3 scope, consult IDS Sandbox documentation, and align technical constraints. | Oumar (PM) & Mohamad Khairi (Docs) |
-| **00:20 – 00:45**<br>*(25 min)* | **2. Product Design**<br>• Product design & architecture<br>• Schema modeling | Finalize credential definition schema (`revocation_enabled: true`) and sketch UI wireframes for Regulator, Wallet, and Employer screens. | Mohamad Khairi (Docs) |
-| **00:45 – 01:45**<br>*(60 min)* | **3. Core Development**<br>• Coding / development<br>• Platform integration | Spin up pre-built scaffolding, integrate issuance API, build wallet credential receiver, and implement live websocket/polling revocation listener. | Oumar (PM) |
-| **01:45 – 02:15**<br>*(30 min)* | **4. Testing & Debugging**<br>• Testing<br>• Debugging | Execute end-to-end verification pass: Issue → Store in Wallet → Verify (`VERIFIED`) → Revoke → Re-verify (`DENIED`). Fix latency and runtime bugs. | Oumar (PM) & Mohamad Khairi (Docs) |
+| **00:00 – 00:20**<br>*(20 min)* | **1. Challenge Understanding & Scoping**<br>• Understanding the challenge<br>• Brainstorming<br>• Research | Review official problem statement, confirm selected candidate scope (Use Case #4, #5, or #2), consult IDS Sandbox documentation, and align technical constraints. | Oumar (PM) & Mohamad Khairi (Docs) |
+| **00:20 – 00:45**<br>*(25 min)* | **2. Product Design**<br>• Product design & architecture<br>• Schema modeling | Finalize credential definition schema and sketch UI wireframes for Issuer, Holder, and Verifier screens. | Mohamad Khairi (Docs) |
+| **00:45 – 01:45**<br>*(60 min)* | **3. Core Development**<br>• Coding / development<br>• Platform integration | Spin up pre-built **Ruby on Rails** scaffolding, integrate IDS issuance & verification APIs via HTTP client (`Faraday`/`Net::HTTP`), and build real-time reactive views via Hotwire Turbo. | Oumar (PM) |
+| **01:45 – 02:15**<br>*(30 min)* | **4. Testing & Debugging**<br>• Testing<br>• Debugging | Execute end-to-end verification pass: Issue → Store in Wallet → Verify (`VERIFIED`) → Trigger State Change / Revocation → Re-verify (`RECALLED` / `DELAYED` / `DENIED`). Fix latency and runtime bugs. | Oumar (PM) & Mohamad Khairi (Docs) |
 | **02:15 – 02:40**<br>*(25 min)* | **5. Documentation**<br>• Documentation<br>• Compliance declarations | Complete technical README, architecture breakdown, finalize AI Usage & Security/Privacy declarations, push clean commit to GitHub. | Mohamad Khairi (Docs) |
 | **02:40 – 03:00**<br>*(20 min)* | **6. Submission & Pitch Preparation**<br>• Final submission<br>• Pitch preparation | **Submit all 11 required deliverables before the official deadline** (avoid late penalties); stage live demo screens and rehearse 3-min pitch flow. | Team (Oumar & Mohamad Khairi) |
 
@@ -193,12 +193,12 @@ Before the 3-hour deadline, every team must submit its final project through the
 
 - [ ] 1. **Project / Product Name:** Chosen solution title. *(Owner: Oumar — Project Manager)*
 - [ ] 2. **Team Name:** Registered team identifier. *(Owner: Oumar — Project Manager)*
-- [ ] 3. **Problem Statement:** Concise summary of the cross-border licensing delay. *(Owner: Mohamad Khairi — Documentation Lead)*
+- [ ] 3. **Problem Statement:** Concise summary of the addressed supply chain, logistics, or KYB friction. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 4. **Solution Description:** Technical summary of verifiable credential flow. *(Owner: Mohamad Khairi — Documentation Lead)*
-- [ ] 5. **Prototype / Product Link or File:** Deployed web interface or local executable instructions. *(Owner: Oumar — Project Manager)*
+- [ ] 5. **Prototype / Product Link or File:** Deployed Rails web interface or local executable instructions. *(Owner: Oumar — Project Manager)*
 - [ ] 6. **Source Code / Repository:** Clean GitHub repository with setup instructions. *(Owner: Oumar — Project Manager)*
 - [ ] 7. **README or Technical Documentation:** System architecture, component map, and API documentation. *(Owner: Mohamad Khairi — Documentation Lead)*
-- [ ] 8. **Technology Stack:** Languages, frameworks, IDS Sandbox endpoints used. *(Owner: Mohamad Khairi — Documentation Lead)*
+- [ ] 8. **Technology Stack:** Ruby on Rails (Ruby 4.0+), Hotwire (Turbo Streams / Stimulus) for live badge flips, SQLite/PostgreSQL, IDS Sandbox REST APIs. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 9. **AI Usage Declaration:** Pre-drafted declaration detailing AI tools, modifications, and validation. *(Owner: Oumar — Project Manager)*
 - [ ] 10. **Security & Privacy Declaration:** Data handling statement ensuring no sensitive PII leakage. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 11. **Any additional materials requested by the organizers:** Pitch slides and backup 60-90s demo recording link. *(Owner: Team)*
