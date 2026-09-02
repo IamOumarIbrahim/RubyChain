@@ -56,14 +56,19 @@ CodeNova replaces fragile paper trails with an unbroken chain of cryptographical
 
 ---
 
-## Technology Stack
+## Technology Stack & Component Mapping
 
-- **Backend Framework:** Ruby on Rails (Ruby 4.0+)
-- **Reactive UI Layer:** Hotwire (Turbo Streams & Stimulus) via WebSockets
-- **Decentralized Identity:** Digital Identity Stack (IDS) Sandbox APIs (DIDs, VCs, Revocation Registries)
-- **HTTP Client:** Faraday / Net::HTTP for RESTful IDS endpoint integration
-- **Database:** SQLite (rapid prototyping) / PostgreSQL
-- **Fallbacks:** Python (FastAPI / Flask) or C++ (cryptographic utilities)
+| Subsystem / Responsibility | Implementation Technology | Technical Role |
+| :--- | :--- | :--- |
+| **Credential Issuance** | Ruby / Rails | Generates W3C-compliant `OriginCredential` & `CustodyCredential` payloads. |
+| **Credential Verification** | Ruby / Rails | Cryptographically validates signatures, schema fields, and expiry bounds. |
+| **Credential Revocation** | Ruby / Rails | Sets revocation bit flags on the IDS registry with one-click admin execution. |
+| **Chain & Provenance Logic** | Ruby / Rails | Links custody credentials cryptographically back to the farm origin credential hash. |
+| **Database & Persistence** | Rails + ActiveRecord + SQLite | Persists batch metadata, verification audit logs, and cached public DIDs. |
+| **Frontend Pages & Live UI** | Rails + ERB + Hotwire (Turbo & Stimulus) | Powers instant zero-reload status flips (`VERIFIED` → `RECALLED`) over WebSockets. |
+| **QR Code Generation** | Ruby Gem (`rqrcode` / `chunky_png`) | Generates 2D GS1 Digital Link shelf QR codes dynamically for smartphone scanning. |
+| **IDS API Communication** | Ruby HTTP / API Client (`Faraday` / `Net::HTTP`) | Manages REST calls, bearer tokens, and webhook ingestion with the IDS Sandbox. |
+| **Authentication & Sessions** | Rails Native (`has_secure_password`) | Provides role-based session isolation for Certifiers, Carriers, and Grocers. |
 
 ---
 

@@ -89,6 +89,20 @@ flowchart TD
    - Web application rendered directly in mobile browsers upon QR scan.
    - Subscribes to Hotwire Turbo Streams via WebSockets for zero-reload reactive state updates.
 
+### 3.2 Implementation Stack & Responsibility Matrix
+
+| Subsystem / Architectural Responsibility | Technology Choice | Technical Role & Implementation Detail |
+| :--- | :--- | :--- |
+| **Credential Issuance** | Ruby / Rails | Builds and signs W3C-compliant `OriginCredential` & `CustodyCredential` payloads. |
+| **Credential Verification** | Ruby / Rails | Cryptographically validates digital signatures, schema properties, and expiry timestamps. |
+| **Credential Revocation** | Ruby / Rails | Updates bitstring revocation flags on the IDS registry with one-click admin execution. |
+| **Chain & Provenance Logic** | Ruby / Rails | Cryptographically references the parent `originCredentialHash` within downstream custody records. |
+| **Database & Persistence** | Rails + ActiveRecord + SQLite | Persists batch records, verification audit logs, and cached public DID documents locally. |
+| **Frontend Pages & Reactive UI** | Rails + ERB + Hotwire (Turbo & Stimulus) | Streams live WebSocket status transitions (`VERIFIED` → `RECALLED`) without full page reloads. |
+| **QR Code Generation** | Ruby Gem (`rqrcode` / `chunky_png`) | Generates GS1 Digital Link compliant 2D QR codes on-the-fly for physical shelf display. |
+| **IDS API Communication** | Ruby HTTP Client (`Faraday` / `Net::HTTP`) | Dispatches authenticated REST requests, manages bearer tokens, and ingests IDS webhooks. |
+| **Authentication & Session Logic** | Rails Native (`has_secure_password`) | Manages role-based multi-tenant authentication for Certifiers, Carriers, and Retailers. |
+
 ---
 
 ## 4. Data Models & Schema Specifications
