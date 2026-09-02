@@ -1,106 +1,102 @@
 # CodeNova 2026: Team Preparation Guide
 
 > **Organizers:** IEEE SIU Dubai Student Branch × IDS  
-> **Goal:** Finish in the **Top 20 Teams** in Round 1 to qualify for the 3-hour Build Sprint. *(Round 1 scores are qualification-only and do not carry forward).*
+> **Goal:** Score in the **Top 20 Teams** in Round 1 to qualify for the 3-hour Build Sprint. *(Scores do not carry forward).*
 
 ---
 
 ## Important Dates & Schedule
 
-| Event | Date & Time | Format | Details |
+| Event | Date & Time | Format | Focus |
 | :--- | :--- | :--- | :--- |
-| **Pre-Orientation Session** | Friday, 18 Sep 2026<br>`10:00 AM – 12:00 PM` | Online | **Mandatory:** Learn how the IDS platform works and what will be tested. |
-| **Round 1: Knowledge Challenge** | Tuesday, 22 Sep 2026<br>*(Time to be announced)* | Online Quiz<br>*(Kahoot / Quizizz / Google Forms)* | Elimination round: The top 20 teams qualify for Round 2. |
+| **Pre-Orientation** | Friday, 18 Sep 2026<br>`10:00 AM – 12:00 PM` | Online | **Mandatory:** IDS platform architecture & tested concepts. |
+| **Round 1: Quiz** | Tuesday, 22 Sep 2026<br>*(Time TBA)* | Online MCQ | Elimination round: Top 20 teams qualify for Round 2. |
 
-*(The organizers will announce the quiz time, number of questions, and scoring details before the event).*
+*(Question count, duration, and scoring details will be announced prior to the quiz).*
 
 ---
 
-## Finalized Project: Use Case #4 — Trade & Supply Chain
-### *“Provenance as a Credential Chain”*
+## Selected Project: Use Case #4 — Trade & Supply Chain
+### *Food Provenance & Rapid Recall Network*
 
-We have finalized our project choice for the Round 2 Build Sprint: **Use Case #4 (Trade & Supply Chain)**, applied directly to **Food Safety and Batch-Level Recalls**.
+### The Problem: Recall Panic & Wasted Food
+Opaque supply chains and illegible lot codes make it impossible for consumers to verify product safety during recalls:
+- **Surging FDA Notices:** The FDA posted **26 food recall notices in August 2026 alone**, with *Salmonella* warnings jumping sixfold.
+- **Category-Level Panic:** A [Fortune / GS1 US study](https://fortune.com/2026/09/02/food-recalls-fda-americans-avoid-food-categories/) found that **94% of Americans worry about recalls**, and **67% avoid an entire food category** (e.g., all eggs or all produce) after just one notice.
+- **Wasted Safe Food:** **59% of consumers discard safe food** because printed packaging codes are confusing, while **66% hesitate to buy the brand again**.
+- **The Core Issue:** As GS1 US noted, *"Consumers are making a category-level decision about a product-level problem."* With FDA Food Traceability Rule enforcement delayed to **July 2028**, supply chains urgently need verifiable item-level proof.
 
-### Real-World Motivation: The Food Recall Crisis
-According to a recent [Fortune investigation on FDA recalls](https://fortune.com/2026/09/02/food-recalls-fda-americans-avoid-food-categories/):
-- **Surging Recalls:** In August 2026 alone, the FDA issued **26 food recall notices**—with *Salmonella* warnings jumping sixfold (12 notices in August vs. just 2 in July), affecting pantry staples from eggs and produce to snacks.
-- **The "Category Avoidance" Crisis:** A nationwide survey by GS1 US found that **94% of Americans are worried** about frequent food recalls. Even worse, **67% of consumers stop buying an entire food category** (like all eggs or all berries) after hearing about just one recall notice.
-- **Wasted Safe Food:** **59% of consumers throw away food** even when their region was never affected, simply because printed lot numbers on packaging are confusing or impossible to read. Another **66% hesitate to ever buy the brand again**.
-- **The Core Problem:** As GS1 US noted, *"Consumers are making a category-level decision about a product-level problem."* Because modern supply chains pass produce through dozens of middlemen and repacking steps, information gets lost. Furthermore, Congress delayed enforcement of the FDA’s Food Traceability Rule to **July 2028**, leaving a critical safety gap.
-- **Why We Need Verifiable Credentials:** When contamination happens, shoppers cannot verify if the item in their hands is clean or tainted. They panic and boycott the entire aisle. Honest producers lose millions, and perfectly safe food is thrown into the trash.
-
-### How Our Solution Fixes This
-Using the **Digital Identity Stack (IDS)** and **Verifiable Credentials (VCs)**, our solution creates a tamper-proof digital chain of custody from farm to grocery shelf:
+### The Solution: Verifiable Credential Chain
+Using the **Digital Identity Stack (IDS)** and **Verifiable Credentials (VCs)**, we build a tamper-proof chain of custody from farm to grocery shelf:
 
 ```
 [Food Safety Certifier]
-        │ (Issues Origin & Safety Credential)
+        │ (Origin & Safety Credential)
         ▼
 [Exporter / Farm]
         │ (Presents Origin Credential)
         ▼
 [Cold-Chain Carrier]
-        │ (Verifies Origin → Issues Temperature & Custody Credential)
+        │ (Verifies Origin → Temperature & Custody Credential)
         ▼
 [Customs & Import Clearance]
-        │ (Verifies Custody → Issues Port Clearance Credential)
+        │ (Verifies Custody → Port Clearance Credential)
         ▼
 [Retailer Shelf & Consumer QR Code]
-        │ (Shopper scans QR code: shows complete verified history)
+        │ (Real-time cryptographic verification)
 ```
 
 ### The 3-Hour Demo Moment
-1. **Verified on Shelf:** A shopper or store clerk scans the shelf QR code on their phone. The screen shows an all-green status: `ORIGIN VERIFIED` → `COLD CHAIN VERIFIED` → `SAFE TO CONSUME`.
-2. **One-Click Recall:** An inspector detects contamination at the source farm and revokes that specific batch on the IDS revocation registry with one click.
-3. **Instant Live Alert:** Without anyone refreshing the page, the shopper's screen immediately flips to a flashing red alert: `BATCH RECALLED / DO NOT SELL`. Safe batches from other farms remain green, preventing panic and keeping safe food on grocery shelves.
+1. **Shelf Scan:** Consumer scans shelf QR code; mobile view displays green `ORIGIN & COLD CHAIN VERIFIED`.
+2. **One-Click Recall:** Certifier flags contamination and revokes the specific batch credential on the IDS registry.
+3. **Live Status Flip:** The consumer's screen instantly flips to red `BATCH RECALLED / DO NOT SELL` without refreshing, while safe batches remain green.
 
 > [!TIP]
 > - For full data schemas, REST API specs, and Mermaid architecture flows, see the [Technical Specification & System Architecture](file:///c:/Dev/repos/Public%20repos/codenova/docs/technical_documentation.md).
-> - For 3-hour sprint timelines, deliverables checklist, and pitch cue sheet, see the [Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).
+> - For sprint time allocations, deliverables checklist, and pitch cue sheet, see the [Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).
 
 ---
 
-## Round 1 Qualification & Rules
+## Qualification & Tie-Breakers
 
-- **Passing Rule:** The top 20 teams advance to Round 2.
-- **Tie-Breaker Order (if scores are tied):**
-  1. Higher number of correct answers.
-  2. Faster completion time.
-  3. Pre-selected tie-breaker question or mini challenge.
-- **Final Authority:** The organizing committee's decision is final.
+- **Passing Rule:** Top 20 teams qualify for Round 2.
+- **Tie-Breaker Order:**
+  1. Most correct answers.
+  2. Fastest completion time.
+  3. Pre-selected tie-breaker challenge.
+- **Authority:** Organizing committee decision is final.
 
 ---
 
 ## Study Guide: Round 1 Topics
 
-| Topic | What to Study |
+| Topic | Key Concepts |
 | :--- | :--- |
-| **1. IDS Pre-Orientation** | How the IDS platform is structured, the Issuer-Holder-Verifier triad in Self-Sovereign Identity (SSI), and IDS Sandbox tools. |
-| **2. Digital Identity** | Decentralized Identifiers (DIDs), Verifiable Credentials (VCs), Verifiable Presentations (VPs), and Revocation Registries. |
-| **3. Tech Basics** | REST APIs, JSON data, WebSockets, public/private key cryptography, SHA-256 hashing, and HTTPS/TLS integrity. |
-| **4. Code & Logic** | Program control flow, conditionals (`if/else`), core data structures (arrays, hash maps, queues), and problem breakdown. |
-| **5. Debugging** | Reading code, spotting errors, handling edge cases, and common HTTP status codes (`200 OK`, `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not Found`, `500 Server Error`). |
-| **6. Product & Innovation** | Clear problem statements, planning a Minimum Viable Product (MVP), user journey mapping, and realistic feasibility. |
+| **1. IDS Pre-Orientation** | IDS platform architecture, SSI Issuer-Holder-Verifier triad, and IDS Sandbox tools. |
+| **2. Digital Identity** | DIDs, Verifiable Credentials (VCs), Verifiable Presentations (VPs), and Revocation Registries. |
+| **3. Tech Basics** | REST APIs, JSON payloads, WebSockets, public/private keys, SHA-256 hashing, and HTTPS/TLS. |
+| **4. Code & Logic** | Program control flow, conditionals, core data structures (arrays, maps, queues), and problem breakdown. |
+| **5. Debugging** | Code tracing, diagnosing errors, edge cases, and HTTP status codes (`200`, `400`, `401`, `403`, `404`, `500`). |
+| **6. Product & Innovation** | Clear problem statements, MVP scoping, user journey mapping, and feasibility. |
 
 ---
 
 ## Technology Stack
 
-- **Primary Framework:** Ruby on Rails (Ruby 4.0+)
-- **Alternative Options:** Python (FastAPI / Flask) or C++ (for standalone cryptographic utilities)
-- **Live UI Updates:** Hotwire (Turbo Streams & Stimulus) for instant, zero-refresh badge changes (e.g. flipping status from `VERIFIED` to `RECALLED`)
-- **API Client:** RESTful HTTP client (`Faraday` / `Net::HTTP` in Ruby; `httpx` / `requests` in Python) connecting to IDS Sandbox endpoints and webhooks
-- **Database:** SQLite (for rapid sprint development) or PostgreSQL
+- **Primary Stack:** Ruby on Rails (Ruby 4.0+) with Hotwire (Turbo Streams & Stimulus) for live badge flips
+- **Fallbacks:** Python (FastAPI / Flask) or C++ (cryptographic utilities)
+- **Integration Layer:** RESTful HTTP client (`Faraday` / `Net::HTTP`) connecting to IDS Sandbox APIs & webhooks
+- **Database:** SQLite (rapid prototyping) or PostgreSQL
 
 ---
 
 ## Action Checklist
 
-- [ ] **Attend Pre-Orientation:** Friday, 18 Sep (`10:00 AM – 12:00 PM`). Note key terms, architecture diagrams, and platform tips.
-- [ ] **Master IDS & SSI Basics:** Review the Issuer-Holder-Verifier model, DIDs, VCs, and revocation registries.
-- [ ] **Review Computer Science Basics:** Asymmetric cryptography, hashing, HTTP status codes, and code tracing.
-- [ ] **Set Up Ruby on Rails:** Check local Ruby 4.0+ and Rails (`gem install rails`), and prepare a clean starter template before sprint day.
-- [ ] **Test Hardware & Network:** Prepare reliable Wi-Fi, a backup mobile hotspot, and dual screens for fast reference during the quiz.
+- [ ] **Attend Pre-Orientation:** Friday, 18 Sep (`10:00 AM – 12:00 PM`). Note key terms and platform hints.
+- [ ] **Master IDS & SSI:** Learn Issuer-Holder-Verifier flow, DIDs, VCs, and revocation registries.
+- [ ] **Review Core CS:** Asymmetric keys, hashing, HTTP status codes, and code tracing.
+- [ ] **Rails Setup:** Verify local Ruby 4.0+, install Rails, and prepare a minimal starter template.
+- [ ] **Hardware & Redundancy:** Test reliable Wi-Fi, mobile hotspot backup, and dual screens.
 
 ---
 
