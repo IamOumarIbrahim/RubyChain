@@ -14,18 +14,95 @@
 
 ---
 
+## Quick Status & Project Focus
+
+- **Selected Challenge:** **Use Case #3 — Cross-Border Professional Licensing & Instant Revocation**
+- **Core Value:** Eliminate multi-month licensing backlogs for relocating healthcare and technical professionals using verifiable credentials with cryptographic real-time revocation.
+- **Key Demo Moment:** Instant status flip from **VERIFIED** to **DENIED** upon live regulator revocation.
+- **Current Phase:** Weekend 1 — Scoping, Environment Setup, and Schema Definition.
+
+---
+
 ## Table of Contents
+- [Quick Status & Project Focus](#quick-status--project-focus)
+- [Target Solution Blueprint: Use Case #3](#target-solution-blueprint-use-case-3)
+- [3-Hour Build Sprint: Execution Playbook](#3-hour-build-sprint-execution-playbook)
+- [Round 2 Deliverables Tracker (11 Required Items)](#round-2-deliverables-tracker-11-required-items)
+- [Round 3: Pitch Execution Cue Sheet (3–5 Minutes)](#round-3-pitch-execution-cue-sheet-35-minutes)
 - [Key Event Details](#key-event-details)
 - [Prizes & Industry Perks](#prizes--industry-perks)
 - [Competition Format (3 Progressive Rounds)](#competition-format-3-progressive-rounds)
-- [Round 2: Build Sprint & Submission Guidelines](#round-2-build-sprint--submission-guidelines)
 - [Official Challenge Use Cases (Digital ID Stack)](#official-challenge-use-cases-digital-id-stack)
-- [Round 3: Pitch Structure (3–5 Minutes)](#round-3-pitch-structure-35-minutes)
 - [Judging Rubric (100 Points Total)](#judging-rubric-100-points-total)
 - [Key Rules & Policies](#key-rules--policies)
 - [Team Details](#team-details)
 - [CodeNova 2026 Prep Schedule](#codenova-2026-prep-schedule)
 - [Support Contacts](#support-contacts)
+
+---
+
+## Target Solution Blueprint: Use Case #3
+
+### 1. Architecture Flow
+Regulator (Issuer / Revoker) -> Professional Wallet (Holder) -> Employer Portal (Verifier).
+
+### 2. Schema Specification
+- `practitioner_id`: Unique license string
+- `practitioner_name`: Full legal name
+- `profession`: e.g., "Registered Nurse (RN)"
+- `issuing_authority`: e.g., "Health Regulators Authority"
+- `issue_date`: ISO-8601 timestamp
+- `revocation_enabled`: `true` *(non-negotiable: must be enabled at definition creation)*
+
+### 3. Concrete Component Deliverables
+- [ ] **Regulator Portal:** Dashboard to issue license credentials and a one-click "Revoke License" action.
+- [ ] **Professional Wallet:** Mobile/web holder interface displaying the active verifiable credential with QR proof generation.
+- [ ] **Employer Verifier Portal:** Verification desk requesting proof and rendering real-time validation badges (`VERIFIED` vs `REVOKED / DENIED`).
+
+---
+
+## 3-Hour Build Sprint: Execution Playbook
+
+Strict minute-by-minute execution timeline for event day (Round 2):
+
+| Time Window | Focus Block | Action Items |
+| :--- | :--- | :--- |
+| **00:00 – 00:30** | **Bootstrap & Schemas** | Deploy pre-built scaffolding, initialize credential definitions with revocation enabled, bind environment variables. |
+| **00:30 – 01:30** | **Core Logic & Revocation** | Connect issuance endpoint, implement wallet QR presentation, code live websocket/polling revocation status listener. |
+| **01:30 – 02:15** | **End-to-End Verification** | Execute full happy-path: Issue -> Store in Wallet -> Employer Verifies (`VERIFIED`). Trigger revoke -> Employer re-verifies (`DENIED`). |
+| **02:15 – 02:45** | **Submission Packaging** | Finalize all 11 required submission items, push clean repo commit, record URLs. |
+| **02:45 – 03:00** | **Pitch Demo Rehearsal** | Stage the live screens, test offline fallbacks, submit before the countdown hits zero. |
+
+---
+
+## Round 2 Deliverables Tracker (11 Required Items)
+
+All items must be packaged and submitted prior to the 3-hour deadline:
+
+- [ ] 1. **Project & Product Name:** Chosen solution title. *(Owner: Oumar)*
+- [ ] 2. **Team Name:** Registered team identifier. *(Owner: Oumar)*
+- [ ] 3. **Problem Statement:** Concise summary of the cross-border licensing delay. *(Owner: Mohamad Khairi)*
+- [ ] 4. **Solution Description:** Technical summary of verifiable credential flow. *(Owner: Mohamad Khairi)*
+- [ ] 5. **Prototype / Product Link:** Deployed web interface or local executable instructions. *(Owner: Oumar)*
+- [ ] 6. **Source Code Repository:** Clean GitHub repository with installation instructions. *(Owner: Oumar)*
+- [ ] 7. **Technical README:** System architecture, component map, and API documentation. *(Owner: Mohamad Khairi)*
+- [ ] 8. **Technology Stack:** Languages, frameworks, IDS Sandbox endpoints used. *(Owner: Mohamad Khairi)*
+- [ ] 9. **AI Usage Declaration:** Pre-drafted declaration detailing AI tools, modifications, and validation. *(Owner: Oumar)*
+- [ ] 10. **Security & Privacy Declaration:** Data handling statement ensuring no sensitive PII leakage. *(Owner: Mohamad Khairi)*
+- [ ] 11. **Supplemental Materials:** Pitch slides and fallback 60-90s demo recording link. *(Owner: Team)*
+
+---
+
+## Round 3: Pitch Execution Cue Sheet (3–5 Minutes)
+
+Prioritize the live functional demonstration over static slides:
+
+| Elapsed Time | Section | Key Points to Cover | Screen State |
+| :--- | :--- | :--- | :--- |
+| **0:00 – 0:45** | **The Problem** | Relocating nurses/professionals face 9-month credential backlogs; paper certs cannot be revoked instantly across borders. | Title & Problem Slide |
+| **0:45 – 01:15** | **The Solution** | Verifiable credentials on the Digital ID Stack with real-time cryptographic revocation registry. | Architecture Overview Slide |
+| **01:15 – 02:30** | **The Live Demo** | 1. Regulator issues credential.<br>2. Candidate accepts in wallet.<br>3. Employer verifies instantly -> **VERIFIED** badge.<br>4. Regulator clicks **Revoke**.<br>5. Employer re-checks -> badge flips to **DENIED**. | Live Split-Screen Demo |
+| **02:30 – 03:00** | **Impact & Close** | Global portability, enterprise scalability, fraud prevention; transition to judges' Q&A. | Impact & Team Slide |
 
 ---
 
@@ -66,22 +143,6 @@
 
 ---
 
-## Round 2: Build Sprint & Submission Guidelines
-
-- **Duration:** Exactly **3 hours** (includes brainstorming, design, coding, testing, documentation, and pitch prep).
-- **Permitted Resources:** Official documentation, internet research, IDEs, and the **IDS Sandbox**.
-- **Deliverables Required Before Deadline:**
-  1. Project & Team Name
-  2. Problem Statement & Solution Description
-  3. Working Prototype / Product Link or executable
-  4. Source Code Repository & Technical `README`
-  5. Technology Stack Summary
-  6. **AI Usage Declaration** (tools used, modification details, and verification methods)
-  7. **Security & Privacy Declaration**
-- **Late Submissions:** Penalized via point deductions, marked incomplete, or subject to disqualification.
-
----
-
 ## Official Challenge Use Cases (Digital ID Stack)
 
 The build sprint centers on **chained issuance and verification** using verifiable credentials. Teams can implement one of the 5 official scenarios or an equivalent use case:
@@ -117,18 +178,6 @@ The build sprint centers on **chained issuance and verification** using verifiab
 5. **Logistics & Shipment Coordination (Verified Real-Time Handoffs)**
    - **Scope:** 3 partner links with a dashboard tracking *Scheduled*, *In Transit*, *Delayed*, and *Delivered*.
    - **Demo Moment:** Switch shipment to "Delayed" and demonstrate downstream partners immediately receiving the verified update.
-
----
-
-## Round 3: Pitch Structure (3–5 Minutes)
-
-Teams should prioritize **live working demonstrations** over static slides:
-1. **Problem:** Specific real-world problem being solved.
-2. **Solution:** What was built during the sprint.
-3. **How It Works:** Architecture, tech stack, and IDS integration.
-4. **Live Demonstration:** Functional walkthrough of key user flows.
-5. **Impact & Innovation:** Market differentiation and value creation.
-6. **Future Potential:** Scalability, deployment feasibility, and next steps.
 
 ---
 
@@ -185,22 +234,22 @@ Teams should prioritize **live working demonstrations** over static slides:
 - **Non-Negotiable Mock Sprint:** Full timed 3-hour simulation on Saturday, 19 Sep remains the single highest-value preparation block.
 - **Thursday Night Advantage:** Use Thursday evenings for light syncing, dependency pre-downloads, and planning so Friday morning starts with pure execution.
 
-### Priority Matrix
+### Actionable Priority Matrix
 
-| Task | Deadline | Impact if Missed | Effort | Priority |
+| Task | Deadline | Impact if Missed | Effort | Status |
 | :--- | :--- | :--- | :---: | :---: |
-| Finalize Use Case #3 scope (schemas, screens, revoke logic) | Sep 4-6 | Wasted sprint decision time | 2.5h | **P1** |
-| Pre-install dev environment & verify offline readiness | By Sep 13 | Lost sprint time on installs/logins | 2.0h | **P1** |
-| Build reusable wallet, issuer, and verifier scaffolding | By Sep 13 | Insufficient time for demo logic | 5.0h | **P1** |
-| Draft AI Usage & Security/Privacy declarations | By Sep 13 | Rushed mid-sprint compliance | 1.0h | **P1** |
-| Map 11-point submission checklist to assigned owners | By Sep 13 | Late or incomplete submission | 1.5h | **P1** |
-| Attend Pre-Orientation Session | Fri Sep 18 | Miss IDS architecture & Round 1 hints | 2.0h | **P1** |
-| Timed 3-hour Mock Build Sprint simulation | Sat Sep 19 | Untested pace & event-day chaos | 3.5h | **P1** |
-| Research IDS Sandbox & Digital ID Stack documentation | By Sep 6 | Steep ramp-up on event day | 2.0h | **P2** |
-| Draft 6-part pitch deck skeleton & conduct 2 rehearsals | Sep 13-20 | Weaker pitch and lost presentation points | 4.0h | **P2** |
-| Review Round 1 knowledge concepts & pre-orientation notes | Ongoing | Risk of failing Round 1 cutoff | 2.0h | **P2** |
-| Record 60-90s backup demo video | Sat Sep 19 | No fallback if live demo fails | 1.5h | **P3** |
-| Prepare rubric-based judge Q&A answers | Sun Sep 20 | Weaker Q&A scoring | 1.0h | **P3** |
+| Finalize Use Case #3 scope (schemas, screens, revoke logic) | Sep 4-6 | Wasted sprint decision time | 2.5h | `P1 - Pending` |
+| Pre-install dev environment & verify offline readiness | By Sep 13 | Lost sprint time on installs/logins | 2.0h | `P1 - Pending` |
+| Build reusable wallet, issuer, and verifier scaffolding | By Sep 13 | Insufficient time for demo logic | 5.0h | `P1 - Pending` |
+| Draft AI Usage & Security/Privacy declarations | By Sep 13 | Rushed mid-sprint compliance | 1.0h | `P1 - Pending` |
+| Map 11-point submission checklist to assigned owners | By Sep 13 | Late or incomplete submission | 1.5h | `P1 - Pending` |
+| Attend Pre-Orientation Session | Fri Sep 18 | Miss IDS architecture & Round 1 hints | 2.0h | `P1 - Scheduled` |
+| Timed 3-hour Mock Build Sprint simulation | Sat Sep 19 | Untested pace & event-day chaos | 3.5h | `P1 - Scheduled` |
+| Research IDS Sandbox & Digital ID Stack documentation | By Sep 6 | Steep ramp-up on event day | 2.0h | `P2 - Pending` |
+| Draft 6-part pitch deck skeleton & conduct 2 rehearsals | Sep 13-20 | Weaker pitch and lost presentation points | 4.0h | `P2 - Pending` |
+| Review Round 1 knowledge concepts & pre-orientation notes | Ongoing | Risk of failing Round 1 cutoff | 2.0h | `P2 - Ongoing` |
+| Record 60-90s backup demo video | Sat Sep 19 | No fallback if live demo fails | 1.5h | `P3 - Scheduled` |
+| Prepare rubric-based judge Q&A answers | Sun Sep 20 | Weaker Q&A scoring | 1.0h | `P3 - Scheduled` |
 
 ### Extended Weekend Roadmap (Thu Night + Fri–Sun)
 
@@ -208,28 +257,28 @@ Teams should prioritize **live working demonstrations** over static slides:
 - **Thursday Night, Sep 3:**
   - `20:00 - 21:30`: Team kickoff, plan extended weekend deliverables, and align sprint goals.
 - **Friday, Sep 4:**
-  - `09:30 - 12:30`: Deep dive into Use Case #3 scope: schema fields, verifier UI, and revocation trigger (**P1**).
-  - `14:00 - 16:30`: Study IDS Sandbox and Digital Identity Stack architecture and concepts (**P2**).
+  - `09:30 - 12:30`: Deep dive into Use Case #3 scope: schema fields, verifier UI, and revocation trigger (P1).
+  - `14:00 - 16:30`: Study IDS Sandbox and Digital Identity Stack architecture and concepts (P2).
 - **Saturday, Sep 5:**
-  - `09:30 - 12:30`: Draft credential schema and issuer/verifier logic for Use Case #3 (**P1**).
-  - `14:00 - 16:30`: Setup dev environment, install dependencies, verify API keys, and test offline toolchains (**P1**).
+  - `09:30 - 12:30`: Draft credential schema and issuer/verifier logic for Use Case #3 (P1).
+  - `14:00 - 16:30`: Setup dev environment, install dependencies, verify API keys, and test offline toolchains (P1).
 - **Sunday, Sep 6:**
-  - `10:00 - 12:30`: Clean repo documentation, assign sprint roles, configure task board (**P2**).
+  - `10:00 - 12:30`: Clean repo documentation, assign sprint roles, configure task board (P2).
   - `14:00 - 15:30`: Buffer block: log organizer queries (Round 1 date, sandbox access), review progress.
 
 #### Weekend 2 (Sep 10–13): Reusable Scaffolding & Compliance Prep
 - **Thursday Night, Sep 10:**
   - `20:00 - 21:30`: Architecture review, component breakdown, and task assignments for scaffolding.
 - **Friday, Sep 11:**
-  - `09:30 - 13:00`: Build generic wallet/holder UI shell and local credential storage (**P1**).
-  - `14:30 - 17:00`: Build issuer flow skeleton (form + credential definition binding) (**P1**).
+  - `09:30 - 13:00`: Build generic wallet/holder UI shell and local credential storage (P1).
+  - `14:30 - 17:00`: Build issuer flow skeleton (form + credential definition binding) (P1).
 - **Saturday, Sep 12:**
-  - `09:30 - 13:00`: Build verifier flow skeleton (proof request + selective disclosure screens) (**P1**).
-  - `14:30 - 16:30`: Run end-to-end dummy issue/verify test pass (**P1**).
+  - `09:30 - 13:00`: Build verifier flow skeleton (proof request + selective disclosure screens) (P1).
+  - `14:30 - 16:30`: Run end-to-end dummy issue/verify test pass (P1).
 - **Sunday, Sep 13:**
-  - `09:30 - 12:00`: Implement unique demo logic: regulator revoke button with live status flip (**P1**).
-  - `13:30 - 15:00`: Outline 6-part pitch deck skeleton (**P2**).
-  - `15:15 - 16:45`: Pre-draft AI & Privacy declarations; assign owners for all 11 submission items (**P1**).
+  - `09:30 - 12:00`: Implement unique demo logic: regulator revoke button with live status flip (P1).
+  - `13:30 - 15:00`: Outline 6-part pitch deck skeleton (P2).
+  - `15:15 - 16:45`: Pre-draft AI & Privacy declarations; assign owners for all 11 submission items (P1).
 
 #### Weekend 3 (Sep 17–20): Orientation, Mock Sprint & Dress Rehearsal
 - **Thursday Night, Sep 17:**
@@ -238,12 +287,12 @@ Teams should prioritize **live working demonstrations** over static slides:
   - `10:00 - 12:00`: **Pre-Orientation Session** (Online). Capture Round 1 quiz date, IDS Sandbox endpoints, and rules.
   - `14:00 - 16:30`: Debrief session notes, adapt schemas/scaffolding to any official updates.
 - **Saturday, Sep 19 (Mock Sprint):**
-  - `09:15 - 12:15`: **Full 3-Hour Timed Mock Sprint** (strict competition clock simulation) (**P1**).
+  - `09:15 - 12:15`: **Full 3-Hour Timed Mock Sprint** (strict competition clock simulation) (P1).
   - `13:30 - 15:30`: Sprint retrospective and address biggest code/workflow bottlenecks.
-  - `15:45 - 16:45`: Record 60-90 second backup demo video (**P3**).
+  - `15:45 - 16:45`: Record 60-90 second backup demo video (P3).
 - **Sunday, Sep 20 (Dress Rehearsal & Polish):**
   - `09:30 - 11:30`: Pitch rehearsals #1 and #2 (timed against 3–5 min slot).
-  - `11:45 - 12:45`: Rubric-based judge Q&A preparation (**P3**).
+  - `11:45 - 12:45`: Rubric-based judge Q&A preparation (P3).
   - `14:00 - 16:00`: Final documentation polish, packing checklist (chargers, laptops, offline copies), and final team sync.
 
 #### Event Week
