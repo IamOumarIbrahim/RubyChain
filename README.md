@@ -79,16 +79,16 @@ Strict minute-by-minute execution timeline for event day (Round 2):
 
 All items must be packaged and submitted prior to the 3-hour deadline:
 
-- [ ] 1. **Project & Product Name:** Chosen solution title. *(Owner: Oumar)*
-- [ ] 2. **Team Name:** Registered team identifier. *(Owner: Oumar)*
-- [ ] 3. **Problem Statement:** Concise summary of the cross-border licensing delay. *(Owner: Mohamad Khairi)*
-- [ ] 4. **Solution Description:** Technical summary of verifiable credential flow. *(Owner: Mohamad Khairi)*
-- [ ] 5. **Prototype / Product Link:** Deployed web interface or local executable instructions. *(Owner: Oumar)*
-- [ ] 6. **Source Code Repository:** Clean GitHub repository with installation instructions. *(Owner: Oumar)*
-- [ ] 7. **Technical README:** System architecture, component map, and API documentation. *(Owner: Mohamad Khairi)*
-- [ ] 8. **Technology Stack:** Languages, frameworks, IDS Sandbox endpoints used. *(Owner: Mohamad Khairi)*
-- [ ] 9. **AI Usage Declaration:** Pre-drafted declaration detailing AI tools, modifications, and validation. *(Owner: Oumar)*
-- [ ] 10. **Security & Privacy Declaration:** Data handling statement ensuring no sensitive PII leakage. *(Owner: Mohamad Khairi)*
+- [ ] 1. **Project & Product Name:** Chosen solution title. *(Owner: Oumar — Project Manager)*
+- [ ] 2. **Team Name:** Registered team identifier. *(Owner: Oumar — Project Manager)*
+- [ ] 3. **Problem Statement:** Concise summary of the cross-border licensing delay. *(Owner: Mohamad Khairi — Documentation Lead)*
+- [ ] 4. **Solution Description:** Technical summary of verifiable credential flow. *(Owner: Mohamad Khairi — Documentation Lead)*
+- [ ] 5. **Prototype / Product Link:** Deployed web interface or local executable instructions. *(Owner: Oumar — Project Manager)*
+- [ ] 6. **Source Code Repository:** Clean GitHub repository with installation instructions. *(Owner: Oumar — Project Manager)*
+- [ ] 7. **Technical README:** System architecture, component map, and API documentation. *(Owner: Mohamad Khairi — Documentation Lead)*
+- [ ] 8. **Technology Stack:** Languages, frameworks, IDS Sandbox endpoints used. *(Owner: Mohamad Khairi — Documentation Lead)*
+- [ ] 9. **AI Usage Declaration:** Pre-drafted declaration detailing AI tools, modifications, and validation. *(Owner: Oumar — Project Manager)*
+- [ ] 10. **Security & Privacy Declaration:** Data handling statement ensuring no sensitive PII leakage. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 11. **Supplemental Materials:** Pitch slides and fallback 60-90s demo recording link. *(Owner: Team)*
 
 ---
@@ -214,11 +214,11 @@ The build sprint centers on **chained issuance and verification** using verifiab
 
 ## Team Details
 
-- **Team Leader:** Oumar Mamoun Ibrahim
+- **Oumar Mamoun Ibrahim:** Team Leader & Project Manager
   - University Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae)
   - Primary Contact: [omarbenzema50@gmail.com](mailto:omarbenzema50@gmail.com)
   - Phone: [+971 56 632 6900](tel:+971566326900)
-- **Team Member:** Mohamad Khairi Bin Ishak
+- **Mohamad Khairi Bin Ishak:** Documentation Lead & Core Contributor
 
 ---
 
