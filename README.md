@@ -18,8 +18,8 @@
 
 - **Selected Challenge:** **Use Case #3 — Cross-Border Professional Licensing & Instant Revocation**
 - **Core Value:** Eliminate multi-month licensing backlogs for relocating healthcare and technical professionals using verifiable credentials with cryptographic real-time revocation.
-- **Key Demo Moment:** Instant status flip from **VERIFIED** to **DENIED** upon live regulator revocation.
-- **Current Phase:** Weekend 1 — Scoping, Environment Setup, and Schema Definition.
+- **Key Demo Moment:** Instant status flip from ![Status: VERIFIED](https://img.shields.io/badge/Status-VERIFIED-2ea44f?style=flat-square) to ![Status: DENIED](https://img.shields.io/badge/Status-DENIED-d73a49?style=flat-square) upon live regulator revocation.
+- **Current Phase:** ![Phase: Weekend 1 Scoping](https://img.shields.io/badge/Phase-Weekend_1_Scoping-0969da?style=flat-square) — Scoping, Environment Setup, and Schema Definition.
 
 ---
 
@@ -57,7 +57,7 @@ Regulator (Issuer / Revoker) -> Professional Wallet (Holder) -> Employer Portal 
 ### 3. Concrete Component Deliverables
 - [ ] **Regulator Portal:** Dashboard to issue license credentials and a one-click "Revoke License" action.
 - [ ] **Professional Wallet:** Mobile/web holder interface displaying the active verifiable credential with QR proof generation.
-- [ ] **Employer Verifier Portal:** Verification desk requesting proof and rendering real-time validation badges (`VERIFIED` vs `REVOKED / DENIED`).
+- [ ] **Employer Verifier Portal:** Verification desk requesting proof and rendering real-time validation badges: ![Status: VERIFIED](https://img.shields.io/badge/Status-VERIFIED-2ea44f?style=flat-square) vs ![Status: DENIED](https://img.shields.io/badge/Status-DENIED-d73a49?style=flat-square).
 
 ---
 
@@ -69,7 +69,7 @@ Strict minute-by-minute execution timeline for event day (Round 2):
 | :--- | :--- | :--- |
 | **00:00 – 00:30** | **Bootstrap & Schemas** | Deploy pre-built scaffolding, initialize credential definitions with revocation enabled, bind environment variables. |
 | **00:30 – 01:30** | **Core Logic & Revocation** | Connect issuance endpoint, implement wallet QR presentation, code live websocket/polling revocation status listener. |
-| **01:30 – 02:15** | **End-to-End Verification** | Execute full happy-path: Issue -> Store in Wallet -> Employer Verifies (`VERIFIED`). Trigger revoke -> Employer re-verifies (`DENIED`). |
+| **01:30 – 02:15** | **End-to-End Verification** | Execute full happy-path: Issue -> Store in Wallet -> Employer Verifies (![Status: VERIFIED](https://img.shields.io/badge/Status-VERIFIED-2ea44f?style=flat-square)). Trigger revoke -> Employer re-verifies (![Status: DENIED](https://img.shields.io/badge/Status-DENIED-d73a49?style=flat-square)). |
 | **02:15 – 02:45** | **Submission Packaging** | Finalize all 11 required submission items, push clean repo commit, record URLs. |
 | **02:45 – 03:00** | **Pitch Demo Rehearsal** | Stage the live screens, test offline fallbacks, submit before the countdown hits zero. |
 
@@ -101,7 +101,7 @@ Prioritize the live functional demonstration over static slides:
 | :--- | :--- | :--- | :--- |
 | **0:00 – 0:45** | **The Problem** | Relocating nurses/professionals face 9-month credential backlogs; paper certs cannot be revoked instantly across borders. | Title & Problem Slide |
 | **0:45 – 01:15** | **The Solution** | Verifiable credentials on the Digital ID Stack with real-time cryptographic revocation registry. | Architecture Overview Slide |
-| **01:15 – 02:30** | **The Live Demo** | 1. Regulator issues credential.<br>2. Candidate accepts in wallet.<br>3. Employer verifies instantly -> **VERIFIED** badge.<br>4. Regulator clicks **Revoke**.<br>5. Employer re-checks -> badge flips to **DENIED**. | Live Split-Screen Demo |
+| **01:15 – 02:30** | **The Live Demo** | 1. Regulator issues credential.<br>2. Candidate accepts in wallet.<br>3. Employer verifies instantly -> ![Status: VERIFIED](https://img.shields.io/badge/Status-VERIFIED-2ea44f?style=flat-square)<br>4. Regulator clicks **Revoke**.<br>5. Employer re-checks -> badge flips to ![Status: DENIED](https://img.shields.io/badge/Status-DENIED-d73a49?style=flat-square). | Live Split-Screen Demo |
 | **02:30 – 03:00** | **Impact & Close** | Global portability, enterprise scalability, fraud prevention; transition to judges' Q&A. | Impact & Team Slide |
 
 ---
@@ -168,7 +168,7 @@ The build sprint centers on **chained issuance and verification** using verifiab
 
 3. **Cross-Border Professional Licensing (Instant Trust & Revocation)**
    - **Scope:** License schema with revocation enabled at definition creation + Employer verify portal + Regulator revoke action.
-   - **Demo Moment:** Verify candidate → revoke license live from regulator console → re-check instantly flips status to **DENIED**.
+   - **Demo Moment:** Verify candidate → revoke license live from regulator console → re-check instantly flips status to ![Status: DENIED](https://img.shields.io/badge/Status-DENIED-d73a49?style=flat-square).
 
 4. **Trade & Supply Chain (Provenance as a Credential Chain)**
    - **Scope:** Cut to 3 chain links and pre-seed initial credentials before the clock starts.
@@ -236,20 +236,20 @@ The build sprint centers on **chained issuance and verification** using verifiab
 
 ### Actionable Priority Matrix
 
-| Task | Deadline | Impact if Missed | Effort | Status |
-| :--- | :--- | :--- | :---: | :---: |
-| Finalize Use Case #3 scope (schemas, screens, revoke logic) | Sep 4-6 | Wasted sprint decision time | 2.5h | `P1 - Pending` |
-| Pre-install dev environment & verify offline readiness | By Sep 13 | Lost sprint time on installs/logins | 2.0h | `P1 - Pending` |
-| Build reusable wallet, issuer, and verifier scaffolding | By Sep 13 | Insufficient time for demo logic | 5.0h | `P1 - Pending` |
-| Draft AI Usage & Security/Privacy declarations | By Sep 13 | Rushed mid-sprint compliance | 1.0h | `P1 - Pending` |
-| Map 11-point submission checklist to assigned owners | By Sep 13 | Late or incomplete submission | 1.5h | `P1 - Pending` |
-| Attend Pre-Orientation Session | Fri Sep 18 | Miss IDS architecture & Round 1 hints | 2.0h | `P1 - Scheduled` |
-| Timed 3-hour Mock Build Sprint simulation | Sat Sep 19 | Untested pace & event-day chaos | 3.5h | `P1 - Scheduled` |
-| Research IDS Sandbox & Digital ID Stack documentation | By Sep 6 | Steep ramp-up on event day | 2.0h | `P2 - Pending` |
-| Draft 6-part pitch deck skeleton & conduct 2 rehearsals | Sep 13-20 | Weaker pitch and lost presentation points | 4.0h | `P2 - Pending` |
-| Review Round 1 knowledge concepts & pre-orientation notes | Ongoing | Risk of failing Round 1 cutoff | 2.0h | `P2 - Ongoing` |
-| Record 60-90s backup demo video | Sat Sep 19 | No fallback if live demo fails | 1.5h | `P3 - Scheduled` |
-| Prepare rubric-based judge Q&A answers | Sun Sep 20 | Weaker Q&A scoring | 1.0h | `P3 - Scheduled` |
+| Task | Deadline | Effort | Priority | Status |
+| :--- | :--- | :---: | :---: | :---: |
+| Finalize Use Case #3 scope (schemas, screens, revoke logic) | Sep 4-6 | 2.5h | ![P1: Critical](https://img.shields.io/badge/P1-Critical-d73a49?style=flat-square) | ![Status: Pending](https://img.shields.io/badge/Status-Pending-gray?style=flat-square) |
+| Pre-install dev environment & verify offline readiness | By Sep 13 | 2.0h | ![P1: Critical](https://img.shields.io/badge/P1-Critical-d73a49?style=flat-square) | ![Status: Pending](https://img.shields.io/badge/Status-Pending-gray?style=flat-square) |
+| Build reusable wallet, issuer, and verifier scaffolding | By Sep 13 | 5.0h | ![P1: Critical](https://img.shields.io/badge/P1-Critical-d73a49?style=flat-square) | ![Status: Pending](https://img.shields.io/badge/Status-Pending-gray?style=flat-square) |
+| Draft AI Usage & Security/Privacy declarations | By Sep 13 | 1.0h | ![P1: Critical](https://img.shields.io/badge/P1-Critical-d73a49?style=flat-square) | ![Status: Pending](https://img.shields.io/badge/Status-Pending-gray?style=flat-square) |
+| Map 11-point submission checklist to assigned owners | By Sep 13 | 1.5h | ![P1: Critical](https://img.shields.io/badge/P1-Critical-d73a49?style=flat-square) | ![Status: Pending](https://img.shields.io/badge/Status-Pending-gray?style=flat-square) |
+| Attend Pre-Orientation Session | Fri Sep 18 | 2.0h | ![P1: Critical](https://img.shields.io/badge/P1-Critical-d73a49?style=flat-square) | ![Status: Scheduled](https://img.shields.io/badge/Status-Scheduled-0969da?style=flat-square) |
+| Timed 3-hour Mock Build Sprint simulation | Sat Sep 19 | 3.5h | ![P1: Critical](https://img.shields.io/badge/P1-Critical-d73a49?style=flat-square) | ![Status: Scheduled](https://img.shields.io/badge/Status-Scheduled-0969da?style=flat-square) |
+| Research IDS Sandbox & Digital ID Stack documentation | By Sep 6 | 2.0h | ![P2: High-Value](https://img.shields.io/badge/P2-High_Value-f59e0b?style=flat-square) | ![Status: Pending](https://img.shields.io/badge/Status-Pending-gray?style=flat-square) |
+| Draft 6-part pitch deck skeleton & conduct 2 rehearsals | Sep 13-20 | 4.0h | ![P2: High-Value](https://img.shields.io/badge/P2-High_Value-f59e0b?style=flat-square) | ![Status: Pending](https://img.shields.io/badge/Status-Pending-gray?style=flat-square) |
+| Review Round 1 knowledge concepts & pre-orientation notes | Ongoing | 2.0h | ![P2: High-Value](https://img.shields.io/badge/P2-High_Value-f59e0b?style=flat-square) | ![Status: Ongoing](https://img.shields.io/badge/Status-Ongoing-f59e0b?style=flat-square) |
+| Record 60-90s backup demo video | Sat Sep 19 | 1.5h | ![P3: Contingency](https://img.shields.io/badge/P3-Contingency-0969da?style=flat-square) | ![Status: Scheduled](https://img.shields.io/badge/Status-Scheduled-0969da?style=flat-square) |
+| Prepare rubric-based judge Q&A answers | Sun Sep 20 | 1.0h | ![P3: Contingency](https://img.shields.io/badge/P3-Contingency-0969da?style=flat-square) | ![Status: Scheduled](https://img.shields.io/badge/Status-Scheduled-0969da?style=flat-square) |
 
 ### Extended Weekend Roadmap (Thu Night + Fri–Sun)
 
