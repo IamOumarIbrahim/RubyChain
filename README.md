@@ -18,8 +18,8 @@
 
 | Event | Date & Time | Mode / Location |
 | :--- | :--- | :--- |
-| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | Online |
-| **Main Hackathon** | Tuesday, 22 September 2026<br>`09:00 AM – 04:00 PM` | Symbiosis, Dubai (In-Person) |
+| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | 🌐 Online |
+| **Main Hackathon** | Tuesday, 22 September 2026<br>`09:00 AM – 04:00 PM` | 📍 Symbiosis, Dubai (In-Person) |
 
 - **Entry:** **Free** *(Limited seats available — valid only if at least 1 team member is an IEEE member)*
 
@@ -32,12 +32,12 @@
 
 ---
 
-## Prizes & Perks
+## 🏆 Prizes & Perks
 
 ### Cash Prizes ($1,000 USD Total)
-- **Winner:** $500
-- **1st Runner-up:** $300
-- **2nd Runner-up:** $200
+- 🥇 **Winner:** $500
+- 🥈 **1st Runner-up:** $300
+- 🥉 **2nd Runner-up:** $200
 
 ### Exclusive Perks
 - **Internship Opportunities:** Unlock exclusive industry openings.
@@ -48,15 +48,14 @@
 
 ## Team Members
 
-- **Team Leader:** Oumar Mamoun Ibrahim
-  - Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae)
-  - Phone: [+971 56 632 6900](tel:+971566326900)
-- **Team Member:** Mohamad Khairi Bin Ishak
+- **👑 Team Leader:** Oumar Mamoun Ibrahim
+  - 📧 Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae)
+  - 📞 Phone: [+971 56 632 6900](tel:+971566326900)
+- **Team Member 1:** Mohamad Khairi Bin Ishak
 
 ---
 
-## Support Contacts
+## 📞 Support Contacts
 
 - **Rithika MaheshKumar:** [+971 56 668 4497](tel:+971566684497)
 - **Alok Kurien Mathew:** [+971 56 596 6571](tel:+971565966571)
-
