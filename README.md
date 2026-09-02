@@ -15,6 +15,20 @@
 *(Exact question count, duration, and marking scheme will be announced before the competition).*
 
 ---
+## Use Cases Considered (Round 2 Build Sprint)
+
+The team is evaluating three high-impact use cases from the official competition brief, balancing technical complexity against the 3-hour build sprint constraint:
+
+| Strategy & Priority | Use Case | Architectural Chain | 3-Hour Demo Moment | Risk & Evaluation |
+| :--- | :--- | :--- | :--- | :--- |
+| **Primary Target**<br>*(Hardest Contribution)* | **Use Case #4: Trade & Supply Chain**<br>*Provenance as a Credential Chain* | `Certifier` → `Exporter` → `Carrier` → `Customs` → `Retailer` | Scan shelf QR for unbroken provenance; trigger batch recall and watch downstream shelf badge flip to red. | **High Risk / Highest Upside:** Demonstrates deep multi-hop chained issuance; pre-seeding initial link is essential. |
+| **Alternative**<br>*(Balanced Delivery)* | **Use Case #5: Logistics & Shipment**<br>*The Shipment That Keeps Everyone Waiting* | `Shipper` → `Logistics Provider` → `Warehouse` → `Carrier` → `Delivery Partner` | Real-time status dashboard (`Scheduled`, `In Transit`, `Delayed`); flip shipment to `Delayed` with instant propagation. | **Medium Risk / High UX:** Highly visual and intuitive for judges; clean 3-link handoff. |
+| **Fallback**<br>*(If Short on Time)* | **Use Case #2: Business Identity for Banks**<br>*The Six-Week Onboarding in Six Seconds* | `Licensing Authority` → `Business` → `Bank (Verifier & Issuer)` → `Supplier / Processor` | Supplier extends credit having verified only the bank's attestation, without ever seeing the raw trade license. | **Lowest Risk / High Relevance:** Proven chained issuance pattern (3 tenants, 2 schemas, 2 issuances, 2 verifications). |
+
+> [!TIP]
+> Detailed architectural breakdowns, schema definitions, and time-slot allocations are documented in the [Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).
+
+---
 
 ## Qualification & Tie-Breakers
 

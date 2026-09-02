@@ -4,23 +4,171 @@ This document preserves the tactical execution playbook, use cases, deliverables
 
 ---
 
-## Target Solution Blueprint: Use Case #3 (Cross-Border Licensing)
+## Target Solution Blueprints (Considered Use Cases)
 
-### 1. Architecture Flow
-Regulator (Issuer / Revoker) -> Professional Wallet (Holder) -> Employer Portal (Verifier).
+The team is prepared to execute across three primary candidates, chosen based on technical upside vs. 3-hour feasibility:
 
-### 2. Schema Specification
-- `practitioner_id`: Unique license string
-- `practitioner_name`: Full legal name
-- `profession`: e.g., "Registered Nurse (RN)"
-- `issuing_authority`: e.g., "Health Regulators Authority"
-- `issue_date`: ISO-8601 timestamp
-- `revocation_enabled`: `true` *(non-negotiable: must be enabled at definition creation)*
+---
 
-### 3. Concrete Component Deliverables
-- [ ] **Regulator Portal:** Dashboard to issue license credentials and a one-click "Revoke License" action.
-- [ ] **Professional Wallet:** Mobile/web holder interface displaying the active verifiable credential with QR proof generation.
-- [ ] **Employer Verifier Portal:** Verification desk requesting proof and rendering real-time validation badges: `VERIFIED` vs `DENIED`.
+### Candidate 1 (Primary Target): Use Case #4 — Trade & Supply Chain
+**"Provenance as a Credential Chain"**  
+*Strategy: Hardest Contribution / Highest Technical Score Upside (25 pts Technical + 15 pts Innovation)*
+
+1. **Architecture Flow (Chained Handoffs):**
+   ```
+   [Certifier / Issuer] 
+           │ (Issues Origin Credential)
+           ▼
+   [Exporter / Holder] 
+           │ (Presents Origin Credential)
+           ▼
+   [Carrier / Verifier & Issuer] 
+           │ (Issues Custody Credential)
+           ▼
+   [Customs / Verifier & Issuer] 
+           │ (Issues Clearance Credential)
+           ▼
+   [Retailer / Final Verifier & Shelf QR]
+   ```
+
+2. **3-Hour Build Sprint Strategy (The 3-Link Slice):**
+   - **Pre-seed Link 1:** Pre-generate Certifier origin credential prior to sprint start to conserve time.
+   - **Build Link 2:** Carrier verify origin + issue custody credential (`temp_threshold_maintained: true`).
+   - **Build Link 3:** Retailer verification page + consumer-facing shelf QR code.
+
+3. **Schema Specifications:**
+   - `OriginCredential`:
+     - `batch_id`: Unique batch string (e.g. `BATCH-COFFEE-2026-X8`)
+     - `product_name`: String (e.g. `Organic Arabica Coffee`)
+     - `origin_region`: String (e.g. `Sidama, Ethiopia`)
+     - `certifier_name`: String
+     - `issue_date`: ISO-8601 timestamp
+     - `revocation_enabled`: `true` *(required for batch recall)*
+   - `CustodyCredential`:
+     - `batch_id`: Matching batch string
+     - `carrier_name`: String
+     - `cold_chain_temp_celsius`: Number
+     - `handoff_timestamp`: ISO-8601 timestamp
+     - `verified_origin_hash`: Cryptographic reference to Origin Credential
+
+4. **Concrete Component Deliverables:**
+   - [ ] **Certifier / Recall Console:** Dashboard showing active batches with a one-click "Trigger Batch Recall / Revoke" button.
+   - [ ] **Supply Chain Handoff Desk:** Carrier custody verify-and-issue portal.
+   - [ ] **Retailer Shelf Verification View:** Customer/Auditor QR scanner displaying full provenance chain: `ORIGIN VERIFIED` → `COLD CHAIN VERIFIED` → `RELEASED`.
+   - [ ] **Live Demo Climax:** Scan shelf QR showing all-green provenance; trigger Certifier recall button; live re-scan immediately flashes red `BATCH RECALLED / DO NOT SELL`.
+
+---
+
+### Candidate 2 (Alternative): Use Case #5 — Logistics & Shipment Coordination
+**"The Shipment That Keeps Everyone Waiting"**  
+*Strategy: Balanced Delivery / High Real-World Relevance & Intuitive UX (15 pts Functionality + 10 pts UX)*
+
+1. **Architecture Flow:**
+   ```
+   [Shipper / Issuer] 
+           │ (Issues Shipment Dispatch Credential)
+           ▼
+   [Logistics Provider / Hub Verifier & Updater] 
+           │ (Issues Handoff / Status Update Credential)
+           ▼
+   [Carrier & Warehouse / Verifier]
+           │
+           ▼
+   [Consignee / Delivery Partner Verifier]
+   ```
+
+2. **3-Hour Build Sprint Strategy:**
+   - 3-link handoff: Shipper dispatch → Hub warehouse transit → Last-mile carrier.
+   - Focus on live status propagation: `Scheduled` → `In Transit` → `Delayed` → `Delivered`.
+
+3. **Schema Specifications:**
+   - `ShipmentDispatchCredential`:
+     - `tracking_id`: Unique shipment identifier (e.g. `SHIP-DXB-8821`)
+     - `shipper_name`: String
+     - `origin_hub`: String
+     - `destination_hub`: String
+     - `scheduled_eta`: ISO-8601 timestamp
+     - `status`: String (`SCHEDULED`)
+   - `ShipmentStatusCredential`:
+     - `tracking_id`: Matching identifier
+     - `reporting_node`: String (e.g. `Jebel Ali Gateway Hub`)
+     - `current_status`: String (`ON_SCHEDULE` | `DELAYED` | `ARRIVED`)
+     - `delay_reason`: String (optional)
+     - `revised_eta`: ISO-8601 timestamp
+
+4. **Concrete Component Deliverables:**
+   - [ ] **Shipper Dispatch Portal:** Issues verifiable shipment credentials on cargo booking.
+   - [ ] **Transit Node Console:** Logistics checkpoint reporting dynamic status changes.
+   - [ ] **Multi-Partner Unified Dashboard:** Real-time dashboard listening to updates across all stakeholders.
+   - [ ] **Live Demo Climax:** Change status from `On Schedule` to `Delayed` at Hub checkpoint; downstream partners receive verified cryptographic alert instantly without email/phone latency.
+
+---
+
+### Candidate 3 (Fallback): Use Case #2 — Business Identity for Banks
+**"The Six-Week Onboarding, in Six Seconds"**  
+*Strategy: Fastest Execution / Guaranteed Completion under Time Pressure (Chained Issuance Benchmark)*
+
+1. **Architecture Flow:**
+   ```
+   [Licensing Authority / Issuer] 
+           │ (Issues Registered Business Credential)
+           ▼
+   [Corporate Wallet / Holder] 
+           │ (Presents Registered Business Credential)
+           ▼
+   [Bank / Verifier & Secondary Issuer] 
+           │ (Verifies License -> Issues Verified Corporate Account Credential)
+           ▼
+   [Supplier / Processor / Final Verifier] (Extends Net-30 terms based on bank attestation)
+   ```
+
+2. **3-Hour Build Sprint Strategy:**
+   - 3 tenants, 2 schemas, 2 issuances, 2 verifications.
+   - Business represented by holder web wallet.
+
+3. **Schema Specifications:**
+   - `BusinessLicenseCredential`:
+     - `trade_license_no`: String
+     - `company_name`: String
+     - `jurisdiction`: String
+     - `activity_type`: String
+     - `issue_date`: ISO-8601 timestamp
+   - `CorporateBankAccountCredential`:
+     - `trade_license_no`: String
+     - `bank_name`: String
+     - `iban`: String
+     - `kyb_status`: String (`VERIFIED`)
+     - `credit_tier`: String (`TIER_1`)
+     - `attestation_date`: ISO-8601 timestamp
+
+4. **Concrete Component Deliverables:**
+   - [ ] **Licensing Authority Portal:** Issues trade license credential.
+   - [ ] **Corporate Wallet:** Holds license & bank credentials.
+   - [ ] **Bank Onboarding Desk:** One-click license verification + auto-issue corporate account credential.
+   - [ ] **Supplier Credit Portal:** Verifies bank attestation and approves net-30 terms instantly.
+   - [ ] **Live Demo Climax:** Supplier approves credit line in 5 seconds having never inspected the raw trade license.
+
+---
+
+### Candidate 4 (Archived Reference): Use Case #3 — Cross-Border Professional Licensing
+**"The Nurse Who Cannot Work"**  
+*Strategy: Single-Credential with Instant Revocation Registry*
+
+1. **Architecture Flow:**
+   Regulator (Issuer / Revoker) → Professional Wallet (Holder) → Employer Portal (Verifier).
+
+2. **Schema Specification:**
+   - `practitioner_id`: Unique license string
+   - `practitioner_name`: Full legal name
+   - `profession`: e.g., "Registered Nurse (RN)"
+   - `issuing_authority`: e.g., "Health Regulators Authority"
+   - `issue_date`: ISO-8601 timestamp
+   - `revocation_enabled`: `true` *(non-negotiable: must be enabled at definition creation)*
+
+3. **Concrete Component Deliverables:**
+   - [ ] **Regulator Portal:** Dashboard to issue license credentials and a one-click "Revoke License" action.
+   - [ ] **Professional Wallet:** Mobile/web holder interface displaying active verifiable credential.
+   - [ ] **Employer Verifier Portal:** Verification desk requesting proof; renders real-time badges: `VERIFIED` vs `DENIED`.
 
 ---
 
