@@ -61,17 +61,18 @@ Regulator (Issuer / Revoker) -> Professional Wallet (Holder) -> Employer Portal 
 
 ---
 
-## 3-Hour Build Sprint: Execution Playbook
+## 3-Hour Build Sprint: Execution Playbook (180-Minute Time Slots)
 
-Strict minute-by-minute execution timeline for event day (Round 2):
+The 3-hour development sprint accommodates all 10 required competition activities across structured time slots:
 
-| Time Window | Focus Block | Action Items |
-| :--- | :--- | :--- |
-| **00:00 – 00:30** | **Bootstrap & Schemas** | Deploy pre-built scaffolding, initialize credential definitions with revocation enabled, bind environment variables. |
-| **00:30 – 01:30** | **Core Logic & Revocation** | Connect issuance endpoint, implement wallet QR presentation, code live websocket/polling revocation status listener. |
-| **01:30 – 02:15** | **End-to-End Verification** | Execute full happy-path: Issue -> Store in Wallet -> Employer Verifies (![Status: VERIFIED](https://img.shields.io/badge/Status-VERIFIED-2ea44f?style=flat-square)). Trigger revoke -> Employer re-verifies (![Status: DENIED](https://img.shields.io/badge/Status-DENIED-d73a49?style=flat-square)). |
-| **02:15 – 02:45** | **Submission Packaging** | Finalize all 11 required submission items, push clean repo commit, record URLs. |
-| **02:45 – 03:00** | **Pitch Demo Rehearsal** | Stage the live screens, test offline fallbacks, submit before the countdown hits zero. |
+| Time Slot | Phase & Activities Covered | Operational Focus & Deliverables | Owner Lead |
+| :---: | :--- | :--- | :--- |
+| **00:00 – 00:20**<br>*(20 min)* | **1. Challenge Understanding & Scoping**<br>• Understanding the challenge<br>• Brainstorming<br>• Research | Review official problem statement, confirm Use Case #3 scope, consult IDS Sandbox documentation, and align technical constraints. | Oumar (PM) & Mohamad Khairi (Docs) |
+| **00:20 – 00:45**<br>*(25 min)* | **2. Product Design**<br>• Product design & architecture<br>• Schema modeling | Finalize credential definition schema (`revocation_enabled: true`) and sketch UI wireframes for Regulator, Wallet, and Employer screens. | Mohamad Khairi (Docs) |
+| **00:45 – 01:45**<br>*(60 min)* | **3. Core Development**<br>• Coding / development<br>• Platform integration | Spin up pre-built scaffolding, integrate issuance API, build wallet credential receiver, and implement live websocket/polling revocation listener. | Oumar (PM) |
+| **01:45 – 02:15**<br>*(30 min)* | **4. Testing & Debugging**<br>• Testing<br>• Debugging | Execute end-to-end verification pass: Issue → Store in Wallet → Verify (![Status: VERIFIED](https://img.shields.io/badge/Status-VERIFIED-2ea44f?style=flat-square)) → Revoke → Re-verify (![Status: DENIED](https://img.shields.io/badge/Status-DENIED-d73a49?style=flat-square)). Fix latency and runtime bugs. | Oumar (PM) & Mohamad Khairi (Docs) |
+| **02:15 – 02:40**<br>*(25 min)* | **5. Documentation**<br>• Documentation<br>• Compliance declarations | Complete technical README, architecture breakdown, finalize AI Usage & Security/Privacy declarations, push clean commit to GitHub. | Mohamad Khairi (Docs) |
+| **02:40 – 03:00**<br>*(20 min)* | **6. Submission & Pitch Preparation**<br>• Final submission<br>• Pitch preparation | **Submit all 11 required deliverables before the official deadline** (avoid late penalties); stage live demo screens and rehearse 3-min pitch flow. | Team (Oumar & Mohamad Khairi) |
 
 ---
 
