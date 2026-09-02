@@ -6,7 +6,7 @@
 > [!TIP]
 > **Registration Form**  
 > [Submit your registration here](https://docs.google.com/forms/d/e/1FAIpQLSczWiVZIlIVd7nf-bivuWyLeuXc1LfHW_UJx3iR1PuMCTMXYA/viewform?pli=1)  
-> *Note: Registered by Team Leader using:* [omarbenzema50@gmail.com](mailto:omarbenzema50@gmail.com)
+> *Note: Registration must be submitted by the Team Leader.*
 
 > [!TIP]
 > **Official Rulebook & Challenge Resources**  
@@ -14,29 +14,45 @@
 
 ---
 
+## Table of Contents
+- [Key Event Details](#key-event-details)
+- [Prizes & Industry Perks](#prizes--industry-perks)
+- [Competition Format (3 Progressive Rounds)](#competition-format-3-progressive-rounds)
+- [Round 2: Build Sprint & Submission Guidelines](#round-2-build-sprint--submission-guidelines)
+- [Official Challenge Use Cases (Digital ID Stack)](#official-challenge-use-cases-digital-id-stack)
+- [Round 3: Pitch Structure (3–5 Minutes)](#round-3-pitch-structure-35-minutes)
+- [Judging Rubric (100 Points Total)](#judging-rubric-100-points-total)
+- [Key Rules & Policies](#key-rules--policies)
+- [Team Details](#team-details)
+- [CodeNova 2026 Prep Schedule](#codenova-2026-prep-schedule)
+- [Support Contacts](#support-contacts)
+
+---
+
 ## Key Event Details
 
 | Event | Date & Time | Mode / Location |
 | :--- | :--- | :--- |
-| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | Online (IDS Concept Briefing) |
-| **Main Hackathon** | Tuesday, 22 September 2026<br>`09:00 AM – 04:00 PM` | Block 14, Knowledge Park, Symbiosis International University, Dubai (In-Person) |
+| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | Online (IDS Concept Briefing & Platform Overview) |
+| **Main Hackathon** | Tuesday, 22 September 2026<br>`09:00 AM – 04:00 PM` | Block 14, Dubai Knowledge Park, Symbiosis International University, Dubai (In-Person) |
 
 - **Entry:** **Free** (Limited capacity; Team Leader must hold an active [IEEE](https://www.ieee.org/) membership).
 - **Core Philosophy:** `LEARN → THINK → BUILD → DEMONSTRATE → PITCH`
 
 ---
 
-## Prizes & Perks
+## Prizes & Industry Perks
 
-### Cash Prizes ($1,000 USD Total)
+### Cash Awards ($1,000 USD Pool)
 - **Winner:** $500
 - **1st Runner-up:** $300
-- **2nd Runner-up:** $200
+- **2nd Runner-up:** $200  
+*(Prize distribution structure subject to final confirmation by the Organizing Committee)*
 
-### Exclusive Perks
-- **Internship Opportunities:** Direct evaluation for standout participants by IDS.
-- **Hands-on Mentoring:** Technical support & IDS Sandbox integration during the build sprint.
-- **Patent & IP Support:** Supported by **IDS** and [**MIT Square**](https://www.mitsquare.com/).
+### Industry & Technical Perks
+- **Internship Opportunities:** Standout performers evaluated directly for internship positions at IDS.
+- **Hands-on Mentoring:** Technical guidance, expert sessions, and access to the IDS Sandbox.
+- **Patent & IP Support:** Guidance on intellectual property protection and commercialization feasibility.
 
 ---
 
@@ -45,8 +61,8 @@
 | Round | Stage | Format | Outcome / Timing |
 | :---: | :--- | :--- | :--- |
 | **1** | **Knowledge Challenge** | Online MCQ Quiz (Kahoot / Quizizz / Google Forms) covering IDS pre-orientation concepts, tech fundamentals & problem-solving. | **Top 20 Teams Qualify**<br>*(Qualification only; score does not carry forward)* |
-| **2** | **The Build Sprint** | 3-Hour Rapid Product Development Sprint based on given use cases/problem statements. | Working prototype, source repo & technical submission |
-| **3** | **Pitch & Judgement** | 3–5 min Product Demonstration + Pitch + Q&A with judges. | Final 100-pt scoring & winners announced |
+| **2** | **The Build Sprint** | 3-Hour Rapid Product Development Sprint based on selected verifiable credential use cases. | Working prototype, source repo & technical submission |
+| **3** | **Pitch & Judgement** | 3–5 min Product Demonstration + Pitch + Q&A with judging panel. | Final 100-pt scoring & winners announced |
 
 ---
 
@@ -62,7 +78,7 @@
   5. Technology Stack Summary
   6. **AI Usage Declaration** (tools used, modification details, and verification methods)
   7. **Security & Privacy Declaration**
-- **Late Submissions:** Strictly penalized via point deductions, marked incomplete, or disqualified.
+- **Late Submissions:** Penalized via point deductions, marked incomplete, or subject to disqualification.
 
 ---
 
@@ -150,9 +166,9 @@ Teams should prioritize **live working demonstrations** over static slides:
 ## Team Details
 
 - **Team Leader:** Oumar Mamoun Ibrahim
-  - Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae)
-  - Phone: [+971 56 632 6900](tel:+971566326900)
-- **Team Member 1:** Mohamad Khairi Bin Ishak
+  - University Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae)
+  - Primary Contact: [omarbenzema50@gmail.com](mailto:omarbenzema50@gmail.com)
+- **Team Member:** Mohamad Khairi Bin Ishak
 
 ---
 
@@ -189,9 +205,9 @@ Teams should prioritize **live working demonstrations** over static slides:
 
 #### Weekend 1 (Sep 5-6): Foundation & Scoping
 - **Saturday, Sep 5:**
-  - `09:00 - 10:15`: Confirm active IEEE ID, fix registration email, submit form (**P1**).
+  - `09:00 - 10:15`: Confirm active IEEE ID, verify registration status, and resolve email configuration (**P1**).
   - `10:30 - 12:30`: Lock Use Case #3 scope: schema fields, verifier UI, and revocation trigger (**P1**).
-  - `13:30 - 16:30`: Clean repo/README details, assign roles, configure task board, log organizer queries (**P2**).
+  - `13:30 - 16:30`: Clean repo documentation, assign roles, configure task board, log organizer queries (**P2**).
 - **Sunday, Sep 6:**
   - `09:00 - 11:00`: Study IDS Sandbox and Digital Identity Stack documentation (**P2**).
   - `11:15 - 13:00`: Draft credential schema and issuer/verifier logic for Use Case #3 (**P1**).
@@ -227,5 +243,6 @@ Teams should prioritize **live working demonstrations** over static slides:
 
 ## Support Contacts
 
-- **Rithika MaheshKumar:** [+971 56 668 4497](tel:+971566684497)
-- **Alok Kurien Mathew:** [+971 56 596 6571](tel:+971565966571)
+- **Rithika MaheshKumar:** Competition Coordinator (SIU Dubai IEEE Student Branch)
+- **Alok Kurien Mathew:** Technical Coordinator (SIU Dubai IEEE Student Branch)  
+*(Official contact phone numbers are distributed internally via official IEEE participant channels)*
