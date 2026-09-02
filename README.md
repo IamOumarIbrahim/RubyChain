@@ -156,6 +156,75 @@ Teams should prioritize **live working demonstrations** over static slides:
 
 ---
 
+## CodeNova 2026 Prep Schedule
+
+**Team:** Oumar Mamoun Ibrahim & Mohamad Khairi Bin Ishak  
+**Timeline:** Wednesday, 2 Sep 2026 -> Tuesday, 22 Sep 2026 (Event Day)  
+**Capacity:** Weekends only (3 weekends / ~30-36h total) + Friday, 18 Sep Pre-Orientation. Monday, 21 Sep is a dedicated rest day.
+
+### Core Strategy & Principles
+- **Reusable Plumbing First:** Spend Weekend 2 building generic wallet, issuer, and verifier scaffolding. On event day, the real 3 hours go strictly toward the unique demo moment (**Use Case #3: Cross-Border Licensing & Revocation Flip**).
+- **Non-Negotiable Mock Sprint:** Full timed 3-hour simulation on Saturday, 19 Sep is the single highest-value preparation block.
+- **Time Contingency:** Total workload is ~30.5h against ~30-36h available. If constrained, drop tasks in order: (1) backup demo video, (2) second pitch rehearsal, (3) formal Q&A prep. Never cut the mock sprint.
+
+### Priority Matrix
+
+| Task | Deadline | Impact if Missed | Effort | Priority |
+| :--- | :--- | :--- | :---: | :---: |
+| Fix registration email mismatch & verify active IEEE ID | ASAP | Ineligible or unregistered | 1.5h | **P1** |
+| Finalize Use Case #3 scope (schemas, screens, revoke logic) | Sep 5-6 | Wasted sprint decision time | 2.5h | **P1** |
+| Pre-install dev environment & verify offline readiness | By Sep 13 | Lost sprint time on installs/logins | 2.0h | **P1** |
+| Build reusable wallet, issuer, and verifier scaffolding | By Sep 13 | Insufficient time for demo logic | 5.0h | **P1** |
+| Draft AI Usage & Security/Privacy declarations | By Sep 13 | Rushed mid-sprint compliance | 1.0h | **P1** |
+| Map 11-point submission checklist to assigned owners | By Sep 13 | Late or incomplete submission | 1.5h | **P1** |
+| Attend Pre-Orientation Session | Fri Sep 18 | Miss IDS architecture & Round 1 hints | 2.0h | **P1** |
+| Timed 3-hour Mock Build Sprint simulation | Sat Sep 19 | Untested pace & event-day chaos | 3.5h | **P1** |
+| Research IDS Sandbox & Digital ID Stack documentation | By Sep 6 | Steep ramp-up on event day | 2.0h | **P2** |
+| Draft 6-part pitch deck skeleton & conduct 2 rehearsals | Sep 13-20 | Weaker pitch and lost presentation points | 4.0h | **P2** |
+| Review Round 1 knowledge concepts & pre-orientation notes | Ongoing | Risk of failing Round 1 cutoff | 2.0h | **P2** |
+| Record 60-90s backup demo video | Sat Sep 19 | No fallback if live demo fails | 1.5h | **P3** |
+| Prepare rubric-based judge Q&A answers | Sun Sep 20 | Weaker Q&A scoring | 1.0h | **P3** |
+
+### Weekend Roadmap
+
+#### Weekend 1 (Sep 5-6): Foundation & Scoping
+- **Saturday, Sep 5:**
+  - `09:00 - 10:15`: Confirm active IEEE ID, fix registration email, submit form (**P1**).
+  - `10:30 - 12:30`: Lock Use Case #3 scope: schema fields, verifier UI, and revocation trigger (**P1**).
+  - `13:30 - 16:30`: Clean repo/README details, assign roles, configure task board, log organizer queries (**P2**).
+- **Sunday, Sep 6:**
+  - `09:00 - 11:00`: Study IDS Sandbox and Digital Identity Stack documentation (**P2**).
+  - `11:15 - 13:00`: Draft credential schema and issuer/verifier logic for Use Case #3 (**P1**).
+  - `14:00 - 16:30`: Configure dependencies, verify accounts, test offline-safe toolchain (**P1**).
+
+#### Weekend 2 (Sep 12-13): Reusable Scaffolding & Submission Prep
+- **Saturday, Sep 12:**
+  - `09:00 - 13:00`: Build generic wallet/holder UI shell and issuer flow skeleton (**P1**).
+  - `14:00 - 16:45`: Build verifier flow skeleton and execute end-to-end dummy issue/verify pass (**P1**).
+- **Sunday, Sep 13:**
+  - `09:00 - 11:00`: Implement the unique demo moment: regulator revoke button with live status flip (**P1**).
+  - `11:15 - 12:45`: Outline 6-part pitch deck skeleton (**P2**).
+  - `13:45 - 16:15`: Pre-draft AI & Privacy declarations and assign owners for all 11 submission deliverables (**P1**).
+
+#### Friday, Sep 18: Pre-Orientation
+- `10:00 - 12:00` (Online): Attend live session. Capture Round 1 quiz dates, IDS Sandbox access details, and explicit AI/tech rules.
+
+#### Weekend 3 (Sep 19-20): Dress Rehearsal & Polish
+- **Saturday, Sep 19:**
+  - `09:15 - 12:15`: **Full 3-Hour Timed Mock Sprint** (strict simulation under competition clock) (**P1**).
+  - `13:15 - 15:30`: Sprint retrospective and address biggest identified code bottlenecks.
+  - `15:45 - 16:30`: Record 60-90 second backup demo video (**P3**).
+- **Sunday, Sep 20:**
+  - `09:00 - 11:00`: Pitch rehearsals #1 and #2 (timed to 3-5 min limit).
+  - `11:00 - 12:00`: Rubric-based judge Q&A preparation (**P3**).
+  - `13:00 - 16:00`: Polish docs/diagrams, pack equipment (chargers, accounts, offline copies), and final team sync.
+
+#### Event Week
+- **Monday, Sep 21 (Rest Day):** Full rest. No new code; light review only.
+- **Tuesday, Sep 22 (Event Day):** Round 1 Knowledge Challenge -> Round 2 Build Sprint (3 hours) -> Round 3 Pitch & Demonstration.
+
+---
+
 ## Support Contacts
 
 - **Rithika MaheshKumar:** [+971 56 668 4497](tel:+971566684497)
