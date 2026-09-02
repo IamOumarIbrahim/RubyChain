@@ -14,39 +14,49 @@
 
 ---
 
-## 📅 Key Event Details
+## Key Event Details
 
 | Event | Date & Time | Mode / Location |
 | :--- | :--- | :--- |
-| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | 🌐 Online |
-| **Main Hackathon** | Tuesday, 22 September 2026<br>`09:00 AM – 04:00 PM` | 📍 Symbiosis, Dubai (In-Person) |
+| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | Online |
+| **Main Hackathon** | Tuesday, 22 September 2026<br>`09:00 AM – 04:00 PM` | Symbiosis, Dubai (In-Person) |
 
-- **🎟️ Entry:** **100% Free** *(Limited seats available — valid only if at least 1 team member is an IEEE member)*
+- **Entry:** **Free** *(Limited seats available — valid only if at least 1 team member is an IEEE member)*
 
 ---
 
-## 👥 Eligibility & Team Requirements
+## Eligibility & Team Requirements
 
 - **Participation:** Open to teams or individual participants.
 - **IEEE Requirement:** At least one team member (the Team Leader) must be an active IEEE member and submit a valid IEEE Membership ID in the registration form.
 
 ---
 
-## 🏆 Prizes & Perks
+## Prizes & Perks
 
-### 💰 Cash Prizes ($1,000 USD Total)
-- 🥇 **Winner:** $500
-- 🥈 **1st Runner-up:** $300
-- 🥉 **2nd Runner-up:** $200
+### Cash Prizes ($1,000 USD Total)
+- **Winner:** $500
+- **1st Runner-up:** $300
+- **2nd Runner-up:** $200
 
-### ✨ Exclusive Perks
-- 💼 **Internship Opportunities:** Unlock exclusive industry openings.
-- 🛠️ **Direct Mentoring:** Hands-on sandbox mentoring.
-- 📜 **Patent & IP Support:** Supported by sponsors **IDS** and **MIT Square**.
+### Exclusive Perks
+- **Internship Opportunities:** Unlock exclusive industry openings.
+- **Direct Mentoring:** Hands-on sandbox mentoring.
+- **Patent & IP Support:** Supported by sponsors **IDS** and **MIT Square**.
 
 ---
 
-## 📞 Support Contacts
+## Team Members
 
-- 📞 **Rithika MaheshKumar:** [+971 56 668 4497](tel:+971566684497)
-- 📞 **Alok Kurien Mathew:** [+971 56 596 6571](tel:+971565966571)
+- **Team Leader:** Oumar Mamoun Ibrahim
+  - Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae)
+  - Phone: [+971 56 632 6900](tel:+971566326900)
+- **Team Member:** Mohamad Khairi Bin Ishak
+
+---
+
+## Support Contacts
+
+- **Rithika MaheshKumar:** [+971 56 668 4497](tel:+971566684497)
+- **Alok Kurien Mathew:** [+971 56 596 6571](tel:+971565966571)
+
