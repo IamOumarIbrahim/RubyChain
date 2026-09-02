@@ -1,47 +1,49 @@
-# CodeNova 2026: Round 1 Qualification Guide
+# CodeNova 2026: Round 1 Qualification Guide (Knowledge Challenge)
 
 > **Organized by:** IEEE Symbiosis International University – Dubai Student Branch  
 > **In Collaboration With:** IDS (International Digital Systems)
 
 > [!IMPORTANT]
-> **Mission Objective:** Rank in the **Top 20 Teams** during the Round 1 Knowledge Challenge to qualify for the Round 2 Build Sprint.  
-> *(Round 1 score is qualification-only and does not carry forward to final competition scoring).*
+> **Objective:** Evaluate participants' understanding of concepts from the CodeNova pre-orientation session conducted by IDS, along with relevant technical and problem-solving concepts, ensuring all teams entering the build stage possess a common baseline of knowledge.  
+> **Qualification Target:** Rank in the **Top 20 Teams** at the conclusion of Round 1 to qualify for Round 2 (The Build Sprint). Round 1 scores are qualification-only and do not carry forward to final competition scoring.
 
 ---
 
-## Round 1 Overview & Key Dates
+## Round 1 Format & Key Dates
 
-| Event | Date & Time | Format / Platform | Focus Area |
+| Event | Date & Time | Format / Platform | Details |
 | :--- | :--- | :--- | :--- |
-| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | Online | **Mandatory Attendance:** IDS platform overview, architecture, and core quiz concepts. |
-| **Round 1: Knowledge Challenge** | Tuesday, 22 September 2026<br>*(Exact timing announced before event)* | Online MCQ Quiz<br>*(Kahoot / Quizizz / Google Forms)* | **Top 20 Qualify:** Speed- and accuracy-based elimination quiz. |
+| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | Online | **Mandatory Prep:** Covers IDS platform architecture and core concepts tested in Round 1. |
+| **Round 1: Knowledge Challenge** | Tuesday, 22 September 2026<br>*(Timing announced prior to event)* | Online MCQ Quiz<br>*(Kahoot / Quizizz / Google Forms)* | Platform selected by the organizing committee based on reliability, internet availability, scoring functionality, and ease of administration. |
+
+- **Competition Parameters:** The exact number of questions, duration, and marking scheme will be announced before the competition.
 
 ---
 
-## Qualification & Tie-Breaker Mechanics
+## Qualification & Tie-Breaker Policy
 
-- **Passing Criteria:** Rank among the **top 20 teams** on the official leaderboard.
-- **Scoring Basis:** Total number of correct answers.
-- **Tie-Breaker Hierarchy (Applied in Order):**
-  1. **Higher number of correct answers** across all questions.
-  2. **Faster completion time** (Speed weighting on Kahoot/Quizizz platforms).
-  3. **Predetermined tie-breaker question or mini challenge** administered by organizers.
+- **Advancement:** At the conclusion of Round 1, the **top 20 teams qualify for Round 2**.
+- **Tie-Breaker Hierarchy (if ties occur around the qualification cutoff):**
+  1. **Higher number of correct answers.**
+  2. **Faster completion time** (where supported by the platform).
+  3. **A predetermined tie-breaker question or mini challenge.**
+- **Final Authority:** The decision of the organizing committee regarding qualification will be final.
 
 > [!TIP]
-> **Speed Strategy:** On platforms like Kahoot and Quizizz, response speed directly affects ranking and tie-breaks. Prioritize absolute accuracy first, but answer promptly to secure the tie-breaker edge.
+> **Speed & Accuracy Strategy:** On platforms like Kahoot and Quizizz, response speed directly affects ranking and breaks ties. Prioritize accuracy first, but answer promptly to maintain a competitive tie-breaker standing.
 
 ---
 
-## The 6 Tested Question Categories (Study Guide)
+## Question Categories (Study Guide)
 
-The quiz assesses baseline understanding across six core technical and conceptual categories:
+The quiz assesses baseline understanding across six core categories:
 
 ### 1. Concepts Discussed During the IDS Pre-Orientation
 - **Digital Identity Stack (IDS) Architecture:** Foundational components, trust model, and platform workflows.
-- **Self-Sovereign Identity (SSI) Framework:** The Issuer → Holder → Verifier triad and trust registries.
+- **Self-Sovereign Identity (SSI) Framework:** The Issuer -> Holder -> Verifier triad and trust registries.
 - **IDS Sandbox:** Sandbox capabilities, credential definitions, and developer environments.
 
-### 2. Digital Identity & Verifiable Technologies
+### 2. Digital Technologies Relevant to the Competition
 - **Decentralized Identifiers (DIDs):** DID structure, resolution, and DID Documents.
 - **Verifiable Credentials (VCs):** Claims, schemas, credential definitions, and cryptographic signatures.
 - **Verifiable Presentations (VPs):** Presenting claims, selective disclosure, and zero-knowledge proof concepts.
@@ -71,9 +73,9 @@ The quiz assesses baseline understanding across six core technical and conceptua
 ## Round 1 Action Checklist
 
 - [ ] **Attend Pre-Orientation Live:** Friday, 18 Sep (`10:00 - 12:00`). Record all technical terms, architecture diagrams, and platform specifics.
-- [ ] **Review IDS & SSI Concepts:** Study the Issuer-Holder-Verifier triad, DIDs, VCs, and revocation mechanics.
+- [ ] **Study IDS & SSI Concepts:** Master the Issuer-Holder-Verifier triad, DIDs, VCs, and revocation mechanics.
 - [ ] **Review CS Fundamentals:** Brush up on cryptographic key pairs, hashing, REST status codes, and algorithmic logic.
-- [ ] **Quiz Setup Preparation:** Ensure a stable high-speed internet connection with a backup mobile hotspot on standby.
+- [ ] **Hardware & Connectivity Setup:** Ensure a stable high-speed internet connection with a backup mobile hotspot on standby.
 - [ ] **Dual-Screen Setup:** Have reference notes and orientation slides accessible on a secondary display for fast lookups.
 
 ---
