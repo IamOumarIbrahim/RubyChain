@@ -41,7 +41,32 @@ This document outlines the tactical execution plan, technical blueprint, deliver
 
 ---
 
-### 2. 3-Hour Build Sprint Strategy (The 3-Link Slice)
+## 2. Sprint Engineering Philosophy: The Reusable Credential Engine
+### *Pre-Built Platform vs. 3-Hour Sprint Configuration*
+
+The core engineering strategy is to treat the competition software not as ad-hoc code written under 180-minute pressure, but as a **reusable, configurable credential workflow engine**.
+
+#### The Core Engine Abstraction
+The generic platform understands universal digital identity primitives:
+```
+[Organization / Node] ──> [Credential Definition] ──> [Issuance] ──> [Verification] ──> [Chained Issuance] ──> [Instant Revocation]
+```
+
+On competition day, we do not spend time inventing boilerplate software or scaffolding databases. We spend the 3 hours **instantiating the requested product configuration**:
+```
+[Certifier Node] ──> [Origin Credential] ──> [Exporter / Farm] ──> [Custody Credential] ──> [Carrier] ──> [Retailer Shelf QR]
+```
+
+#### Implementation Division: Engine vs. Configuration
+
+| Phase | Capabilities & Scope | Specific Assets & Components |
+| :--- | :--- | :--- |
+| **Already Built Before CodeNova**<br>*(The Reusable Platform Engine)* | Complete web infrastructure, cryptographic plumbing, and generic workflows prepared prior to sprint kickoff. | • Full Ruby on Rails application scaffolding<br>• Database models & migrations (ActiveRecord + SQLite)<br>• Universal Credential Issuance service layer<br>• Cryptographic Verification engine<br>• Revocation registry integration (`BitstringStatusList`)<br>• Chained provenance tracking & graph visualizer<br>• Dynamic 2D QR generation & camera scanning flow<br>• Role-based authentication (`Certifier`, `Carrier`, `Retailer`)<br>• Polished Hotwire Turbo Streams UI & dashboards<br>• Demo data seeding engine & scenario loader<br>• IDS Sandbox REST client & webhook receiver<br>• Deployment scripts, error handling, & baseline tests |
+| **Configured During the 3 Hours**<br>*(Scenario Instantiation & Pitch)* | Adapting the pre-built engine to the exact competition challenge statement. | • CodeNova-specific Trade & Food Safety scenario<br>• The required 3-link handoff chain<br>• Scenario-specific credential fields (`cold_chain_temp`, `farm_gln`)<br>• Realistic domain branding, packaging copy, & assets<br>• Challenge-specific IDS API sandbox parameters<br>• End-to-end dry run verification & edge case check<br>• Pitch slide alignment & live demo staging |
+
+---
+
+## 3. 3-Hour Build Sprint Strategy (The 3-Link Slice)
 
 - **Pre-seed Link 1:** Pre-generate the Certifier origin credential before sprint start to save development time.
 - **Build Link 2:** Carrier custody portal to verify the origin credential and issue a custody credential (`cold_chain_maintained: true`).
@@ -49,7 +74,7 @@ This document outlines the tactical execution plan, technical blueprint, deliver
 
 ---
 
-### 3. Schema Specifications
+## 4. Schema Specifications
 
 - **`OriginCredential`**:
   - `batch_id`: Unique batch string (e.g., `BATCH-PRODUCE-2026-X8`)
@@ -68,7 +93,7 @@ This document outlines the tactical execution plan, technical blueprint, deliver
 
 ---
 
-### 4. Concrete Component Deliverables
+## 5. Concrete Component Deliverables
 
 - [ ] **Certifier / Recall Console:** Web dashboard listing active food batches with a single-click "Trigger Batch Recall / Revoke" button.
 - [ ] **Supply Chain Handoff Desk:** Carrier portal to verify origin credentials and issue custody credentials.
@@ -77,7 +102,7 @@ This document outlines the tactical execution plan, technical blueprint, deliver
 
 ---
 
-## 3-Hour Build Sprint: Execution Playbook (180-Minute Schedule)
+## 6. 3-Hour Build Sprint: 180-Minute Execution Schedule
 
 The 3-hour development sprint covers all 10 competition activities across structured time slots:
 
@@ -92,7 +117,7 @@ The 3-hour development sprint covers all 10 competition activities across struct
 
 ---
 
-## Round 2 Deliverables Tracker (11 Required Items)
+## 7. Round 2 Deliverables Tracker (11 Required Items)
 
 Before the 3-hour deadline, submit all required materials through the organizers' submission portal:
 
@@ -113,7 +138,7 @@ Before the 3-hour deadline, submit all required materials through the organizers
 
 ---
 
-## Round 3: Pitch Execution Cue Sheet (3–5 Minutes)
+## 8. Round 3: Pitch Execution Cue Sheet (3–5 Minutes)
 
 Focus on the live functional demo rather than static slides:
 
@@ -126,7 +151,7 @@ Focus on the live functional demo rather than static slides:
 
 ---
 
-## Judging Rubric (100 Points Total)
+## 9. Judging Rubric (100 Points Total)
 
 | Criteria | Weight | Focus Areas |
 | :--- | :---: | :--- |
