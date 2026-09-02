@@ -57,8 +57,9 @@ The team is evaluating three high-impact use cases from the official competition
 ## Technology Stack & Environment
 
 - **Primary Language & Framework:** Ruby on Rails (Ruby 4.0+)
+- **Fallback Languages & Frameworks:** Python (FastAPI / Flask) / C++ (for core performance, cryptographic utilities, or offline CLI verification)
 - **Frontend / Real-Time Reactivity:** Hotwire (Turbo Streams / Stimulus) for zero-reload live badge updates (e.g., flipping status from `VERIFIED` to `RECALLED` / `DELAYED`)
-- **API & Integration Layer:** RESTful JSON client (`Faraday` / `Net::HTTP`) connecting to IDS Sandbox endpoints & webhooks
+- **API & Integration Layer:** RESTful JSON client (`Faraday` / `Net::HTTP` in Ruby; `httpx` / `requests` in Python) connecting to IDS Sandbox endpoints & webhooks
 - **Database:** SQLite (local rapid prototyping) / PostgreSQL
 
 ---

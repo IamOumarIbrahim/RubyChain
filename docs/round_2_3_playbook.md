@@ -198,7 +198,7 @@ Before the 3-hour deadline, every team must submit its final project through the
 - [ ] 5. **Prototype / Product Link or File:** Deployed Rails web interface or local executable instructions. *(Owner: Oumar — Project Manager)*
 - [ ] 6. **Source Code / Repository:** Clean GitHub repository with setup instructions. *(Owner: Oumar — Project Manager)*
 - [ ] 7. **README or Technical Documentation:** System architecture, component map, and API documentation. *(Owner: Mohamad Khairi — Documentation Lead)*
-- [ ] 8. **Technology Stack:** Ruby on Rails (Ruby 4.0+), Hotwire (Turbo Streams / Stimulus) for live badge flips, SQLite/PostgreSQL, IDS Sandbox REST APIs. *(Owner: Mohamad Khairi — Documentation Lead)*
+- [ ] 8. **Technology Stack:** Ruby on Rails (Ruby 4.0+), Hotwire (Turbo Streams / Stimulus) for live badge flips, SQLite/PostgreSQL, IDS Sandbox REST APIs *(Fallback: Python with FastAPI/Flask or C++ for standalone cryptographic modules)*. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 9. **AI Usage Declaration:** Pre-drafted declaration detailing AI tools, modifications, and validation. *(Owner: Oumar — Project Manager)*
 - [ ] 10. **Security & Privacy Declaration:** Data handling statement ensuring no sensitive PII leakage. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 11. **Any additional materials requested by the organizers:** Pitch slides and backup 60-90s demo recording link. *(Owner: Team)*
