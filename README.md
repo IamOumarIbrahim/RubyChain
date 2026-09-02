@@ -12,7 +12,6 @@
 >
 > [You can refer to the rulebook here](docs/rules.zip)
 
----
 
 ## Key Event Details
 
@@ -23,14 +22,12 @@
 
 - **Entry:** **Free** *(Limited seats available — valid only if at least 1 team member is an IEEE member)*
 
----
 
 ## Eligibility & Team Requirements
 
 - **Participation:** Open to teams or individual participants.
 - **IEEE Requirement:** At least one team member (the Team Leader) must be an active IEEE member and submit a valid IEEE Membership ID in the registration form.
 
----
 
 ## 🏆 Prizes & Perks
 
@@ -44,7 +41,6 @@
 - **Direct Mentoring:** Hands-on sandbox mentoring.
 - **Patent & IP Support:** Supported by sponsors **IDS** and **MIT Square**.
 
----
 
 ## Team Members
 
@@ -53,7 +49,6 @@
   - 📞 Phone: [+971 56 632 6900](tel:+971566326900)
 - **Team Member 1:** Mohamad Khairi Bin Ishak
 
----
 
 ## 📞 Support Contacts
 
