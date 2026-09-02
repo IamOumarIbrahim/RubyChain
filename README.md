@@ -14,24 +14,24 @@
 
 ---
 
-## 📅 Key Event Details
+## Key Event Details
 
 | Event | Date & Time | Mode / Location |
 | :--- | :--- | :--- |
-| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | 🌐 Online (IDS Concept Briefing) |
-| **Main Hackathon** | Tuesday, 22 September 2026<br>`09:00 AM – 04:00 PM` | 📍 Block 14, Knowledge Park, Symbiosis International University, Dubai (In-Person) |
+| **Pre-Orientation Session** | Friday, 18 September 2026<br>`10:00 AM – 12:00 PM` | Online (IDS Concept Briefing) |
+| **Main Hackathon** | Tuesday, 22 September 2026<br>`09:00 AM – 04:00 PM` | Block 14, Knowledge Park, Symbiosis International University, Dubai (In-Person) |
 
 - **Entry:** **Free** (Limited capacity; Team Leader must hold an active [IEEE](https://www.ieee.org/) membership).
 - **Core Philosophy:** `LEARN → THINK → BUILD → DEMONSTRATE → PITCH`
 
 ---
 
-## 🏆 Prizes & Perks
+## Prizes & Perks
 
 ### Cash Prizes ($1,000 USD Total)
-- 🥇 **Winner:** $500
-- 🥈 **1st Runner-up:** $300
-- 🥉 **2nd Runner-up:** $200
+- **Winner:** $500
+- **1st Runner-up:** $300
+- **2nd Runner-up:** $200
 
 ### Exclusive Perks
 - **Internship Opportunities:** Direct evaluation for standout participants by IDS.
@@ -40,7 +40,7 @@
 
 ---
 
-## 🔄 Competition Format (3 Progressive Rounds)
+## Competition Format (3 Progressive Rounds)
 
 | Round | Stage | Format | Outcome / Timing |
 | :---: | :--- | :--- | :--- |
@@ -50,7 +50,7 @@
 
 ---
 
-## ⏱️ Round 2: Build Sprint & Submission Guidelines
+## Round 2: Build Sprint & Submission Guidelines
 
 - **Duration:** Exactly **3 hours** (includes brainstorming, design, coding, testing, documentation, and pitch prep).
 - **Permitted Resources:** Official documentation, internet research, IDEs, and the **IDS Sandbox**.
@@ -66,7 +66,45 @@
 
 ---
 
-## 🎤 Round 3: Pitch Structure (3–5 Minutes)
+## Official Challenge Use Cases (Digital ID Stack)
+
+The build sprint centers on **chained issuance and verification** using verifiable credentials. Teams can implement one of the 5 official scenarios or an equivalent use case:
+
+| # | Scenario | Core Problem | Issuance & Verification Chain |
+| :-: | :--- | :--- | :--- |
+| **1** | **The Airport Corridor** | Redundant manual ID & passport checks across 5 transit touchpoints. | Airline (issuer) → Passenger Wallet → Security, Lounge, Gate, Customs, Baggage (5 selective verifiers). |
+| **2** | **Business Identity (KYB)** | Multi-week manual corporate onboarding for bank accounts & trade terms. | Licensing Authority → Business → Bank (verifier & issuer) → Supplier / Processor (verifier). |
+| **3** | **Cross-Border Licensing** | Months-long credential validation backlog for relocating professionals. | Regulator (issuer & revoker) → Professional → Employer & Platform (verifiers). |
+| **4** | **Trade & Supply Chain** | Tamper-prone paper certificates for origin & cold-chain compliance. | Certifier → Exporter → Carrier → Customs → Retailer (*verify-then-issue* chain). |
+| **5** | **Logistics Coordination** | Unscheduled delivery delays causing cascading warehouse congestion. | Shipper → Logistics Provider → Warehouse → Carrier → Delivery Partner. |
+
+### 3-Hour Sprint Slices & Demo Moments
+
+1. **The Airport Corridor (One Card, Five Desks)**
+   - **Scope:** 1 schema, 1 issuance, 5 verifier views (each requesting minimal necessary claims via pre-built proof requests).
+   - **Demo Moment:** Walk through 5 desks in 90 seconds; highlight the disclosure map showing selective disclosure (e.g. baggage claim verifies bag tag ownership without seeing passenger name).
+
+2. **Business Identity for Banks (6-Week KYB in 6 Seconds)**
+   - **Scope:** 3 tenants, 2 schemas, 2 issuances, 2 verifications (business represented via mobile wallet).
+   - **Demo Moment:** Supplier extends net-30 credit having never seen the raw trade licence, relying solely on the bank's verified attestation.
+   - **Advantage:** Demonstrates chained issuance (*one credential earns the next*), a highly weighted platform capability.
+
+3. **Cross-Border Professional Licensing (Instant Trust & Revocation)**
+   - **Scope:** License schema with revocation enabled at definition creation + Employer verify portal + Regulator revoke action.
+   - **Demo Moment:** Verify candidate → revoke license live from regulator console → re-check instantly flips status to **DENIED**.
+
+4. **Trade & Supply Chain (Provenance as a Credential Chain)**
+   - **Scope:** Cut to 3 chain links and pre-seed initial credentials before the clock starts.
+   - **Demo Moment:** Scan shelf QR to view unbroken provenance; revoke batch credential to trigger instant shelf-status alert.
+   - *Risk Flag:* High complexity — recommended for advanced teams only.
+
+5. **Logistics & Shipment Coordination (Verified Real-Time Handoffs)**
+   - **Scope:** 3 partner links with a dashboard tracking *Scheduled*, *In Transit*, *Delayed*, and *Delivered*.
+   - **Demo Moment:** Switch shipment to "Delayed" and demonstrate downstream partners immediately receiving the verified update.
+
+---
+
+## Round 3: Pitch Structure (3–5 Minutes)
 
 Teams should prioritize **live working demonstrations** over static slides:
 1. **Problem:** Specific real-world problem being solved.
@@ -78,7 +116,7 @@ Teams should prioritize **live working demonstrations** over static slides:
 
 ---
 
-## 📊 Judging Rubric (100 Points Total)
+## Judging Rubric (100 Points Total)
 
 | Criteria | Weight | Focus Areas |
 | :--- | :---: | :--- |
@@ -95,7 +133,7 @@ Teams should prioritize **live working demonstrations** over static slides:
 
 ---
 
-## 📜 Key Rules & Policies
+## Key Rules & Policies
 
 - **Team Composition:** 1–4 members. Each team must designate one leader with an active IEEE membership who submits registration. No member additions, swaps, or transfers are permitted once the event starts.
 - **AI Policy:** AI tools are permitted where disclosed; teams must submit an **AI Usage Declaration**. AI assistance does not replace understanding, testing, and presenting the codebase.
@@ -109,17 +147,16 @@ Teams should prioritize **live working demonstrations** over static slides:
 
 ---
 
-## 👥 Team Details
+## Team Details
 
-- **👑 Team Leader:** Oumar Mamoun Ibrahim
-  - 📧 Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae)
-  - 📞 Phone: [+971 56 632 6900](tel:+971566326900)
+- **Team Leader:** Oumar Mamoun Ibrahim
+  - Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae)
+  - Phone: [+971 56 632 6900](tel:+971566326900)
 - **Team Member 1:** Mohamad Khairi Bin Ishak
 
 ---
 
-## 📞 Support Contacts
+## Support Contacts
 
 - **Rithika MaheshKumar:** [+971 56 668 4497](tel:+971566684497)
 - **Alok Kurien Mathew:** [+971 56 596 6571](tel:+971565966571)
-
