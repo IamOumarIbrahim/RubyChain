@@ -1,9 +1,13 @@
 # codenova
 
-> [!TIP] Form Link
+> [!TIP]
+> **Form Link**
+>
 > [You can refer to the registration form here](https://docs.google.com/forms/d/e/1FAIpQLSczWiVZIlIVd7nf-bivuWyLeuXc1LfHW_UJx3iR1PuMCTMXYA/viewform?pli=1)
 
-> [!TIP] Official Rulebook and Challenge Use Cases & Problem Statements
+> [!TIP]
+> **Official Rulebook and Challenge Use Cases & Problem Statements**
+>
 > [You can refer to the rulebook here](docs/rules.zip)
 
 **Support Phone Numbers:**
