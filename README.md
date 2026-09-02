@@ -141,6 +141,15 @@ Prioritize the live functional demonstration over static slides:
 | **2** | **The Build Sprint** | 3-Hour Rapid Product Development Sprint based on selected verifiable credential use cases. | Working prototype, source repo & technical submission |
 | **3** | **Pitch & Judgement** | 3–5 min Product Demonstration + Pitch + Q&A with judging panel. | Final 100-pt scoring & winners announced |
 
+### Round 1: Question Categories
+The online MCQ quiz assesses baseline readiness across six core areas:
+- **IDS Pre-Orientation Concepts:** Architectures and topics introduced during the official orientation.
+- **Technology Fundamentals:** Core computer science, networking, and digital systems principles.
+- **Programming & Computational Thinking:** Algorithm design, logic flow, and data structuring.
+- **Problem-Solving & Debugging:** Code analysis, error diagnosis, and technical troubleshooting.
+- **Relevant Digital Technologies:** Verifiable credentials, decentralized identity, and trust registries.
+- **Product & Innovation Concepts:** Problem-to-product mapping, user value, and feasibility.
+
 ---
 
 ## Official Challenge Use Cases (Digital ID Stack)
