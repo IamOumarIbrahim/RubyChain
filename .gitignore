@@ -1,0 +1,13 @@
+# Temporary Word lock files
+~$*
+*.~*
+
+# OS Files
+Thumbs.db
+[Dd]esktop.ini
+.DS_Store
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
