@@ -168,6 +168,7 @@ Teams should prioritize **live working demonstrations** over static slides:
 - **Team Leader:** Oumar Mamoun Ibrahim
   - University Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae)
   - Primary Contact: [omarbenzema50@gmail.com](mailto:omarbenzema50@gmail.com)
+  - Phone: [+971 56 632 6900](tel:+971566326900)
 - **Team Member:** Mohamad Khairi Bin Ishak
 
 ---
@@ -254,6 +255,5 @@ Teams should prioritize **live working demonstrations** over static slides:
 
 ## Support Contacts
 
-- **Rithika MaheshKumar:** Competition Coordinator (SIU Dubai IEEE Student Branch)
-- **Alok Kurien Mathew:** Technical Coordinator (SIU Dubai IEEE Student Branch)  
-*(Official contact phone numbers are distributed internally via official IEEE participant channels)*
+- **Rithika MaheshKumar:** [+971 56 668 4497](tel:+971566684497) (Competition Coordinator, SIU Dubai IEEE Student Branch)
+- **Alok Kurien Mathew:** [+971 56 596 6571](tel:+971565966571) (Technical Coordinator, SIU Dubai IEEE Student Branch)
