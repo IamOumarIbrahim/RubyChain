@@ -1,80 +1,109 @@
-# CodeNova 2026: Round 1 Qualification Guide (Knowledge Challenge)
+# CodeNova 2026: Team Preparation Guide
 
 > **Organizers:** IEEE SIU Dubai Student Branch × IDS  
-> **Objective:** Score in the **Top 20 Teams** in Round 1 to advance to the Build Sprint. Round 1 scores are qualification-only and do not carry forward.
+> **Goal:** Finish in the **Top 20 Teams** in Round 1 to qualify for the 3-hour Build Sprint. *(Round 1 scores are qualification-only and do not carry forward).*
 
 ---
 
-## Key Dates & Format
+## Important Dates & Schedule
 
-| Event | Date & Time | Format / Platform | Focus |
+| Event | Date & Time | Format | Details |
 | :--- | :--- | :--- | :--- |
-| **Pre-Orientation Session** | Friday, 18 Sep 2026<br>`10:00 AM – 12:00 PM` | Online | **Mandatory:** Covers IDS platform architecture and core tested concepts. |
-| **Round 1: Knowledge Challenge** | Tuesday, 22 Sep 2026<br>*(Timing announced prior)* | Online MCQ Quiz<br>*(Kahoot / Quizizz / Google Forms)* | Elimination round: Top 20 teams advance to Round 2. |
+| **Pre-Orientation Session** | Friday, 18 Sep 2026<br>`10:00 AM – 12:00 PM` | Online | **Mandatory:** Learn how the IDS platform works and what will be tested. |
+| **Round 1: Knowledge Challenge** | Tuesday, 22 Sep 2026<br>*(Time to be announced)* | Online Quiz<br>*(Kahoot / Quizizz / Google Forms)* | Elimination round: The top 20 teams qualify for Round 2. |
 
-*(Exact question count, duration, and marking scheme will be announced before the competition).*
+*(The organizers will announce the quiz time, number of questions, and scoring details before the event).*
 
 ---
-## Use Cases Considered (Round 2 Build Sprint)
 
-The team is evaluating three high-impact use cases from the official competition brief, balancing technical complexity against the 3-hour build sprint constraint:
+## Finalized Project: Use Case #4 — Trade & Supply Chain
+### *“Provenance as a Credential Chain”*
 
-| Strategy & Priority | Use Case | Architectural Chain | 3-Hour Demo Moment | Risk & Evaluation |
-| :--- | :--- | :--- | :--- | :--- |
-| **Primary Target**<br>*(Hardest Contribution)* | **Use Case #4: Trade & Supply Chain**<br>*Provenance as a Credential Chain* | `Certifier` → `Exporter` → `Carrier` → `Customs` → `Retailer` | Scan shelf QR for unbroken provenance; trigger batch recall and watch downstream shelf badge flip to red. | **High Risk / Highest Upside:** Demonstrates deep multi-hop chained issuance; pre-seeding initial link is essential. |
-| **Alternative**<br>*(Balanced Delivery)* | **Use Case #5: Logistics & Shipment**<br>*The Shipment That Keeps Everyone Waiting* | `Shipper` → `Logistics Provider` → `Warehouse` → `Carrier` → `Delivery Partner` | Real-time status dashboard (`Scheduled`, `In Transit`, `Delayed`); flip shipment to `Delayed` with instant propagation. | **Medium Risk / High UX:** Highly visual and intuitive for judges; clean 3-link handoff. |
-| **Fallback**<br>*(If Short on Time)* | **Use Case #2: Business Identity for Banks**<br>*The Six-Week Onboarding in Six Seconds* | `Licensing Authority` → `Business` → `Bank (Verifier & Issuer)` → `Supplier / Processor` | Supplier extends credit having verified only the bank's attestation, without ever seeing the raw trade license. | **Lowest Risk / High Relevance:** Proven chained issuance pattern (3 tenants, 2 schemas, 2 issuances, 2 verifications). |
+We have finalized our project choice for the Round 2 Build Sprint: **Use Case #4 (Trade & Supply Chain)**, applied directly to **Food Safety and Batch-Level Recalls**.
+
+### Real-World Motivation: The Food Recall Crisis
+According to a recent [Fortune investigation on FDA recalls](https://fortune.com/2026/09/02/food-recalls-fda-americans-avoid-food-categories/):
+- **Surging Recalls:** In August 2026 alone, the FDA issued **26 food recall notices**—with *Salmonella* warnings jumping sixfold (12 notices in August vs. just 2 in July), affecting pantry staples from eggs and produce to snacks.
+- **The "Category Avoidance" Crisis:** A nationwide survey by GS1 US found that **94% of Americans are worried** about frequent food recalls. Even worse, **67% of consumers stop buying an entire food category** (like all eggs or all berries) after hearing about just one recall notice.
+- **Wasted Safe Food:** **59% of consumers throw away food** even when their region was never affected, simply because printed lot numbers on packaging are confusing or impossible to read. Another **66% hesitate to ever buy the brand again**.
+- **The Core Problem:** As GS1 US noted, *"Consumers are making a category-level decision about a product-level problem."* Because modern supply chains pass produce through dozens of middlemen and repacking steps, information gets lost. Furthermore, Congress delayed enforcement of the FDA’s Food Traceability Rule to **July 2028**, leaving a critical safety gap.
+- **Why We Need Verifiable Credentials:** When contamination happens, shoppers cannot verify if the item in their hands is clean or tainted. They panic and boycott the entire aisle. Honest producers lose millions, and perfectly safe food is thrown into the trash.
+
+### How Our Solution Fixes This
+Using the **Digital Identity Stack (IDS)** and **Verifiable Credentials (VCs)**, our solution creates a tamper-proof digital chain of custody from farm to grocery shelf:
+
+```
+[Food Safety Certifier]
+        │ (Issues Origin & Safety Credential)
+        ▼
+[Exporter / Farm]
+        │ (Presents Origin Credential)
+        ▼
+[Cold-Chain Carrier]
+        │ (Verifies Origin → Issues Temperature & Custody Credential)
+        ▼
+[Customs & Import Clearance]
+        │ (Verifies Custody → Issues Port Clearance Credential)
+        ▼
+[Retailer Shelf & Consumer QR Code]
+        │ (Shopper scans QR code: shows complete verified history)
+```
+
+### The 3-Hour Demo Moment
+1. **Verified on Shelf:** A shopper or store clerk scans the shelf QR code on their phone. The screen shows an all-green status: `ORIGIN VERIFIED` → `COLD CHAIN VERIFIED` → `SAFE TO CONSUME`.
+2. **One-Click Recall:** An inspector detects contamination at the source farm and revokes that specific batch on the IDS revocation registry with one click.
+3. **Instant Live Alert:** Without anyone refreshing the page, the shopper's screen immediately flips to a flashing red alert: `BATCH RECALLED / DO NOT SELL`. Safe batches from other farms remain green, preventing panic and keeping safe food on grocery shelves.
 
 > [!TIP]
-> Detailed architectural breakdowns, schema definitions, and time-slot allocations are documented in the [Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).
+> Complete technical schemas, API workflows, and sprint timelines are documented in the [Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).
 
 ---
 
-## Qualification & Tie-Breakers
+## Round 1 Qualification & Rules
 
-- **Passing Rule:** Top 20 teams qualify for Round 2.
-- **Tie-Breaker Order (if cutoff ties occur):**
+- **Passing Rule:** The top 20 teams advance to Round 2.
+- **Tie-Breaker Order (if scores are tied):**
   1. Higher number of correct answers.
-  2. Faster completion time (speed matters on Kahoot / Quizizz).
-  3. Predetermined tie-breaker question or mini challenge.
-- **Authority:** The organizing committee's decision is final.
+  2. Faster completion time.
+  3. Pre-selected tie-breaker question or mini challenge.
+- **Final Authority:** The organizing committee's decision is final.
 
 ---
 
-## Question Categories (Study Guide)
+## Study Guide: Round 1 Topics
 
-| Category | Key Concepts to Review |
+| Topic | What to Study |
 | :--- | :--- |
-| **1. IDS Pre-Orientation** | Digital Identity Stack (IDS) architecture, Self-Sovereign Identity (SSI) Issuer-Holder-Verifier triad, IDS Sandbox tools. |
-| **2. Digital Identity Technologies** | Decentralized Identifiers (DIDs), Verifiable Credentials (VCs), Verifiable Presentations (VPs), Revocation Registries. |
-| **3. Technology Fundamentals** | REST APIs, JSON payloads, WebSockets, public/private key cryptography, SHA-256 hashing, TLS integrity. |
-| **4. Programming & Logic** | Algorithmic control flow, conditionals, core data structures (maps, arrays, queues), problem decomposition. |
-| **5. Problem-Solving & Debugging** | Code tracing, error diagnosis, edge cases, HTTP status codes (`200`, `400`, `401`, `403`, `404`, `500`). |
-| **6. Product & Innovation** | Problem-solution validation, MVP scoping, user journey mapping, and feasibility. |
+| **1. IDS Pre-Orientation** | How the IDS platform is structured, the Issuer-Holder-Verifier triad in Self-Sovereign Identity (SSI), and IDS Sandbox tools. |
+| **2. Digital Identity** | Decentralized Identifiers (DIDs), Verifiable Credentials (VCs), Verifiable Presentations (VPs), and Revocation Registries. |
+| **3. Tech Basics** | REST APIs, JSON data, WebSockets, public/private key cryptography, SHA-256 hashing, and HTTPS/TLS integrity. |
+| **4. Code & Logic** | Program control flow, conditionals (`if/else`), core data structures (arrays, hash maps, queues), and problem breakdown. |
+| **5. Debugging** | Reading code, spotting errors, handling edge cases, and common HTTP status codes (`200 OK`, `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not Found`, `500 Server Error`). |
+| **6. Product & Innovation** | Clear problem statements, planning a Minimum Viable Product (MVP), user journey mapping, and realistic feasibility. |
 
 ---
 
-## Technology Stack & Environment
+## Technology Stack
 
-- **Primary Language & Framework:** Ruby on Rails (Ruby 4.0+)
-- **Fallback Languages & Frameworks:** Python (FastAPI / Flask) / C++ (for core performance, cryptographic utilities, or offline CLI verification)
-- **Frontend / Real-Time Reactivity:** Hotwire (Turbo Streams / Stimulus) for zero-reload live badge updates (e.g., flipping status from `VERIFIED` to `RECALLED` / `DELAYED`)
-- **API & Integration Layer:** RESTful JSON client (`Faraday` / `Net::HTTP` in Ruby; `httpx` / `requests` in Python) connecting to IDS Sandbox endpoints & webhooks
-- **Database:** SQLite (local rapid prototyping) / PostgreSQL
+- **Primary Framework:** Ruby on Rails (Ruby 4.0+)
+- **Alternative Options:** Python (FastAPI / Flask) or C++ (for standalone cryptographic utilities)
+- **Live UI Updates:** Hotwire (Turbo Streams & Stimulus) for instant, zero-refresh badge changes (e.g. flipping status from `VERIFIED` to `RECALLED`)
+- **API Client:** RESTful HTTP client (`Faraday` / `Net::HTTP` in Ruby; `httpx` / `requests` in Python) connecting to IDS Sandbox endpoints and webhooks
+- **Database:** SQLite (for rapid sprint development) or PostgreSQL
 
 ---
 
 ## Action Checklist
 
-- [ ] **Attend Pre-Orientation:** Friday, 18 Sep (`10:00 – 12:00`). Record technical terms, architecture diagrams, and platform hints.
-- [ ] **Master IDS & SSI:** Review Issuer-Holder-Verifier flow, DIDs, VCs, and revocation registries.
-- [ ] **Review Core CS:** Asymmetric keys, hashing, HTTP status codes, and code tracing.
-- [ ] **Pre-install Ruby on Rails Environment:** Verify local Ruby 4.0+, install Rails (`gem install rails`), and prepare a minimal starter template before sprint day.
-- [ ] **Setup & Redundancy:** Test stable Wi-Fi + mobile hotspot backup; set up dual screens for fast reference.
+- [ ] **Attend Pre-Orientation:** Friday, 18 Sep (`10:00 AM – 12:00 PM`). Note key terms, architecture diagrams, and platform tips.
+- [ ] **Master IDS & SSI Basics:** Review the Issuer-Holder-Verifier model, DIDs, VCs, and revocation registries.
+- [ ] **Review Computer Science Basics:** Asymmetric cryptography, hashing, HTTP status codes, and code tracing.
+- [ ] **Set Up Ruby on Rails:** Check local Ruby 4.0+ and Rails (`gem install rails`), and prepare a clean starter template before sprint day.
+- [ ] **Test Hardware & Network:** Prepare reliable Wi-Fi, a backup mobile hotspot, and dual screens for fast reference during the quiz.
 
 ---
 
-## Team Details
+## Team Members
 
 - **Oumar Mamoun Ibrahim:** Team Leader & Project Manager  
   Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae) / [omarbenzema50@gmail.com](mailto:omarbenzema50@gmail.com) | Phone: [+971 56 632 6900](tel:+971566326900)
@@ -82,11 +111,11 @@ The team is evaluating three high-impact use cases from the official competition
 
 ---
 
-## Support Contacts
+## Organizer Contacts
 
 - **Rithika MaheshKumar:** [+971 56 668 4497](tel:+971566684497) (Competition Coordinator, SIU Dubai IEEE Student Branch)
 - **Alok Kurien Mathew:** [+971 56 596 6571](tel:+971565966571) (Technical Coordinator, SIU Dubai IEEE Student Branch)
 
 ---
 
-*Note: Rounds 2 & 3 Playbook (Build Sprint & Pitching) is archived in [docs/round_2_3_playbook.md](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).*
+*Note: For the full Build Sprint and pitch plan, see the [Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).*
