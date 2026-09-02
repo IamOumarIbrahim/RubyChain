@@ -102,7 +102,7 @@ Before the 3-hour deadline, submit all required materials through the organizers
 - [ ] 4. **Solution Description:** Clear explanation of verifiable credentials and instant revocation. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 5. **Prototype / Product Link or File:** Deployed Rails app or easy local run instructions. *(Owner: Oumar — Project Manager)*
 - [ ] 6. **Source Code / Repository:** Clean GitHub repository with straightforward setup steps. *(Owner: Oumar — Project Manager)*
-- [ ] 7. **README or Technical Documentation:** Architecture diagram, component breakdown, and API references. *(Owner: Mohamad Khairi — Documentation Lead)*
+- [x] 7. **README or Technical Documentation:** Complete architecture diagram, schema models, and API specifications documented in [docs/technical_documentation.md](file:///c:/Dev/repos/Public%20repos/codenova/docs/technical_documentation.md). *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 8. **Technology Stack:** Ruby on Rails (Ruby 4.0+), Hotwire (Turbo Streams / Stimulus) for live badge flips, SQLite/PostgreSQL, IDS Sandbox REST APIs *(Fallback: Python FastAPI/Flask or C++)*. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 9. **AI Usage Declaration:** Clear declaration detailing AI tools, prompts, modifications, and human validation. *(Owner: Oumar — Project Manager)*
 - [ ] 10. **Security & Privacy Declaration:** Statement ensuring no sensitive PII leakage. *(Owner: Mohamad Khairi — Documentation Lead)*

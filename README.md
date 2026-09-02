@@ -55,7 +55,8 @@ Using the **Digital Identity Stack (IDS)** and **Verifiable Credentials (VCs)**,
 3. **Instant Live Alert:** Without anyone refreshing the page, the shopper's screen immediately flips to a flashing red alert: `BATCH RECALLED / DO NOT SELL`. Safe batches from other farms remain green, preventing panic and keeping safe food on grocery shelves.
 
 > [!TIP]
-> Complete technical schemas, API workflows, and sprint timelines are documented in the [Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).
+> - For full data schemas, REST API specs, and Mermaid architecture flows, see the [Technical Specification & System Architecture](file:///c:/Dev/repos/Public%20repos/codenova/docs/technical_documentation.md).
+> - For 3-hour sprint timelines, deliverables checklist, and pitch cue sheet, see the [Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).
 
 ---
 
@@ -118,4 +119,4 @@ Using the **Digital Identity Stack (IDS)** and **Verifiable Credentials (VCs)**,
 
 ---
 
-*Note: For the full Build Sprint and pitch plan, see the [Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).*
+*Note: Detailed architectural specs are documented in [docs/technical_documentation.md](file:///c:/Dev/repos/Public%20repos/codenova/docs/technical_documentation.md). Sprint operational plans are documented in [docs/round_2_3_playbook.md](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md).*
