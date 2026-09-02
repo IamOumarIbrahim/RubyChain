@@ -78,19 +78,22 @@ The 3-hour development sprint accommodates all 10 required competition activitie
 
 ## Round 2 Deliverables Tracker (11 Required Items)
 
-All items must be packaged and submitted prior to the 3-hour deadline:
+Before the 3-hour deadline, every team must submit its final project through the submission mechanism specified by the organizers. The submission should contain, where applicable:
 
-- [ ] 1. **Project & Product Name:** Chosen solution title. *(Owner: Oumar — Project Manager)*
+- [ ] 1. **Project / Product Name:** Chosen solution title. *(Owner: Oumar — Project Manager)*
 - [ ] 2. **Team Name:** Registered team identifier. *(Owner: Oumar — Project Manager)*
 - [ ] 3. **Problem Statement:** Concise summary of the cross-border licensing delay. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 4. **Solution Description:** Technical summary of verifiable credential flow. *(Owner: Mohamad Khairi — Documentation Lead)*
-- [ ] 5. **Prototype / Product Link:** Deployed web interface or local executable instructions. *(Owner: Oumar — Project Manager)*
-- [ ] 6. **Source Code Repository:** Clean GitHub repository with installation instructions. *(Owner: Oumar — Project Manager)*
-- [ ] 7. **Technical README:** System architecture, component map, and API documentation. *(Owner: Mohamad Khairi — Documentation Lead)*
+- [ ] 5. **Prototype / Product Link or File:** Deployed web interface or local executable instructions. *(Owner: Oumar — Project Manager)*
+- [ ] 6. **Source Code / Repository:** Clean GitHub repository with setup instructions. *(Owner: Oumar — Project Manager)*
+- [ ] 7. **README or Technical Documentation:** System architecture, component map, and API documentation. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 8. **Technology Stack:** Languages, frameworks, IDS Sandbox endpoints used. *(Owner: Mohamad Khairi — Documentation Lead)*
 - [ ] 9. **AI Usage Declaration:** Pre-drafted declaration detailing AI tools, modifications, and validation. *(Owner: Oumar — Project Manager)*
 - [ ] 10. **Security & Privacy Declaration:** Data handling statement ensuring no sensitive PII leakage. *(Owner: Mohamad Khairi — Documentation Lead)*
-- [ ] 11. **Supplemental Materials:** Pitch slides and fallback 60-90s demo recording link. *(Owner: Team)*
+- [ ] 11. **Any additional materials requested by the organizers:** Pitch slides and backup 60-90s demo recording link. *(Owner: Team)*
+
+> [!IMPORTANT]
+> **The submission deadline is absolute.** Submissions received after the official deadline may be penalized with point deductions, considered incomplete, or disqualified by the organizing committee. Avoid waiting until the final minutes to submit.
 
 ---
 
