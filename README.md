@@ -180,7 +180,7 @@ Teams should prioritize **live working demonstrations** over static slides:
 **Schedule Model:** 3 Extended Weekend Blocks (Thursday night + Friday + Saturday + Sunday) providing ~50–60 hours of available preparation time across 10+ dedicated days, plus Friday, 18 Sep Pre-Orientation. Monday, 21 Sep is a dedicated rest day.
 
 ### Core Strategy & Principles
-- **Substantial Buffer & Zero Panic:** With 3-day weekends (Fri–Sun) plus Thursday nights, total available time (~50–60h) comfortably exceeds total estimated effort (~30.5h). There is ample room for deep testing, breaks, and zero burnout.
+- **Substantial Buffer & Zero Panic:** With 3-day weekends (Fri–Sun) plus Thursday nights, total available time (~50–60h) comfortably exceeds total estimated effort (~29h). There is ample room for deep testing, breaks, and zero burnout.
 - **Reusable Plumbing First:** Dedicate Weekend 2 to generic wallet, issuer, and verifier scaffolding. On event day, the real 3 hours go strictly toward the unique demo moment (**Use Case #3: Cross-Border Licensing & Revocation Flip**).
 - **Non-Negotiable Mock Sprint:** Full timed 3-hour simulation on Saturday, 19 Sep remains the single highest-value preparation block.
 - **Thursday Night Advantage:** Use Thursday evenings for light syncing, dependency pre-downloads, and planning so Friday morning starts with pure execution.
@@ -189,7 +189,6 @@ Teams should prioritize **live working demonstrations** over static slides:
 
 | Task | Deadline | Impact if Missed | Effort | Priority |
 | :--- | :--- | :--- | :---: | :---: |
-| Fix registration email mismatch & verify active IEEE ID | ASAP | Ineligible or unregistered | 1.5h | **P1** |
 | Finalize Use Case #3 scope (schemas, screens, revoke logic) | Sep 4-6 | Wasted sprint decision time | 2.5h | **P1** |
 | Pre-install dev environment & verify offline readiness | By Sep 13 | Lost sprint time on installs/logins | 2.0h | **P1** |
 | Build reusable wallet, issuer, and verifier scaffolding | By Sep 13 | Insufficient time for demo logic | 5.0h | **P1** |
@@ -207,7 +206,7 @@ Teams should prioritize **live working demonstrations** over static slides:
 
 #### Weekend 1 (Sep 3–6): Foundation, Scoping & Environment
 - **Thursday Night, Sep 3:**
-  - `20:00 - 21:30`: Team kickoff, confirm active IEEE ID, verify registration status and email configuration (**P1**).
+  - `20:00 - 21:30`: Team kickoff, plan extended weekend deliverables, and align sprint goals.
 - **Friday, Sep 4:**
   - `09:30 - 12:30`: Deep dive into Use Case #3 scope: schema fields, verifier UI, and revocation trigger (**P1**).
   - `14:00 - 16:30`: Study IDS Sandbox and Digital Identity Stack architecture and concepts (**P2**).
