@@ -65,6 +65,67 @@ The submission should contain, where applicable:
 
 ## Round 3
 Each team will be given a fixed pitching slot. The recommended format is 3–5 minutes per team, followed by a short Q&A / judge interaction period.
+1.	The Problem — What problem are you solving?
+2.	The Solution — What have you built?
+3.	How It Works — Briefly explain the technology and implementation.
+4.	Demonstration — Show the product/prototype working.
+5.	Impact & Innovation — Why does the solution matter?
+6.	Future Potential — How could the product be improved, scaled, or deployed in the real world?
+
+## Rubrics
+
+The competition will use a 100-point judging framework. The recommended evaluation criteria are:
+
+| Criteria | Weight |
+| :--- | :---: |
+| Problem Identification & Relevance | 15 |
+| Innovation & Creativity | 15 |
+| Technical Implementation (of IDS) | 25 |
+| Functionality & Demonstration | 15 |
+| User Experience / Product Design | 10 |
+| Impact & Scalability | 10 |
+| Pitch & Communication | 10 |
+| **TOTAL** | **100** |
+
+PROBLEM IDENTIFICATION & RELEVANCE — 15 POINTS
+•	Is the problem clearly defined?
+•	Is it relevant and meaningful?
+•	Does the proposed solution address the actual problem?
+INNOVATION & CREATIVITY — 15 POINTS
+•	Originality of the idea.
+•	Creativity of the approach.
+•	Differentiation from existing solutions.
+•	Effective use of available technologies.
+TECHNICAL IMPLEMENTATION — 25 POINTS
+•	Technical quality.
+•	Appropriate technology selection.
+•	Code/system architecture.
+•	Effective implementation.
+•	Complexity relative to the available time.
+•	Appropriate use of AI/tools where applicable.
+FUNCTIONALITY & DEMONSTRATION — 15 POINTS
+•	Does the product actually work?
+ 
+•	Can the team demonstrate the key functionality?
+•	How complete is the prototype?
+•	Has the solution been tested?
+USER EXPERIENCE / PRODUCT DESIGN — 10 POINTS
+•	Ease of use.
+•	Interface/design quality.
+•	User journey.
+•	Accessibility and clarity.
+IMPACT & SCALABILITY — 10 POINTS
+•	Potential real-world impact.
+•	Target users.
+•	Scalability.
+•	Feasibility of deployment.
+•	Future development potential.
+PITCH & COMMUNICATION — 10 POINTS
+•	Clarity.
+•	Confidence.
+•	Time management.
+•	Quality of explanation.
+•	Ability to answer questions.
 
 ## Team Members
 
@@ -72,6 +133,6 @@ Each team will be given a fixed pitching slot. The recommended format is 3–5 m
   - [![ORCID](https://img.shields.io/badge/ORCID-0009--0008--0312--1605-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-0312-1605) [![IEEE](https://img.shields.io/badge/IEEE-Member-00629B?logo=ieee&logoColor=white)](https://www.ieee.org/)  
   - Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae) / [omarbenzema50@gmail.com](mailto:omarbenzema50@gmail.com) | Phone: [+971 56 632 6900](tel:+971566326900)
 2. **Mohamad Khairi Bin Ishak**
-3. **Nameer Anwar**
+3. **Nameer Anwar** 
   - Email: [nameeranwar@yahoo.com](mailto:nameeranwar@yahoo.com) | Phone: [+971 56 959 5743](tel:+971569595743)
 4. **Aqsa Khan**
