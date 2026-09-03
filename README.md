@@ -87,3 +87,4 @@ CodeNova replaces fragile paper trails with an unbroken chain of cryptographical
 - **Oumar Mamoun Ibrahim:** Team Leader & Project Manager  
   Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae) / [omarbenzema50@gmail.com](mailto:omarbenzema50@gmail.com) | Phone: [+971 56 632 6900](tel:+971566326900)
 - **Mohamad Khairi Bin Ishak:** Documentation Lead & Core Contributor
+- **Nameer Anwar:** Research / Documentation Lead
