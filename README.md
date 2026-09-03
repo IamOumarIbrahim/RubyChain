@@ -59,7 +59,7 @@ CodeNova replaces fragile paper trails with an unbroken chain of cryptographical
 ## Technology Stack & Component Mapping
 
 | Subsystem / Responsibility | Implementation Technology | Technical Role |
-| : | : | : |
+| :--- | :--- | :--- |
 | **Credential Issuance** | Ruby / Rails | Generates W3C-compliant `OriginCredential` & `CustodyCredential` payloads. |
 | **Credential Verification** | Ruby / Rails | Cryptographically validates signatures, schema fields, and expiry bounds. |
 | **Credential Revocation** | Ruby / Rails | Sets revocation bit flags on the IDS registry with one-click admin execution. |
@@ -75,10 +75,10 @@ CodeNova replaces fragile paper trails with an unbroken chain of cryptographical
 ## Repository Documentation Index
 
 | Document | Focus & Scope |
-| : | : |
-| **[Technical Specification & Architecture](file:///c:/Dev/repos/Public%20repos/codenova/docs/technical_documentation.md)** | Full JSON schemas, REST API specs, Mermaid system diagrams, and security model. |
-| **[Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md)** | 3-hour build sprint schedule, 11-item deliverables tracker, and 3-minute pitch cue sheet. |
-| **[Round 1 Qualification & Study Guide](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_1_study_guide.md)** | Competition schedule, quiz topics, tie-breaker rules, and preparation checklist. |
+| :--- | :--- |
+| **[Technical Specification & Architecture](docs/technical_documentation.md)** | Full JSON schemas, REST API specs, Mermaid system diagrams, and security model. |
+| **[Round 2 & 3 Execution Playbook](docs/round_2_3_playbook.md)** | 3-hour build sprint schedule, 11-item deliverables tracker, and 3-minute pitch cue sheet. |
+| **[Round 1 Qualification & Study Guide](docs/round_1_study_guide.md)** | Competition schedule, quiz topics, tie-breaker rules, and preparation checklist. |
 
 
 
