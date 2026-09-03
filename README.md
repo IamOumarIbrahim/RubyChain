@@ -48,6 +48,23 @@ Certifier (pre-seeded before clock starts) → exporter → carrier → customs 
 1. Scan the shelf QR code to see the full unbroken chain.
 2. Revoke the batch and watch the shelf status turn red.
 
+## Deliverables
+
+The submission should contain, where applicable:
+1.	Project / Product Name
+2.	Team Name
+3.	Problem Statement
+4.	Solution Description
+5.	Prototype / Product Link or File
+6.	Source Code / Repository
+7.	README or Technical Documentation
+8.	Technology Stack
+9.	AI Usage Declaration
+10.	Security & Privacy Declaration
+11.	Any additional materials requested by the organizers
+
+## Round 3
+Each team will be given a fixed pitching slot. The recommended format is 3–5 minutes per team, followed by a short Q&A / judge interaction period.
 
 ## Team Members
 
