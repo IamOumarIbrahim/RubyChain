@@ -74,7 +74,14 @@ The submission should contain, where applicable:
 │   │── exporter.rb          
 │   │── customs.rb          
 │   │── retailer.rb         
-│   └── recall.rb          
+│   └── recall.rb    
+├── docs/      
+│   │── demo.md      
+│   │── impact.md      
+│   │── implementation.md      
+│   │── innovation.md      
+│   │── pitch.md      
+│   └── ui.md      
 └── README.md                 
 ```
 
