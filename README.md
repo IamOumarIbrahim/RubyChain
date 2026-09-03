@@ -1,4 +1,4 @@
-# Trade & Supply Chain — Provenance as a Credential Chain
+# RubyChain
 
 [![Ruby on Rails](https://img.shields.io/badge/Ruby%20on%20Rails-CC0000?logo=rubyonrails&logoColor=white)](https://rubyonrails.org/)
 [![Hotwire](https://img.shields.io/badge/UI-Hotwire%20Turbo%20%26%20Stimulus-F3A712)](https://hotwired.dev/)
