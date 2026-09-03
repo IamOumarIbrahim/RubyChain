@@ -1,5 +1,12 @@
 # CodeNova: Food Provenance & Rapid Recall Network
 
+[![Competition](https://img.shields.io/badge/Competition-CodeNova%202026-00629B?logo=ieee&logoColor=white)](docs/round_1_study_guide.md)
+[![W3C Verifiable Credentials](https://img.shields.io/badge/W3C-Verifiable%20Credentials%20v2.0-005A9C?logo=w3c&logoColor=white)](https://www.w3.org/TR/vc-data-model-2.0/)
+[![W3C DIDs](https://img.shields.io/badge/W3C-DIDs%20v1.0-005A9C?logo=w3c&logoColor=white)](https://www.w3.org/TR/did-core/)
+[![GS1 Digital Link](https://img.shields.io/badge/GS1-Digital%20Link-F26334)](https://www.gs1.org/standards/gs1-digital-link)
+[![Ruby on Rails](https://img.shields.io/badge/Ruby%20on%20Rails-CC0000?logo=rubyonrails&logoColor=white)](https://rubyonrails.org/)
+[![Hotwire](https://img.shields.io/badge/UI-Hotwire%20Turbo%20%26%20Stimulus-F3A712)](https://hotwired.dev/)
+
 > **A decentralized food safety and instant batch-recall verification network powered by the Digital Identity Stack (IDS) and W3C Verifiable Credentials.**  
 > Built for **CodeNova 2026** (IEEE SIU Dubai Student Branch × IDS).
 

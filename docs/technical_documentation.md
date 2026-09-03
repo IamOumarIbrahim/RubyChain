@@ -1,6 +1,10 @@
 # Technical Specification & System Architecture
 ## Food Supply Chain Provenance & Rapid Recall Network (Use Case #4)
 
+[![Standard: W3C VC v2.0](https://img.shields.io/badge/Standard-W3C%20VC%20v2.0-005A9C?logo=w3c&logoColor=white)](https://www.w3.org/TR/vc-data-model-2.0/)
+[![Standard: W3C DID v1.0](https://img.shields.io/badge/Standard-W3C%20DID%20v1.0-005A9C?logo=w3c&logoColor=white)](https://www.w3.org/TR/did-core/)
+[![Standard: GS1 Digital Link](https://img.shields.io/badge/Standard-GS1%20Digital%20Link-F26334)](https://www.gs1.org/standards/gs1-digital-link)
+
 > **Document Type:** Technical Specification & System Architecture  
 > **Target Audience:** Hackathon Judges, Technical Evaluators, and Core Developers  
 > **System Scope:** Multi-Hop Verifiable Credential Chain with Real-Time Cryptographic Revocation  

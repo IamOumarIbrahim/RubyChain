@@ -11,3 +11,7 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Antigravity / AI Agent files
+.agents/
+AGENTS.md
