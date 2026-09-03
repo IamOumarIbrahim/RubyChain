@@ -49,7 +49,7 @@ Certifier (pre-seeded before clock starts) → exporter → carrier → customs 
 1. Scan the shelf QR code to see the full unbroken chain.
 2. Revoke the batch and watch the shelf status turn red.
 
-## Deliverables
+## Round 2 Deliverables 
 
 The submission should contain, where applicable:
 1.	Project / Product Name
@@ -64,27 +64,6 @@ The submission should contain, where applicable:
 10.	Security & Privacy Declaration
 11.	Any additional materials requested by the organizers
 
-## Project Structure
-
-```text
-../
-├── src/
-│   │── main.rb          
-│   │── certifier.rb (pre-seeded before clock starts) 
-│   │── exporter.rb          
-│   │── customs.rb          
-│   │── retailer.rb         
-│   └── recall.rb    
-├── docs/      
-│   │── demo.md      
-│   │── impact.md      
-│   │── implementation.md      
-│   │── innovation.md      
-│   │── pitch.md      
-│   └── ui.md      
-└── README.md                 
-```
-
 ## Round 3
 Each team will be given a fixed pitching slot. The recommended format is 3–5 minutes per team, followed by a short Q&A / judge interaction period.
 1.	The Problem — What problem are you solving?
@@ -93,6 +72,30 @@ Each team will be given a fixed pitching slot. The recommended format is 3–5 m
 4.	Demonstration — Show the product/prototype working.
 5.	Impact & Innovation — Why does the solution matter?
 6.	Future Potential — How could the product be improved, scaled, or deployed in the real world?
+
+> Presentation: made using docs in `./docs`
+
+## Project Structure
+
+```text
+../
+├── src/                                      # round 2
+│   │── main.rb          
+│   │── certifier.rb (pre-seeded before clock starts) 
+│   │── exporter.rb          
+│   │── customs.rb          
+│   │── retailer.rb         
+│   └── recall.rb    
+├── docs/                                     # round 3 
+│   │── problem.md              
+│   │── demo.md               
+│   │── impact.md
+│   │── implementation.md      
+│   │── innovation.md      
+│   │── pitch.md      
+│   └── ui.md     
+└── README.md                 
+```
 
 ## Team Members
 
