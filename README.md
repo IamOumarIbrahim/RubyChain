@@ -55,6 +55,7 @@ Certifier (pre-seeded before clock starts) → exporter → carrier → customs 
 1. Scan the shelf QR code to see the full unbroken chain.
 2. Revoke the batch and watch the shelf status turn red.
 
+![Mockup](assets/branding/Mockup.png)
 ## Round 2 Deliverables 
 
 The submission should contain, where applicable:
