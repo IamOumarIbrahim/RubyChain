@@ -54,6 +54,7 @@ Certifier (pre-seeded before clock starts) → exporter → carrier → customs 
 1. **Oumar Mamoun Ibrahim:** Team Leader
   - [![ORCID](https://img.shields.io/badge/ORCID-0009--0008--0312--1605-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-0312-1605) [![IEEE](https://img.shields.io/badge/IEEE-Member-00629B?logo=ieee&logoColor=white)](https://www.ieee.org/)  
   - Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae) / [omarbenzema50@gmail.com](mailto:omarbenzema50@gmail.com) | Phone: [+971 56 632 6900](tel:+971566326900)
-2. **Mohamad Khairi Bin Ishak:**
-3. **Nameer Anwar** 
+2. **Mohamad Khairi Bin Ishak**
+3. **Nameer Anwar**
+  - Email: [nameeranwar@yahoo.com](mailto:nameeranwar@yahoo.com) | Phone: [+971 56 959 5743](tel:+971569595743)
 4. **Aqsa Khan**
