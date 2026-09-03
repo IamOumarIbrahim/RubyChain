@@ -22,8 +22,7 @@ A shipment of coffee claims organic, fair-trade, and cold-chain compliance, whic
 2. The exporter presents it to the shipping line, which issues a custody credential.
 3. Customs verifies both and issues a clearance credential.
 4. The retailer verifies the whole chain at the shelf. 
-5. 
-A recall revokes one batch credential and every downstream check breaks.
+5. A recall revokes one batch credential and every downstream check breaks.
 
 ### Chain
 ```text
