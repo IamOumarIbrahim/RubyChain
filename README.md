@@ -8,17 +8,14 @@
 
 ## Round 1
 
-> [!TIP]
-> The round will be conducted as an online MCQ-based quiz using one of the following platforms (to be determined):
+The round will be conducted as an online MCQ-based quiz using one of the following platforms (to be determined):
 - Kahoot
 - Quizizz
 - Google Forms
 
 ### Question Categories
 
-
-> [!TIP]
->  The quiz may include questions covering:
+The quiz may include questions covering:
 - Concepts discussed during the IDS pre-orientation.
 - Technology fundamentals.
 - Programming and computational thinking.
