@@ -87,59 +87,6 @@ Each team will be given a fixed pitching slot. The recommended format is 3–5 m
 5.	Impact & Innovation — Why does the solution matter?
 6.	Future Potential — How could the product be improved, scaled, or deployed in the real world?
 
-## Rubrics
-
-The competition uses a 100-point judging framework.
-
-| Category | Weight | Focus Areas |
-| :--- | :---: | :--- |
-| **Problem Identification & Relevance** | 15 pts | Clear problem definition, relevance, and alignment |
-| **Innovation & Creativity** | 15 pts | Originality, differentiation, and creative tech usage |
-| **Technical Implementation (IDS)** | 25 pts | Architecture quality, IDS integration, code depth, and complexity |
-| **Functionality & Demonstration** | 15 pts | Live working prototype, key feature validation, and testing |
-| **User Experience / Product Design** | 10 pts | UI clarity, seamless user journey, and ease of use |
-| **Impact & Scalability** | 10 pts | Practical feasibility, enterprise scalability, and market impact |
-| **Pitch & Communication** | 10 pts | Presentation clarity, narrative flow, timekeeping, and Q&A |
-| **TOTAL** | **100 pts** | **Complete evaluation framework** |
-
-### Detailed Evaluation Breakdown
-
-#### 1. Problem Identification & Relevance (15 Points)
-- **Problem Clarity:** Is the problem statement clearly and unambiguously defined?
-- **Relevance:** Is the supply chain challenge meaningful and urgent in the real world?
-- **Solution Alignment:** Does the proposed credential chain directly resolve the core problem?
-
-#### 2. Innovation & Creativity (15 Points)
-- **Originality:** How novel and distinctive is the approach?
-- **Differentiation:** Does the solution clearly set itself apart from existing paper/PDF processes?
-- **Technology Synergy:** How effectively are digital identity concepts combined with supply chain realities?
-
-#### 3. Technical Implementation (25 Points)
-- **Architecture Quality:** Well-structured codebase, clean system design, and sound component mapping.
-- **IDS Utilization:** Deep, idiomatic implementation of Digital Identity Stack primitives (DIDs, VCs, Status Lists).
-- **Execution under Constraints:** Technical complexity and ambition achieved within the 3-hour sprint.
-- **Tooling & Discipline:** Principled use of development workflows, libraries, and AI tooling.
-
-#### 4. Functionality & Demonstration (15 Points)
-- **Live Execution:** Does the application reliably work in the real-time demonstration?
-- **Key Flow Verification:** Can the team showcase the full flow (QR scan → credential verify → batch revoke → instant red status)?
-- **Completeness:** How robust and complete is the prototype implementation?
-
-#### 5. User Experience & Product Design (10 Points)
-- **Usability:** Intuitive interfaces for Certifiers, Carriers, Grocers, and mobile consumers.
-- **Visual Polish:** High-quality design, distinct status badges, and accessible layouts.
-- **Frictionless Journey:** Zero-install mobile verification via standard QR cameras.
-
-#### 6. Impact & Scalability (10 Points)
-- **Real-World Value:** High-impact solution for global trade, food safety, and compliance auditing.
-- **Enterprise Feasibility:** Ready to scale across multi-actor global supply chains.
-- **Future Potential:** Clear roadmap for enterprise adoption and regulatory readiness.
-
-#### 7. Pitch & Communication (10 Points)
-- **Narrative Delivery:** Engaging, confident 3–5 minute pitch explaining Problem, Solution, Tech, and Demo.
-- **Time Management:** Respects the strict competition time limits.
-- **Technical Q&A:** Ability to articulate architecture and answer judging panel questions accurately.
-
 ## Team Members
 
 1. **Oumar Mamoun Ibrahim:** Team Leader
