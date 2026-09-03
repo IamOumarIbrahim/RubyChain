@@ -3,10 +3,8 @@
 [![Ruby on Rails](https://img.shields.io/badge/Ruby%20on%20Rails-CC0000?logo=rubyonrails&logoColor=white)](https://rubyonrails.org/)
 [![Hotwire](https://img.shields.io/badge/UI-Hotwire%20Turbo%20%26%20Stimulus-F3A712)](https://hotwired.dev/)
 
-> **A decentralized food safety and instant batch-recall verification network powered by the Digital Identity Stack (IDS) and W3C Verifiable Credentials.**  
-> Built for **CodeNova 2026** (IEEE SIU Dubai Student Branch × IDS).
-
-
+> [!TIP]
+> This Project is being developed for **CodeNova 2026** (IEEE SIU Dubai Student Branch × IDS).
 
 ## The Problem: Recall Panic & Food Waste
 
@@ -14,10 +12,7 @@ Modern food supply chains rely on disconnected paper records and unreadable prin
 
 ![Food Recall Crisis and Consumer Avoidance](assets/Graphic.png)
 
-- **Surging Recalls:** In August 2026 alone, the FDA issued 26 food recall notices—with *Salmonella* warnings jumping sixfold.
-- **Category-Wide Boycotts:** According to a nationwide [Fortune / GS1 US investigation](https://fortune.com/2026/09/02/food-recalls-fda-americans-avoid-food-categories/), 94% of Americans worry about food recalls, and 67% of consumers stop buying an entire food category (such as all eggs or all produce) after just one notice.
-- **Wasted Safe Produce:** 59% of consumers throw away food even when their region was never affected, simply because package lot numbers are confusing or impossible to read. Another 66% hesitate to buy the brand again.
-- **The Core Dilemma:** As GS1 US stated, *"Consumers are making a category-level decision about a product-level problem."* With enforcement of the FDA’s Food Traceability Rule delayed to July 2028, supply chains urgently need verifiable item-level proof.
+With enforcement of the FDA's Food Traceability Rule (FSMA 204) delayed until July 2028, supply chains lack an interoperable, real-time mechanism to isolate contaminated batches. As investigated by [Fortune and GS1 US](https://fortune.com/2026/09/02/food-recalls-fda-americans-avoid-food-categories/), this information vacuum turns localized contamination into category-wide consumer panic and widespread food waste. Restoring confidence requires instant, item-level cryptographic verification that shoppers and retailers can validate directly at the shelf.
 
 
 
