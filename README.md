@@ -1,27 +1,25 @@
 # CodeNova: Food Provenance & Rapid Recall Network
 
-[![Competition](https://img.shields.io/badge/Competition-CodeNova%202026-00629B?logo=ieee&logoColor=white)](docs/round_1_study_guide.md)
-[![W3C Verifiable Credentials](https://img.shields.io/badge/W3C-Verifiable%20Credentials%20v2.0-005A9C?logo=w3c&logoColor=white)](https://www.w3.org/TR/vc-data-model-2.0/)
-[![W3C DIDs](https://img.shields.io/badge/W3C-DIDs%20v1.0-005A9C?logo=w3c&logoColor=white)](https://www.w3.org/TR/did-core/)
-[![GS1 Digital Link](https://img.shields.io/badge/GS1-Digital%20Link-F26334)](https://www.gs1.org/standards/gs1-digital-link)
 [![Ruby on Rails](https://img.shields.io/badge/Ruby%20on%20Rails-CC0000?logo=rubyonrails&logoColor=white)](https://rubyonrails.org/)
 [![Hotwire](https://img.shields.io/badge/UI-Hotwire%20Turbo%20%26%20Stimulus-F3A712)](https://hotwired.dev/)
 
 > **A decentralized food safety and instant batch-recall verification network powered by the Digital Identity Stack (IDS) and W3C Verifiable Credentials.**  
 > Built for **CodeNova 2026** (IEEE SIU Dubai Student Branch × IDS).
 
----
+
 
 ## The Problem: Recall Panic & Food Waste
 
 Modern food supply chains rely on disconnected paper records and unreadable printed lot codes. When bacterial contamination strikes, shoppers cannot tell whether a specific item in their hands is tainted or safe.
 
-- **Surging Recalls:** In August 2026 alone, the FDA issued **26 food recall notices**—with *Salmonella* warnings jumping sixfold.
-- **Category-Wide Boycotts:** According to a nationwide [Fortune / GS1 US investigation](https://fortune.com/2026/09/02/food-recalls-fda-americans-avoid-food-categories/), **94% of Americans worry about food recalls**, and **67% of consumers stop buying an entire food category** (such as all eggs or all produce) after just one notice.
-- **Wasted Safe Produce:** **59% of consumers throw away food** even when their region was never affected, simply because package lot numbers are confusing or impossible to read. Another **66% hesitate to buy the brand again**.
-- **The Core Dilemma:** As GS1 US stated, *"Consumers are making a category-level decision about a product-level problem."* With enforcement of the FDA’s Food Traceability Rule delayed to **July 2028**, supply chains urgently need verifiable item-level proof.
+![Food Recall Crisis and Consumer Avoidance](assets/Graphic.png)
 
----
+- **Surging Recalls:** In August 2026 alone, the FDA issued 26 food recall notices—with *Salmonella* warnings jumping sixfold.
+- **Category-Wide Boycotts:** According to a nationwide [Fortune / GS1 US investigation](https://fortune.com/2026/09/02/food-recalls-fda-americans-avoid-food-categories/), 94% of Americans worry about food recalls, and 67% of consumers stop buying an entire food category (such as all eggs or all produce) after just one notice.
+- **Wasted Safe Produce:** 59% of consumers throw away food even when their region was never affected, simply because package lot numbers are confusing or impossible to read. Another 66% hesitate to buy the brand again.
+- **The Core Dilemma:** As GS1 US stated, *"Consumers are making a category-level decision about a product-level problem."* With enforcement of the FDA’s Food Traceability Rule delayed to July 2028, supply chains urgently need verifiable item-level proof.
+
+
 
 ## The Solution: Cryptographic Provenance Chain
 
@@ -44,7 +42,7 @@ CodeNova replaces fragile paper trails with an unbroken chain of cryptographical
         │ (Shopper scans QR: instant cryptographic verification)
 ```
 
----
+
 
 ## The 3-Hour Demo Moment
 
@@ -52,7 +50,7 @@ CodeNova replaces fragile paper trails with an unbroken chain of cryptographical
 2. **One-Click Selective Recall:** An inspector flags contamination at the source farm and revokes the specific batch on the IDS revocation registry with one click.
 3. **Instant Live Alert:** Without refreshing the page, the shopper's screen immediately flips to flashing red: `BATCH RECALLED / DO NOT SELL`. Untainted batches from other farms remain green, stopping blind panic and keeping safe food on grocery shelves.
 
----
+
 
 ## Key Features
 
@@ -61,12 +59,12 @@ CodeNova replaces fragile paper trails with an unbroken chain of cryptographical
 - **Zero-App Consumer Verification:** Standard smartphone cameras scan GS1-compatible 2D QR codes with zero software installation.
 - **Privacy-Preserving Proofs:** Zero-Knowledge selective disclosure strips sensitive wholesale pricing and supplier contracts from public view.
 
----
+
 
 ## Technology Stack & Component Mapping
 
 | Subsystem / Responsibility | Implementation Technology | Technical Role |
-| :--- | :--- | :--- |
+| : | : | : |
 | **Credential Issuance** | Ruby / Rails | Generates W3C-compliant `OriginCredential` & `CustodyCredential` payloads. |
 | **Credential Verification** | Ruby / Rails | Cryptographically validates signatures, schema fields, and expiry bounds. |
 | **Credential Revocation** | Ruby / Rails | Sets revocation bit flags on the IDS registry with one-click admin execution. |
@@ -77,17 +75,17 @@ CodeNova replaces fragile paper trails with an unbroken chain of cryptographical
 | **IDS API Communication** | Ruby HTTP / API Client (`Faraday` / `Net::HTTP`) | Manages REST calls, bearer tokens, and webhook ingestion with the IDS Sandbox. |
 | **Authentication & Sessions** | Rails Native (`has_secure_password`) | Provides role-based session isolation for Certifiers, Carriers, and Grocers. |
 
----
+
 
 ## Repository Documentation Index
 
 | Document | Focus & Scope |
-| :--- | :--- |
+| : | : |
 | **[Technical Specification & Architecture](file:///c:/Dev/repos/Public%20repos/codenova/docs/technical_documentation.md)** | Full JSON schemas, REST API specs, Mermaid system diagrams, and security model. |
 | **[Round 2 & 3 Execution Playbook](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_2_3_playbook.md)** | 3-hour build sprint schedule, 11-item deliverables tracker, and 3-minute pitch cue sheet. |
 | **[Round 1 Qualification & Study Guide](file:///c:/Dev/repos/Public%20repos/codenova/docs/round_1_study_guide.md)** | Competition schedule, quiz topics, tie-breaker rules, and preparation checklist. |
 
----
+
 
 ## Team Members
 
