@@ -16,3 +16,5 @@ Thumbs.db
 .agents/
 AGENTS.md
 archive/
+main.rb
+docs/

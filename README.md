@@ -63,6 +63,19 @@ The submission should contain, where applicable:
 10.	Security & Privacy Declaration
 11.	Any additional materials requested by the organizers
 
+## Project Structure
+
+```text
+../
+├── src/
+│   │── certifier.rb          
+│   │── exporter.rb          
+│   │── customs.rb          
+│   │── retailer.rb         
+│   └── recall.rb          
+└── README.md                 
+```
+
 ## Round 3
 Each team will be given a fixed pitching slot. The recommended format is 3–5 minutes per team, followed by a short Q&A / judge interaction period.
 1.	The Problem — What problem are you solving?
