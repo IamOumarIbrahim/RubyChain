@@ -35,21 +35,15 @@ The quiz may include questions covering:
 ### Problem 
 A shipment of coffee claims organic, fair-trade, and cold-chain compliance, which is a folder of PDFs anyone can alter.
 
-### Solution
-1. The certifier issues an origin credential to the exporter.
-2. The exporter presents it to the shipping line, which issues a custody credential.
-3. Customs verifies both and issues a clearance credential.
-4. The retailer verifies the whole chain at the shelf. 
-5. A recall revokes one batch credential and every downstream check breaks.
+**How the Chain Works**
 
-> Entities:
+* **Certifier** *(Already saved in the database)*: Checks where the product was made, confirms it is real, and creates the first pass.
+* **Exporter** *(Step 1)*: Checks that the Certifier's pass is real before taking the boxes.
+* **Carrier** *(Step 2)*: Checks the paperwork before loading the boxes onto the ship or plane.
+* **Customs** *(Step 3)*: Checks **two** passes at once (Certifier and Carrier) before letting the goods cross the border.
+* **Retailer** *(Step 4)*: Checks that **all three** past passes are approved and no recall exists before selling the product.
 
-* The certifier (Hard-coded into the database)
-* The exporter (1st Verification)
-* Carrier (2nd Verification)
-* Customs (3rd Verification)
-* The retailer (4th Verification) 
-
+**Recall:** If a bad batch is recalled, the whole chain breaks instantly and stops future scans.
 ### Chain
 
 > [!NOTE]
