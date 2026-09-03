@@ -1,4 +1,4 @@
-# CodeNova: Food Provenance & Rapid Recall Network
+# Trade & Supply Chain — Provenance as a Credential Chain
 
 [![Ruby on Rails](https://img.shields.io/badge/Ruby%20on%20Rails-CC0000?logo=rubyonrails&logoColor=white)](https://rubyonrails.org/)
 [![Hotwire](https://img.shields.io/badge/UI-Hotwire%20Turbo%20%26%20Stimulus-F3A712)](https://hotwired.dev/)
@@ -6,8 +6,7 @@
 > [!TIP]
 > This Project is being developed for **CodeNova 2026** [(IEEE SIU Dubai Student Branch × IDS)](https://www.google.com/maps/place/Symbiosis+International+University+Dubai+%D8%AC%D8%A7%D9%85%D8%B9%D8%A9+%D8%B3%D9%85%D8%A8%D9%8A%D9%88%D8%B3%D9%8A%D8%B3%E2%80%AD/@25.1035795,55.1652636,175m/data=!3m1!1e3!4m6!3m5!1s0x3e5f6b0004b9dc29:0x840b5f64965d1ce6!8m2!3d25.1035336!4d55.1652772!16s%2Fg%2F11vx5qmbwn?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D).
 
-> [!NOTE]
-> The Problem: Recall Panic & Food Waste
+## The Problem: Recall Panic & Food Waste
 
 Modern food supply chains rely on disconnected paper records and unreadable printed lot codes. When bacterial contamination strikes, shoppers cannot tell whether a specific item in their hands is tainted or safe.
 
@@ -15,46 +14,25 @@ Modern food supply chains rely on disconnected paper records and unreadable prin
 
 With enforcement of the FDA's Food Traceability Rule (FSMA 204) delayed until July 2028, supply chains lack an interoperable, real-time mechanism to isolate contaminated batches. As investigated by [Fortune and GS1 US](https://fortune.com/2026/09/02/food-recalls-fda-americans-avoid-food-categories/), this information vacuum turns localized contamination into category-wide consumer panic and widespread food waste. Restoring confidence requires instant, item-level cryptographic verification that shoppers and retailers can validate directly at the shelf.
 
-> [!NOTE]
-> The Solution: Cryptographic Provenance Chain
+### Problem 
+A shipment of coffee claims organic, fair-trade, and cold-chain compliance, which is a folder of PDFs anyone can alter.
 
-CodeNova replaces fragile paper trails with an unbroken chain of cryptographically signed **W3C Verifiable Credentials (VCs)** from farm to grocery shelf:
+### Solution
+1. The certifier issues an origin credential to the exporter.
+2. The exporter presents it to the shipping line, which issues a custody credential.
+3. Customs verifies both and issues a clearance credential.
+4. The retailer verifies the whole chain at the shelf. 
+5. 
+A recall revokes one batch credential and every downstream check breaks.
 
-```
-[Food Safety Certifier]
-        │ (Issues Origin & Safety Credential with Revocation Enabled)
-        ▼
-[Exporter / Farm]
-        │ (Presents Origin Credential)
-        ▼
-[Cold-Chain Carrier]
-        │ (Verifies Origin → Issues Temperature & Custody Credential)
-        ▼
-[Customs & Import Clearance]
-        │ (Verifies Custody → Issues Port Clearance Credential)
-        ▼
-[Retailer Shelf & Consumer QR Code]
-        │ (Shopper scans QR: instant cryptographic verification)
+### Chain
+```text
+Certifier (pre-seeded before clock starts) → exporter → carrier → customs → retailer. Four handoffs, each verify-then-issue.
 ```
 
-
-
-## The 3-Hour Demo Moment
-
-1. **Verified on Shelf:** A shopper scans the shelf QR code on their phone. The mobile browser instantly displays green: `ORIGIN VERIFIED` → `COLD CHAIN VERIFIED` → `SAFE TO CONSUME`.
-2. **One-Click Selective Recall:** An inspector flags contamination at the source farm and revokes the specific batch on the IDS revocation registry with one click.
-3. **Instant Live Alert:** Without refreshing the page, the shopper's screen immediately flips to flashing red: `BATCH RECALLED / DO NOT SELL`. Untainted batches from other farms remain green, stopping blind panic and keeping safe food on grocery shelves.
-
-
-
-## Key Features
-
-- **Selective Batch Revocation:** Revoke contaminated batches in milliseconds on the IDS Bitstring Status List without affecting safe inventory.
-- **Zero-Reload Reactive UI:** Hotwire Turbo Streams push live WebSocket state changes directly to mobile browser scanners.
-- **Zero-App Consumer Verification:** Standard smartphone cameras scan GS1-compatible 2D QR codes with zero software installation.
-- **Privacy-Preserving Proofs:** Zero-Knowledge selective disclosure strips sensitive wholesale pricing and supplier contracts from public view.
-
-
+### Demo
+1. Scan the shelf QR code to see the full unbroken chain.
+2. Revoke the batch and watch the shelf status turn red.
 
 ## Technology Stack & Component Mapping
 
