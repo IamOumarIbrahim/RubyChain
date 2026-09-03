@@ -25,8 +25,12 @@ A shipment of coffee claims organic, fair-trade, and cold-chain compliance, whic
 5. A recall revokes one batch credential and every downstream check breaks.
 
 ### Chain
+
+> [!NOTE]
+> Four handoffs, each verify-then-issue.
+
 ```text
-Certifier (pre-seeded before clock starts) → exporter → carrier → customs → retailer. Four handoffs, each verify-then-issue.
+Certifier (pre-seeded before clock starts) → exporter → carrier → customs → retailer. 
 ```
 
 ### Demo
