@@ -6,7 +6,7 @@
 [![Hotwire](https://img.shields.io/badge/UI-Hotwire%20Turbo%20%26%20Stimulus-F3A712)](https://hotwired.dev/)
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
 
-![RubyChain](assets/branding/HeroBanner.png)
+![RubyChain](assets/branding/branding/HeroBanner.png)
 
 </div>
 
@@ -42,6 +42,14 @@ A shipment of coffee claims organic, fair-trade, and cold-chain compliance, whic
 4. The retailer verifies the whole chain at the shelf. 
 5. A recall revokes one batch credential and every downstream check breaks.
 
+> Entities:
+
+* The certifier (Hard-coded into the database)
+* The exporter (1st Verification)
+* Carrier (2nd Verification)
+* Customs (3rd Verification)
+* The retailer (4th Verification) 
+
 ### Chain
 
 > [!NOTE]
@@ -55,7 +63,8 @@ Certifier (pre-seeded before clock starts) → exporter → carrier → customs 
 1. Scan the shelf QR code to see the full unbroken chain.
 2. Revoke the batch and watch the shelf status turn red.
 
-![Mockup](assets/branding/Mockup.png)
+![Mockup](assets/branding/ui/Mockup.png)
+
 ## Round 2 Deliverables 
 
 The submission should contain, where applicable:
