@@ -85,6 +85,7 @@ CodeNova replaces fragile paper trails with an unbroken chain of cryptographical
 ## Team Members
 
 - **Oumar Mamoun Ibrahim:** Team Leader & Project Manager  
+  [![ORCID](https://img.shields.io/badge/ORCID-0009--0008--0312--1605-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-0312-1605) [![IEEE](https://img.shields.io/badge/IEEE-Member-00629B?logo=ieee&logoColor=white)](https://www.ieee.org/)  
   Email: [U22200741@sharjah.ac.ae](mailto:U22200741@sharjah.ac.ae) / [omarbenzema50@gmail.com](mailto:omarbenzema50@gmail.com) | Phone: [+971 56 632 6900](tel:+971566326900)
 - **Mohamad Khairi Bin Ishak:** Documentation Lead & Core Contributor
 - **Nameer Anwar:** Research / Documentation Lead
