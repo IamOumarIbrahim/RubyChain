@@ -69,6 +69,7 @@ The submission should contain, where applicable:
 ```text
 ../
 ├── src/
+│   │── main.rb          
 │   │── certifier.rb (pre-seeded before clock starts) 
 │   │── exporter.rb          
 │   │── customs.rb          
