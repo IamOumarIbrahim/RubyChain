@@ -74,7 +74,8 @@ body {
 .https-banner a { color: #fecaca; font-weight: 700; }
 
 /* Screen 1: Sign In */
-.brand-header { text-align: center; margin: 30px 0 34px 0; }
+.brand-header { text-align: center; margin: 20px 0 24px 0; }
+.brand-logo-img { width: 70px; height: 70px; object-fit: contain; margin: 0 auto 8px auto; display: block; }
 .brand-title { color: var(--crimson); font-size: 32px; font-weight: 800; }
 
 .role-grid-container {
@@ -134,6 +135,8 @@ body {
 
 /* Screen 2: Scanner & Status */
 .top-nav-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.role-title-wrap { display: flex; align-items: center; gap: 8px; }
+.nav-logo-img { width: 26px; height: 26px; object-fit: contain; display: block; }
 .role-title-text { font-size: 18px; font-weight: 700; }
 .signout-btn { background: #242426; color: #fff; border: none; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; }
 
