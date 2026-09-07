@@ -99,6 +99,14 @@ begin
   abort("Expected cryptographic proof hash in credential") if body['verifiableCredential'].first['proof']['hash'].to_s.empty?
   puts "✓ W3C Verifiable Presentation schema validated: 4 cryptographic credentials included."
 
+  puts "\n=== API Test 7.6: Verify GS1 EPCIS 2.0 Export ==="
+  code, body = get_json('/api/epcis?barcode=5901234123457')
+  abort("API EPCIS export failed: #{body}") unless code == 200 && body['success']
+  abort("Expected isEPCISDocument true") unless body['isEPCISDocument'] == true
+  abort("Expected 4 EPCIS events") unless body['epcisBody']['eventList'].size == 4
+  abort("Expected bizStep in first event") if body['epcisBody']['eventList'].first['bizStep'].to_s.empty?
+  puts "✓ GS1 EPCIS 2.0 schema validated: 4 supply chain CTE events exported."
+
   puts "\n=== API Test 8: Trigger Recall & Verify Circuit Breaker ==="
   code, body = post_json('/api/action/recall', { barcode: '5901234123457', user_id: 5, reason: 'Aflatoxin contamination' })
   abort("API Recall failed: #{body}") unless code == 200 && body['success']

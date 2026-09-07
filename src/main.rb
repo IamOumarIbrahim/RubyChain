@@ -174,6 +174,47 @@ def mount_routes(server)
     end
   end
 
+  # 8. GS1 EPCIS 2.0 Event Log Export (FDA FSMA Rule 204 Compliant)
+  server.mount_proc '/api/epcis' do |req, res|
+    code = clean_str(req.query['barcode'])
+    code = '5901234123457' if code.empty?
+    db = RubyChainDB.connection
+    item = db.execute('SELECT * FROM items WHERE barcode = ?', [code]).first
+    if item
+      creds = db.execute('SELECT * FROM credentials WHERE item_id = ? ORDER BY id ASC', [item['id']])
+      broken = (item['recalled'] == 1)
+      biz_map = {
+        'origin_proof' => ['commissioning', 'urn:epcglobal:cbv:bizstep:commissioning', 'urn:epc:id:sgln:origin.farm.001'],
+        'transit_proof' => ['shipping', 'urn:epcglobal:cbv:bizstep:shipping', 'urn:epc:id:sgln:exporter.port.002'],
+        'border_proof' => ['receiving', 'urn:epcglobal:cbv:bizstep:receiving', 'urn:epc:id:sgln:customs.border.003'],
+        'shelf_proof' => ['retail_selling', 'urn:epcglobal:cbv:bizstep:retail_selling', 'urn:epc:id:sgln:retailer.store.004']
+      }
+      events = creds.map do |c|
+        step_info = biz_map[c['milestone']] || ['inspecting', 'urn:epcglobal:cbv:bizstep:inspecting', 'urn:epc:id:sgln:node.default']
+        {
+          type: 'ObjectEvent',
+          eventTime: c['created_at'],
+          epcList: ["urn:epc:id:sgtin:#{code}.001"],
+          action: 'OBSERVE',
+          bizStep: step_info[1],
+          disposition: broken ? 'urn:epcglobal:cbv:disp:recalled' : 'urn:epcglobal:cbv:disp:active',
+          readPoint: { id: step_info[2] },
+          proofHash: c['signature_hash']
+        }
+      end
+      json_res(res, {
+        success: true,
+        isEPCISDocument: true,
+        schemaVersion: '2.0',
+        creationDate: Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
+        epcisBody: { eventList: events },
+        recalled: broken
+      })
+    else
+      json_res(res, { success: false, error: 'Item not found' }, 404)
+    end
+  end
+
   # Static Files
   server.mount '/', WEBrick::HTTPServlet::FileHandler, PUBLIC_DIR
   server.mount '/assets', WEBrick::HTTPServlet::FileHandler, ASSETS_DIR

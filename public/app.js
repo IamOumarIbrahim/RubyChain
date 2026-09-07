@@ -281,6 +281,8 @@
     setBadge(el.statusRetailer, data.credentials.shelf.verified, data.credentials.shelf.hash);
     const vcLink = document.getElementById('btn-view-vc');
     if (vcLink && state.scannedBarcode) vcLink.href = `/api/credentials?barcode=${encodeURIComponent(state.scannedBarcode)}`;
+    const epcisLink = document.getElementById('btn-view-epcis');
+    if (epcisLink && state.scannedBarcode) epcisLink.href = `/api/epcis?barcode=${encodeURIComponent(state.scannedBarcode)}`;
   }
 
   function setBadge(elm, ok, hash) {
