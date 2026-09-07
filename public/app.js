@@ -202,6 +202,8 @@
 
   document.getElementById('btn-snap-photo').onclick = () => el.cameraFallbackInput.click();
   document.getElementById('btn-simulate-scan').onclick = () => handleCode('5901234123457');
+  const btn403 = document.getElementById('btn-simulate-scan-403');
+  if (btn403) btn403.onclick = () => handleCode('5901234123458');
 
   el.cameraFallbackInput.onchange = (e) => {
     const file = e.target.files[0];

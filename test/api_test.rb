@@ -108,6 +108,12 @@ begin
   abort("Origin should reflect broken") if body['credentials']['origin']['verified']
   puts "✓ Circuit breaker verified: Chain Status flipped to Broken across all nodes!"
 
+  puts "\n=== API Test 8.5: Verify Granular Quarantine (Lot 403 Intact) ==="
+  code, body = get_json('/api/item?barcode=5901234123458')
+  abort("API Lot 403 query failed: #{body}") unless code == 200 && body['success']
+  abort("Lot 403 must remain Intact despite Lot 402 recall") unless body['chain_status'] == 'Intact'
+  puts "✓ Granular quarantine verified via API: Lot 403 unaffected by Lot 402 recall!"
+
   puts "\n=== API Test 9: Reset Demo Batch Back to Clean Pre-seeded State ==="
   code, body = post_json('/api/reset_demo', { barcode: '5901234123457' })
   abort("API Reset failed: #{body}") unless code == 200

@@ -58,20 +58,26 @@ class RubyChainDB
                  [role, hash_password('password123'), role])
     end
 
-    # Pre-seed Coffee Lot #402 without credentials so Certifier initiates the chain live!
-    barcode = '5901234123457'
-    unless db.execute('SELECT 1 FROM items WHERE barcode = ?', [barcode]).any?
-      db.execute('INSERT INTO items (barcode, name, recalled) VALUES (?, ?, 0)',
-                 [barcode, 'Highland Arabica Coffee (Lot #402)'])
+    # Pre-seed Coffee Lot #402 & Compliant Control Lot #403
+    [
+      ['5901234123457', 'Highland Arabica Coffee (Lot #402)'],
+      ['5901234123458', 'Highland Yirgacheffe Coffee (Lot #403)']
+    ].each do |code, name|
+      unless db.execute('SELECT 1 FROM items WHERE barcode = ?', [code]).any?
+        db.execute('INSERT INTO items (barcode, name, recalled) VALUES (?, ?, 0)', [code, name])
+      end
     end
   end
 
-  def self.reset_demo_item!(barcode = '5901234123457')
+  def self.reset_demo_item!(barcode = nil)
     db = connection
-    item = db.execute('SELECT id FROM items WHERE barcode = ?', [barcode]).first
-    return unless item
-    db.execute('DELETE FROM credentials WHERE item_id = ?', [item['id']])
-    db.execute('DELETE FROM recalls WHERE item_id = ?', [item['id']])
-    db.execute('UPDATE items SET recalled = 0 WHERE id = ?', [item['id']])
+    codes = barcode ? [barcode] : ['5901234123457', '5901234123458']
+    codes.each do |code|
+      item = db.execute('SELECT id FROM items WHERE barcode = ?', [code]).first
+      next unless item
+      db.execute('DELETE FROM credentials WHERE item_id = ?', [item['id']])
+      db.execute('DELETE FROM recalls WHERE item_id = ?', [item['id']])
+      db.execute('UPDATE items SET recalled = 0 WHERE id = ?', [item['id']])
+    end
   end
 end

@@ -187,8 +187,8 @@ body {
   z-index: 20;
 }
 
-.camera-controls-overlay { position: absolute; bottom: 10px; left: 10px; right: 10px; display: flex; justify-content: space-between; z-index: 25; }
-.camera-sub-btn { background: rgba(15,15,17,0.85); color: #fff; border: 1px solid rgba(255,255,255,0.25); padding: 8px 14px; border-radius: 16px; font-size: 12px; cursor: pointer; }
+.camera-controls-overlay { position: absolute; bottom: 10px; left: 8px; right: 8px; display: flex; gap: 5px; justify-content: space-between; z-index: 25; }
+.camera-sub-btn { background: rgba(15,15,17,0.85); color: #fff; border: 1px solid rgba(255,255,255,0.25); padding: 7px 6px; border-radius: 14px; font-size: 11px; font-weight: 600; cursor: pointer; flex: 1; text-align: center; }
 
 .chain-info-box {
   background: #fdfdfd;

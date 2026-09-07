@@ -77,8 +77,13 @@ abort("Test 7 Failed: Retailer verify should fail on recalled item") if retailer
 
 puts "✓ All nodes blocked instantly by circuit breaker on recalled item!"
 
+puts "\n=== 7.5 Testing Granular Isolation (Lot #403 Safe & Intact) ==="
+control_barcode = '5901234123458'
+abort("Test 7.5 Failed: Lot 403 should NOT be recalled") if RecallProcedure.recalled?(control_barcode)
+puts "✓ Granular isolation verified: Lot 402 quarantined without affecting compliant Lot 403!"
+
 puts "\n=== 8. Resetting for Live Demo ==="
-RubyChainDB.reset_demo_item!(barcode)
+RubyChainDB.reset_demo_item!
 abort("Test 8 Failed: Reset failed") if RecallProcedure.recalled?(barcode)
 puts "✓ Reset restored item to pre-seeded clean state."
 

@@ -16,38 +16,47 @@
     }
     .sheet-container {
       background: white;
-      max-width: 650px;
+      max-width: 860px;
       width: 100%;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 36px;
+      padding: 32px 28px;
       box-sizing: border-box;
       border: 1px solid #e2e8f0;
     }
     .header {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       border-bottom: 2px solid #851419;
-      padding-bottom: 16px;
+      padding-bottom: 14px;
     }
     .header h1 {
       color: #851419;
       margin: 0 0 6px 0;
-      font-size: 26px;
+      font-size: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
     }
+    .tags-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 16px 0;
+    }
     .package-tag {
+      flex: 1 1 360px;
+      max-width: 390px;
       border: 2px dashed #cbd5e1;
       border-radius: 12px;
-      padding: 24px;
+      padding: 20px;
       background: #fafaf9;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 20px 0;
+      box-sizing: border-box;
     }
     .qr-box {
       background: white;
@@ -125,42 +134,55 @@
       <p style="margin: 0; color: #64748b; font-size: 14px;">CodeNova 2026 Competition — Live Demo Package</p>
     </div>
 
-    <div class="package-tag">
-      <span class="badge">LOT #402 — COLD CHAIN CERTIFIED</span>
-      <h2 style="margin: 10px 0 4px 0; color: #1e293b; font-size: 20px;">Highland Organic Arabica Coffee</h2>
-      <p style="margin: 0 0 12px 0; color: #64748b; font-size: 13px;">Single Origin • Fair-Trade Certified • Origin: Sidama, Ethiopia</p>
+    <div class="tags-grid">
+      <!-- Package 1: Lot #402 (Contamination / Recall Target) -->
+      <div class="package-tag">
+        <span class="badge" style="background: #fee2e2; color: #991b1b;">LOT #402 — RECALL DEMO TARGET</span>
+        <h2 style="margin: 10px 0 4px 0; color: #1e293b; font-size: 18px;">Highland Arabica Coffee</h2>
+        <p style="margin: 0 0 10px 0; color: #64748b; font-size: 12.5px;">Single Origin • Sidama, Ethiopia</p>
 
-      <div class="qr-box">
-        <img src="coffee_batch_402_qr.png" alt="Scan with iPhone Camera">
+        <div class="qr-box" style="padding: 10px; margin: 8px 0;">
+          <img src="coffee_batch_402_qr.png" alt="Scan Lot 402" style="width: 175px; height: 175px;">
+        </div>
+
+        <div style="font-family: monospace; font-size: 16px; font-weight: bold; letter-spacing: 1.5px; color: #1e293b;">
+          5901234123457
+        </div>
+
+        <div class="meta" style="font-size: 13px;">
+          <div class="meta-row"><span>GTIN:</span><strong>5901234123457</strong></div>
+          <div class="meta-row"><span>Origin Certifier:</span><strong style="color:#16a34a;">ECTA Ethiopia</strong></div>
+          <div class="meta-row"><span>Demo Role:</span><strong style="color:#b91c1c;">Target for Recall</strong></div>
+        </div>
       </div>
 
-      <div style="font-family: monospace; font-size: 18px; font-weight: bold; letter-spacing: 2px; color: #1e293b;">
-        5901234123457
-      </div>
+      <!-- Package 2: Lot #403 (Compliant Control Lot — Proving Granular Quarantine) -->
+      <div class="package-tag">
+        <span class="badge" style="background: #dcfce7; color: #166534;">LOT #403 — COMPLIANT CONTROL</span>
+        <h2 style="margin: 10px 0 4px 0; color: #1e293b; font-size: 18px;">Highland Yirgacheffe Coffee</h2>
+        <p style="margin: 0 0 10px 0; color: #64748b; font-size: 12.5px;">Single Origin • Yirgacheffe, Ethiopia</p>
 
-      <div class="meta">
-        <div class="meta-row">
-          <span>GTIN / Barcode:</span>
-          <strong>5901234123457</strong>
+        <div class="qr-box" style="padding: 10px; margin: 8px 0;">
+          <img src="coffee_batch_403_qr.png" alt="Scan Lot 403" style="width: 175px; height: 175px;">
         </div>
-        <div class="meta-row">
-          <span>Origin Certifier:</span>
-          <strong style="color: #16a34a;">Ethiopian Coffee & Tea Authority (Pre-Seeded)</strong>
+
+        <div style="font-family: monospace; font-size: 16px; font-weight: bold; letter-spacing: 1.5px; color: #1e293b;">
+          5901234123458
         </div>
-        <div class="meta-row">
-          <span>Target Market:</span>
-          <strong>Dubai, UAE (Symbiosis Retail)</strong>
+
+        <div class="meta" style="font-size: 13px;">
+          <div class="meta-row"><span>GTIN:</span><strong>5901234123458</strong></div>
+          <div class="meta-row"><span>Origin Certifier:</span><strong style="color:#16a34a;">ECTA Ethiopia</strong></div>
+          <div class="meta-row"><span>Demo Role:</span><strong style="color:#15803d;">Remains Safe & Intact</strong></div>
         </div>
       </div>
     </div>
 
     <div class="instructions">
-      <strong>Demo Instructions for Judges & Evaluators:</strong><br>
-      1. Open the RubyChain web app on your phone (or laptop browser).<br>
-      2. Sign in as <em>Exporter</em>, point camera at this QR code & click <strong>Verify & Issue</strong>.<br>
-      3. Sign in as <em>Customs</em>, scan again & click <strong>Verify & Issue</strong>.<br>
-      4. Sign in as <em>Retailer</em>, scan & verify the complete green unbroken chain!<br>
-      5. To demonstrate the circuit breaker, click <strong>Recall</strong> and observe the chain status immediately turn red (Broken) for all parties.
+      <strong>Granular Recall Demonstration for Judges:</strong><br>
+      1. Scan <strong>Lot #402</strong> &rarr; Complete verification &rarr; Click <strong>Recall</strong> &rarr; Notice status flips to <strong style="color:#851419;">Broken</strong>.<br>
+      2. Immediately scan <strong>Lot #403</strong> (or tap Lot #403 button) &rarr; Notice Lot #403 remains completely <strong style="color:#16a34a;">Intact & Compliant</strong>!<br>
+      3. <em>Demonstrates surgical lot-level quarantine: compliant stock remains on store shelves, saving $400M in avoided waste!</em>
     </div>
 
     <center>
