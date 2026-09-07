@@ -6,7 +6,7 @@
     user: null,
     selectedRole: 'carrier',
     selectedAction: 'recall',
-    scannedBarcode: '5901234123457',
+    scannedBarcode: null,
     cameraActive: false,
     cameraStream: null,
     scanInterval: null
@@ -110,7 +110,14 @@
       if (link) link.href = `https://${location.hostname}:8443${location.pathname}`;
     }
 
-    fetchChain(state.scannedBarcode);
+    if (state.scannedBarcode) {
+      fetchChain(state.scannedBarcode);
+    } else {
+      el.chainStatusHeader.innerHTML = 'Chain Status: <span style="color:#6e6e73; font-weight: 500;">Waiting for Scan...</span>';
+      ['statusCertifier', 'statusExporter', 'statusCustoms', 'statusRetailer'].forEach(k => {
+        if (el[k]) { el[k].textContent = 'Not Verified'; el[k].className = 'status-val val-not-verified'; }
+      });
+    }
     if (isSecure) startCamera();
   }
 
@@ -208,8 +215,11 @@
         const cvs = el.scannerCanvas, ctx = cvs.getContext('2d');
         cvs.width = img.width; cvs.height = img.height;
         ctx.drawImage(img, 0, 0);
-        const code = window.jsQR ? window.jsQR(ctx.getImageData(0, 0, cvs.width, cvs.height).data, cvs.width, cvs.height) : null;
-        handleCode(code ? code.data : '5901234123457');
+        if (code && code.data) {
+          handleCode(code.data);
+        } else {
+          toast('No QR detected in photo', true);
+        }
       };
       img.src = ev.target.result;
     };
@@ -218,16 +228,19 @@
 
   // --- Chain Status & Actions ---
   async function fetchChain(barcode) {
+    if (!barcode) return;
     try {
       const res = await fetch(`/api/item?barcode=${encodeURIComponent(barcode)}`);
       const data = await res.json();
       if (data.success) renderChain(data);
+      else toast('Item not registered in chain', true);
     } catch (e) {}
   }
 
   function renderChain(data) {
     const broken = data.chain_status === 'Broken';
-    el.chainStatusHeader.innerHTML = `Chain Status: <span class="${broken ? 'status-broken' : 'status-intact'}">${broken ? 'Broken' : 'Intact'}</span>`;
+    const codeBadge = state.scannedBarcode ? `<span style="font-size:12px; font-weight:600; color:#374151; margin-left:6px; font-family:monospace; background:#e5e7eb; padding:2px 8px; border-radius:10px;">${state.scannedBarcode}</span>` : '';
+    el.chainStatusHeader.innerHTML = `Chain Status: <span class="${broken ? 'status-broken' : 'status-intact'}">${broken ? 'Broken' : 'Intact'}</span>${codeBadge}`;
     setBadge(el.statusCertifier, data.credentials.origin.verified);
     setBadge(el.statusExporter, data.credentials.transit.verified);
     setBadge(el.statusCustoms, data.credentials.border.verified);
@@ -250,6 +263,7 @@
 
   document.getElementById('btn-confirm').onclick = async () => {
     if (!state.user) return toast('Sign in first', true);
+    if (!state.scannedBarcode) return toast('Please scan a QR code first', true);
     const endpoint = state.selectedAction === 'recall' ? '/api/action/recall' : '/api/action/verify_issue';
     const body = { barcode: state.scannedBarcode, user_id: state.user.user_id, role: state.user.role };
     try {
@@ -266,9 +280,10 @@
   if (resetBtn) {
     resetBtn.onclick = async (e) => {
       e.preventDefault();
-      await fetch('/api/reset_demo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ barcode: state.scannedBarcode }) });
+      const code = state.scannedBarcode || '5901234123457';
+      await fetch('/api/reset_demo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ barcode: code }) });
       toast('Demo reset to initial clean state');
-      fetchChain(state.scannedBarcode);
+      if (state.scannedBarcode) fetchChain(state.scannedBarcode);
     };
   }
 
