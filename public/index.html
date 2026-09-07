@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>RubyChain - Verifiable Supply Chain</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/vendor/jsqr.js"></script>
+</head>
+<body>
+
+  <!-- Simulated iPhone Shell for Desktop Demoing -->
+  <div class="device-wrapper">
+    <div class="dynamic-island"></div>
+
+    <!-- Notification Toast -->
+    <div id="toast-msg" class="toast-msg"></div>
+
+    <div class="app-container">
+
+      <!-- ====================================================================
+           VIEW 1: Sign In & Role Selection
+           ==================================================================== -->
+      <div id="login-view" class="view-panel active">
+        <div class="brand-header">
+          <div class="brand-logo-icon">
+            <!-- RubyChain Red Chain Links SVG -->
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="18" y="32" width="40" height="24" rx="12" stroke="#851419" stroke-width="8" transform="rotate(-35 38 44)" />
+              <rect x="42" y="44" width="40" height="24" rx="12" stroke="#851419" stroke-width="8" transform="rotate(-35 62 56)" />
+            </svg>
+          </div>
+          <h1 class="brand-title">RubyChain</h1>
+        </div>
+
+        <!-- Role Grid Selector (Matching Mockup) -->
+        <div class="role-grid-container">
+          <button type="button" class="role-btn" data-role="exporter">Exporter</button>
+          <button type="button" class="role-btn active" data-role="carrier">Carrier</button>
+          <button type="button" class="role-btn" data-role="customs">Customs</button>
+          <button type="button" class="role-btn" data-role="retailer">Retailer</button>
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="username-input" class="input-pill" placeholder="Username" value="carrier" autocapitalize="none">
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="password-input" class="input-pill" placeholder="Password" value="password123">
+        </div>
+
+        <button type="button" id="auth-submit-btn" class="btn-primary">Sign In / Sign Up</button>
+
+        <div class="demo-pills-row">
+          <span>Quick Switch Demo Account:</span>
+          <div class="demo-pills-container">
+            <button type="button" class="mini-pill" data-fill-role="exporter">Exporter</button>
+            <button type="button" class="mini-pill" data-fill-role="carrier">Carrier</button>
+            <button type="button" class="mini-pill" data-fill-role="customs">Customs</button>
+            <button type="button" class="mini-pill" data-fill-role="retailer">Retailer</button>
+          </div>
+        </div>
+
+        <div class="bottom-utility-bar" style="margin-top: auto; padding-top: 20px;">
+          <span>CodeNova 2026</span>
+          <a href="/assets/demo_barcodes/print_sheet.html" target="_blank" class="utility-link">Print Demo Label</a>
+        </div>
+      </div>
+
+
+      <!-- ====================================================================
+           VIEW 2: Role View & Camera Scanner (Matching Mockup)
+           ==================================================================== -->
+      <div id="main-view" class="view-panel">
+        
+        <!-- Top Nav Bar -->
+        <div class="top-nav-bar">
+          <div class="role-title-wrap">
+            <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+              <rect x="18" y="32" width="40" height="24" rx="12" stroke="#851419" stroke-width="8" transform="rotate(-35 38 44)" />
+              <rect x="42" y="44" width="40" height="24" rx="12" stroke="#851419" stroke-width="8" transform="rotate(-35 62 56)" />
+            </svg>
+            <span id="role-title-text" class="role-title-text">Retailer View</span>
+          </div>
+          <button type="button" id="sign-out-btn" class="signout-btn">Sign Out</button>
+        </div>
+
+        <!-- Camera Scanner Viewport -->
+        <div class="scanner-viewport">
+          <video id="scanner-video" playsinline muted autoplay></video>
+          <canvas id="scanner-canvas"></canvas>
+          
+          <!-- Red Viewfinder Frame with Target Corners -->
+          <div class="viewfinder-frame"></div>
+
+          <!-- Hidden Native File Input for Instant iOS Camera Snapping -->
+          <input type="file" id="camera-fallback-input" accept="image/*" capture="environment" style="display: none;">
+
+          <!-- On-screen Quick Camera Controls -->
+          <div class="camera-controls-overlay">
+            <button type="button" id="btn-toggle-camera" class="camera-sub-btn">Cam Stream</button>
+            <button type="button" id="btn-snap-photo" class="camera-sub-btn">Snap Photo</button>
+            <button type="button" id="btn-simulate-scan" class="camera-sub-btn">Lot #402</button>
+          </div>
+        </div>
+
+        <!-- Chain Status Details (Matching Mockup) -->
+        <div class="chain-info-box">
+          <div id="chain-status-header" class="chain-status-header">
+            Chain Status: <span class="status-intact">Intact</span>
+          </div>
+
+          <div class="status-list">
+            <div class="status-item">
+              <span class="status-label">Certifier original credential :</span>
+              <span id="status-certifier" class="status-val val-verified">Verified</span>
+            </div>
+
+            <div class="status-item">
+              <span class="status-label">Exporter custody credential:</span>
+              <span id="status-exporter" class="status-val val-not-verified">Not Verified</span>
+            </div>
+
+            <div class="status-item">
+              <span class="status-label">Customs clearance credential:</span>
+              <span id="status-customs" class="status-val val-not-verified">Not Verified</span>
+            </div>
+
+            <div class="status-item">
+              <span class="status-label">Retailer shelf credential:</span>
+              <span id="status-retailer" class="status-val val-not-verified">Not Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Segmented Toggle: Verify & Issue vs Recall -->
+        <div class="action-toggle-container">
+          <button type="button" class="action-toggle-btn" data-action="verify_issue">Verify & Issue</button>
+          <button type="button" class="action-toggle-btn active" data-action="recall">Recall</button>
+        </div>
+
+        <!-- Confirm Action Button -->
+        <button type="button" id="btn-confirm" class="btn-confirm">Confirm</button>
+
+        <div class="bottom-utility-bar">
+          <a href="#" id="btn-reset-demo" class="utility-link">↺ Reset Demo Batch</a>
+          <a href="/assets/demo_barcodes/print_sheet.html" target="_blank" class="utility-link">View Package QR</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

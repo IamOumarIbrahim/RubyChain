@@ -18,3 +18,7 @@ AGENTS.md
 archive/
 
 docs/rules
+
+# Local database & scratch
+rubychain.db
+scratch/
