@@ -100,10 +100,10 @@ def mount_routes(server)
         success: true, item: item,
         chain_status: broken ? 'Broken' : 'Intact',
         credentials: {
-          origin: { verified: !creds['origin_proof'].nil? && !broken },
-          transit: { verified: !creds['transit_proof'].nil? && !broken },
-          border: { verified: !creds['border_proof'].nil? && !broken },
-          shelf: { verified: !creds['shelf_proof'].nil? && !broken }
+          origin: { verified: !creds['origin_proof'].nil? && !broken, hash: creds.dig('origin_proof', 'signature_hash') },
+          transit: { verified: !creds['transit_proof'].nil? && !broken, hash: creds.dig('transit_proof', 'signature_hash') },
+          border: { verified: !creds['border_proof'].nil? && !broken, hash: creds.dig('border_proof', 'signature_hash') },
+          shelf: { verified: !creds['shelf_proof'].nil? && !broken, hash: creds.dig('shelf_proof', 'signature_hash') }
         }
       })
     else
@@ -143,6 +143,35 @@ def mount_routes(server)
     code = '5901234123457' if code.empty?
     RubyChainDB.reset_demo_item!(code)
     json_res(res, { success: true, message: 'Reset complete' })
+  end
+
+  # 7. IDS W3C Verifiable Presentation Export
+  server.mount_proc '/api/credentials' do |req, res|
+    code = clean_str(req.query['barcode'])
+    code = '5901234123457' if code.empty?
+    db = RubyChainDB.connection
+    item = db.execute('SELECT * FROM items WHERE barcode = ?', [code]).first
+    if item
+      creds = db.execute('SELECT * FROM credentials WHERE item_id = ? ORDER BY id ASC', [item['id']])
+      json_res(res, {
+        success: true,
+        '@context' => ['https://www.w3.org/2018/credentials/v1'],
+        type: ['VerifiablePresentation', 'RubyChainProvenancePresentation'],
+        barcode: code,
+        verifiableCredential: creds.map do |c|
+          {
+            type: ['VerifiableCredential', c['milestone']],
+            issuer: "did:rubychain:user:#{c['issued_by_user_id']}",
+            issuanceDate: c['created_at'],
+            credentialSubject: { id: "urn:gtin:#{code}", milestone: c['milestone'] },
+            proof: { type: 'Sha256Signature2026', hash: c['signature_hash'] }
+          }
+        end,
+        recalled: item['recalled'] == 1
+      })
+    else
+      json_res(res, { success: false, error: 'Item not found' }, 404)
+    end
   end
 
   # Static Files

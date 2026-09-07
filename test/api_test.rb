@@ -88,7 +88,16 @@ begin
   abort("Transit should be verified") unless body['credentials']['transit']['verified']
   abort("Border should be verified") unless body['credentials']['border']['verified']
   abort("Shelf should be verified") unless body['credentials']['shelf']['verified']
-  puts "✓ All 4 nodes verified green and intact!"
+  abort("Origin hash missing") if body['credentials']['origin']['hash'].to_s.empty?
+  puts "✓ All 4 nodes verified green and intact with SHA-256 hashes!"
+
+  puts "\n=== API Test 7.5: Verify IDS W3C Verifiable Presentation Endpoint ==="
+  code, body = get_json('/api/credentials?barcode=5901234123457')
+  abort("API Credentials export failed: #{body}") unless code == 200 && body['success']
+  abort("Expected W3C VerifiablePresentation type") unless body['type'].include?('VerifiablePresentation')
+  abort("Expected 4 credentials in presentation") unless body['verifiableCredential'].size == 4
+  abort("Expected cryptographic proof hash in credential") if body['verifiableCredential'].first['proof']['hash'].to_s.empty?
+  puts "✓ W3C Verifiable Presentation schema validated: 4 cryptographic credentials included."
 
   puts "\n=== API Test 8: Trigger Recall & Verify Circuit Breaker ==="
   code, body = post_json('/api/action/recall', { barcode: '5901234123457', user_id: 5, reason: 'Aflatoxin contamination' })

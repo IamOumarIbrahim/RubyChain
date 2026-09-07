@@ -204,8 +204,9 @@ body {
 .status-list { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
 .status-item { display: flex; justify-content: space-between; font-weight: 600; color: #374151; }
 .status-val { font-weight: 700; }
-.val-verified { color: var(--green); }
-.val-not-verified { color: var(--red); }
+.val-verified { color: var(--green); font-weight: 700; }
+.val-not-verified { color: #8e8e93; font-weight: 500; }
+.hash-tag { font-family: monospace; font-size: 11px; font-weight: 500; opacity: 0.85; margin-left: 3px; }
 
 .action-toggle-container {
   background: #ebebee;

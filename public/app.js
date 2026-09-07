@@ -243,16 +243,24 @@
     const broken = data.chain_status === 'Broken';
     const codeBadge = state.scannedBarcode ? `<span style="font-size:12px; font-weight:600; color:#374151; margin-left:6px; font-family:monospace; background:#e5e7eb; padding:2px 8px; border-radius:10px;">${state.scannedBarcode}</span>` : '';
     el.chainStatusHeader.innerHTML = `Chain Status: <span class="${broken ? 'status-broken' : 'status-intact'}">${broken ? 'Broken' : 'Intact'}</span>${codeBadge}`;
-    setBadge(el.statusCertifier, data.credentials.origin.verified);
-    setBadge(el.statusExporter, data.credentials.transit.verified);
-    setBadge(el.statusCustoms, data.credentials.border.verified);
-    setBadge(el.statusRetailer, data.credentials.shelf.verified);
+    setBadge(el.statusCertifier, data.credentials.origin.verified, data.credentials.origin.hash);
+    setBadge(el.statusExporter, data.credentials.transit.verified, data.credentials.transit.hash);
+    setBadge(el.statusCustoms, data.credentials.border.verified, data.credentials.border.hash);
+    setBadge(el.statusRetailer, data.credentials.shelf.verified, data.credentials.shelf.hash);
+    const vcLink = document.getElementById('btn-view-vc');
+    if (vcLink && state.scannedBarcode) vcLink.href = `/api/credentials?barcode=${encodeURIComponent(state.scannedBarcode)}`;
   }
 
-  function setBadge(elm, ok) {
+  function setBadge(elm, ok, hash) {
     if (!elm) return;
-    elm.textContent = ok ? 'Verified' : 'Not Verified';
-    elm.className = 'status-val ' + (ok ? 'val-verified' : 'val-not-verified');
+    if (ok) {
+      const shortHash = hash ? ` [${hash.slice(0, 6)}…]` : '';
+      elm.innerHTML = `Verified<span class="hash-tag" title="${hash || ''}">${shortHash}</span>`;
+      elm.className = 'status-val val-verified';
+    } else {
+      elm.textContent = 'Not Verified';
+      elm.className = 'status-val val-not-verified';
+    }
   }
 
   document.querySelectorAll('.action-toggle-btn').forEach(b => {
