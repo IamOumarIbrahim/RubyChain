@@ -2,7 +2,7 @@
 
 ## 1. Live Demonstration Overview
 RubyChain is ready to be demonstrated live before judges in under 90 seconds using either:
-* **Option A (Physical/Phone):** Open `http://<your-ip>:4567` on an iPhone Safari browser, and point the camera at the printed QR label (`assets/demo_barcodes/print_sheet.html`).
+* **Option A (Physical/Phone):** Open `https://<your-ip>:8443` on an iPhone Safari browser (or `http://<your-ip>:4567` for photo snap mode), and point the camera at the printed QR label (`assets/demo_barcodes/print_sheet.html`).
 * **Option B (Desktop Laptop):** Open `http://localhost:4567` in Chrome or Edge, using the built-in webcam or one-tap demo batch button.
 
 ---

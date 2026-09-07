@@ -89,11 +89,23 @@
           <button type="button" id="sign-out-btn" class="signout-btn">Sign Out</button>
         </div>
 
+        <!-- Optional HTTPS Banner for iOS Safari -->
+        <div id="https-banner" class="https-banner" style="display: none;">
+          <span>🔒 <strong>iPhone Live Video:</strong> iOS Safari requires HTTPS.</span>
+          <a href="#" id="switch-https-link">👉 Tap to switch to HTTPS (Port 8443)</a>
+        </div>
+
         <!-- Camera Scanner Viewport -->
-        <div class="scanner-viewport">
-          <video id="scanner-video" playsinline muted autoplay></video>
+        <div class="scanner-viewport" id="scanner-viewport">
+          <video id="scanner-video" playsinline webkit-playsinline muted autoplay></video>
+          <img id="scanner-preview-img" class="scanner-preview-img" style="display: none;" alt="Preview">
           <canvas id="scanner-canvas"></canvas>
           
+          <!-- Tap to Enable Camera Prompt -->
+          <div id="camera-tap-prompt" class="camera-tap-prompt">
+            <span>📷 Tap to Enable Camera</span>
+          </div>
+
           <!-- Red Viewfinder Frame with Target Corners -->
           <div class="viewfinder-frame"></div>
 
@@ -102,7 +114,7 @@
 
           <!-- On-screen Quick Camera Controls -->
           <div class="camera-controls-overlay">
-            <button type="button" id="btn-toggle-camera" class="camera-sub-btn">Cam Stream</button>
+            <button type="button" id="btn-toggle-camera" class="camera-sub-btn">Start Cam</button>
             <button type="button" id="btn-snap-photo" class="camera-sub-btn">Snap Photo</button>
             <button type="button" id="btn-simulate-scan" class="camera-sub-btn">Lot #402</button>
           </div>

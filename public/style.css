@@ -1,6 +1,6 @@
 /* public/style.css */
 /* ==============================================================================
-   RubyChain Stylesheet
+   RubyChain Stylesheet v1.1
    Designed for Mobile/iPhone Viewport & Desktop Hackathon Demonstrations
    Brand Crimson: #851419 | Accent: #7C2529 | Clean Off-White: #F5F5F7
    ============================================================================== */
@@ -82,6 +82,30 @@ body {
 
 .view-panel.active {
   display: flex;
+}
+
+/* --------------------------------------------------------------------------
+   HTTPS Notice Banner for iPhone Safari
+   -------------------------------------------------------------------------- */
+.https-banner {
+  background: #7c1d1d;
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(124, 29, 29, 0.25);
+  animation: slide-down 0.3s ease;
+}
+
+.https-banner a {
+  color: #fecaca;
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 /* --------------------------------------------------------------------------
@@ -269,7 +293,7 @@ body {
   position: relative;
   width: 100%;
   height: 250px;
-  background: #0a0a0a;
+  background: #111113;
   border-radius: 20px;
   overflow: hidden;
   border: 2px solid #e5e7eb;
@@ -277,9 +301,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 #scanner-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.scanner-preview-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -289,45 +324,81 @@ body {
   display: none;
 }
 
-/* Red Viewfinder Frame Overlay */
+/* Red Viewfinder Frame Overlay (Faithful to Mockup) */
 .viewfinder-frame {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 170px;
-  height: 140px;
-  border: 3px solid rgba(197, 34, 31, 0.85);
-  border-radius: 8px;
-  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35);
+  width: 180px;
+  height: 145px;
+  border: 3px solid rgba(197, 34, 31, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.45);
   pointer-events: none;
   animation: pulse-frame 2.5s infinite alternate;
 }
 
 @keyframes pulse-frame {
-  0% { border-color: rgba(197, 34, 31, 0.7); box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.4); }
-  100% { border-color: rgba(220, 38, 38, 1); box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.25); }
+  0% { border-color: rgba(197, 34, 31, 0.7); box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.45); }
+  100% { border-color: rgba(239, 68, 68, 1); box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3); }
+}
+
+/* Camera Tap Prompt */
+.camera-tap-prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  z-index: 20;
+}
+
+.camera-tap-prompt:active {
+  transform: translate(-50%, -50%) scale(0.95);
 }
 
 .camera-controls-overlay {
   position: absolute;
-  bottom: 8px;
-  left: 8px;
-  right: 8px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 25;
 }
 
 .camera-sub-btn {
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
+  background: rgba(15, 15, 17, 0.85);
+  backdrop-filter: blur(10px);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 6px 12px;
-  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 8px 14px;
+  border-radius: 16px;
   font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.camera-sub-btn:hover {
+  background: rgba(30, 30, 35, 0.95);
+}
+
+.camera-sub-btn:active {
+  transform: scale(0.95);
 }
 
 /* Chain Status Display */

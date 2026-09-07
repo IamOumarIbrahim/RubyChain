@@ -1,15 +1,19 @@
 # src/main.rb
 # ==============================================================================
-# RubyChain - Main Application Server (WEBrick + SQLite3)
+# RubyChain - Main Application Server (WEBrick + SQLite3 + Dual HTTP/HTTPS)
 # ==============================================================================
 # Single-command startup for CodeNova 2026:
 #   ruby src/main.rb
 #
-# Low-abstraction, crystal-clear architecture designed so any developer can
-# understand and recreate the system from scratch within a 3-hour hackathon.
+# Provides both:
+# 1. HTTP Server (Port 4567) - Standard web access
+# 2. HTTPS Server (Port 8443) - Secure context with self-signed SSL certificate,
+#    which unlocks the live camera feed in iPhone Safari!
 # ==============================================================================
 
 require 'webrick'
+require 'webrick/https'
+require 'openssl'
 require 'json'
 require 'socket'
 require_relative 'db'
@@ -33,7 +37,8 @@ ensure
   Socket.do_not_reverse_lookup = orig
 end
 
-PORT = (ENV['PORT'] || 4567).to_i
+HTTP_PORT = (ENV['PORT'] || 4567).to_i
+HTTPS_PORT = (ENV['HTTPS_PORT'] || 8443).to_i
 PUBLIC_DIR = File.expand_path('../../public', __FILE__)
 ASSETS_DIR = File.expand_path('../../assets', __FILE__)
 
@@ -58,22 +63,23 @@ def respond_json(res, hash, status = 200)
   res.body = JSON.generate(hash)
 end
 
-# Factory method to build WEBrick server and mount routes
-def create_server(port = PORT, log_device = $stdout)
-  # Ensure database is set up and pre-seeded
-  RubyChainDB.setup!
+# Generates an in-memory self-signed certificate for local HTTPS / iPhone WebRTC
+def generate_self_signed_cert
+  pkey = OpenSSL::PKey::RSA.new(2048)
+  cert = OpenSSL::X509::Certificate.new
+  cert.version = 2
+  cert.serial = 1
+  cert.subject = OpenSSL::X509::Name.parse('/CN=RubyChain/O=CodeNova')
+  cert.issuer = cert.subject
+  cert.public_key = pkey.public_key
+  cert.not_before = Time.now - 3600
+  cert.not_after = Time.now + (365 * 24 * 3600)
+  cert.sign(pkey, OpenSSL::Digest::SHA256.new)
+  [cert, pkey]
+end
 
-  server = WEBrick::HTTPServer.new(
-    Port: port,
-    BindAddress: '0.0.0.0', # Allows iPhone & LAN access
-    Logger: WEBrick::Log.new(log_device, WEBrick::Log::INFO),
-    AccessLog: [] # Minimal terminal clutter
-  )
-
-  # ----------------------------------------------------------------------------
-  # API Endpoints
-  # ----------------------------------------------------------------------------
-
+# Mounts all API and static file routes on a WEBrick server instance
+def mount_routes(server)
   # 1. User Authentication (Login)
   server.mount_proc '/api/auth/login' do |req, res|
     if req.request_method == 'POST'
@@ -145,7 +151,6 @@ def create_server(port = PORT, log_device = $stdout)
     recalls = db.execute('SELECT * FROM recalls WHERE item_id = ? ORDER BY id DESC', [item['id']])
 
     # Determine overall chain status
-    # Chain is BROKEN if item is recalled, or if expected upstream credentials are missing
     is_broken = (item['recalled'] == 1) || recalls.any?
     chain_status = is_broken ? 'Broken' : 'Intact'
 
@@ -235,30 +240,67 @@ def create_server(port = PORT, log_device = $stdout)
     end
   end
 
-  # ----------------------------------------------------------------------------
-  # Static Files & Asset Handlers
-  # ----------------------------------------------------------------------------
+  # 7. Static Files & Asset Handlers
   server.mount '/', WEBrick::HTTPServlet::FileHandler, PUBLIC_DIR
   server.mount '/assets', WEBrick::HTTPServlet::FileHandler, ASSETS_DIR
+end
 
+# Factory method for HTTP Server
+def create_server(port = HTTP_PORT, log_device = $stdout)
+  RubyChainDB.setup!
+  server = WEBrick::HTTPServer.new(
+    Port: port,
+    BindAddress: '0.0.0.0',
+    Logger: WEBrick::Log.new(log_device, WEBrick::Log::INFO),
+    AccessLog: []
+  )
+  mount_routes(server)
   server
 end
 
+# Factory method for HTTPS Server (Enables iPhone Safari Camera)
+def create_https_server(port = HTTPS_PORT, log_device = $stdout)
+  RubyChainDB.setup!
+  cert, pkey = generate_self_signed_cert
+
+  server = WEBrick::HTTPServer.new(
+    Port: port,
+    BindAddress: '0.0.0.0',
+    SSLEnable: true,
+    SSLCertificate: cert,
+    SSLPrivateKey: pkey,
+    Logger: WEBrick::Log.new(log_device, WEBrick::Log::INFO),
+    AccessLog: []
+  )
+  mount_routes(server)
+  server
+end
+
+# Standalone Dual-Server Execution
 if __FILE__ == $0
-  server = create_server(PORT)
   lan_ip = local_ip
+  http_server = create_server(HTTP_PORT)
+  https_server = create_https_server(HTTPS_PORT)
 
-  trap('INT')  { server.shutdown }
-  trap('TERM') { server.shutdown }
+  trap('INT')  { http_server.shutdown; https_server.shutdown }
+  trap('TERM') { http_server.shutdown; https_server.shutdown }
 
   puts "===================================================================="
-  puts "  💎 RubyChain Web Server Active (CodeNova 2026)"
+  puts "  💎 RubyChain v1.1 Web Server Active (CodeNova 2026)"
   puts "===================================================================="
-  puts "  -> Local Desktop:   http://localhost:#{PORT}"
-  puts "  -> iPhone / Safari: http://#{lan_ip}:#{PORT}"
-  puts "  -> Print Sheet:     http://#{lan_ip}:#{PORT}/assets/demo_barcodes/print_sheet.html"
+  puts "  -> Desktop / Local:     http://localhost:#{HTTP_PORT}"
+  puts "  -> iPhone Safari HTTP:  http://#{lan_ip}:#{HTTP_PORT}"
+  puts "  -> iPhone Camera HTTPS: https://#{lan_ip}:#{HTTPS_PORT}"
+  puts "     *(NOTE: HTTPS is required by iOS Safari for live camera video!)*"
+  puts "  -> Printable Package:   http://#{lan_ip}:#{HTTP_PORT}/assets/demo_barcodes/print_sheet.html"
   puts "===================================================================="
-  puts "  Press Ctrl+C to stop the server."
+  puts "  Both HTTP (#{HTTP_PORT}) and HTTPS (#{HTTPS_PORT}) are now running."
+  puts "  Press Ctrl+C to stop the servers."
   puts "===================================================================="
-  server.start
+
+  t_http = Thread.new { http_server.start }
+  t_https = Thread.new { https_server.start }
+
+  t_http.join
+  t_https.join
 end

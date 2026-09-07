@@ -1,11 +1,11 @@
 // public/app.js
 // ==============================================================================
-// RubyChain Web Application Logic
+// RubyChain Web Application Logic v1.1
 // ==============================================================================
 // Features:
 // 1. Role-based authentication (Exporter, Carrier, Customs, Retailer)
-// 2. Real-time iPhone camera QR & Barcode scanning via jsQR
-// 3. Native iOS camera snapshot fallback (<input capture="environment">)
+// 2. Real-time iPhone camera QR & Barcode scanning via jsQR & WebRTC
+// 3. Dual-context resilience (HTTPS WebRTC stream + Native iOS camera fallback)
 // 4. Verify-then-issue credential pipeline & instant circuit-breaker recall
 // ==============================================================================
 
@@ -33,8 +33,13 @@
     authSubmitBtn: document.getElementById('auth-submit-btn'),
     roleTitleText: document.getElementById('role-title-text'),
     signOutBtn: document.getElementById('sign-out-btn'),
+    httpsBanner: document.getElementById('https-banner'),
+    switchHttpsLink: document.getElementById('switch-https-link'),
+    scannerViewport: document.getElementById('scanner-viewport'),
     scannerVideo: document.getElementById('scanner-video'),
+    scannerPreviewImg: document.getElementById('scanner-preview-img'),
     scannerCanvas: document.getElementById('scanner-canvas'),
+    cameraTapPrompt: document.getElementById('camera-tap-prompt'),
     cameraFallbackInput: document.getElementById('camera-fallback-input'),
     btnToggleCamera: document.getElementById('btn-toggle-camera'),
     btnSnapPhoto: document.getElementById('btn-snap-photo'),
@@ -167,43 +172,103 @@
     const capitalized = state.user.role.charAt(0).toUpperCase() + state.user.role.slice(1);
     el.roleTitleText.textContent = `${capitalized} View`;
 
+    // Check secure context for iPhone Safari camera access
+    checkSecurityContext();
+
     // Start fetching chain data for default barcode
     fetchChainStatus(state.scannedBarcode);
 
-    // Auto-start camera if permissions allow
-    startCamera();
+    // Auto-attempt camera if secure context
+    if (window.isSecureContext || location.protocol === 'https:' || location.hostname === 'localhost') {
+      startCamera();
+    }
+  }
+
+  function checkSecurityContext() {
+    const isSecure = window.isSecureContext || location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    if (!isSecure && el.httpsBanner) {
+      el.httpsBanner.style.display = 'flex';
+      if (el.switchHttpsLink) {
+        el.switchHttpsLink.href = 'https://' + location.hostname + ':8443' + location.pathname;
+        el.switchHttpsLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          location.href = 'https://' + location.hostname + ':8443' + location.pathname;
+        });
+      }
+    } else if (el.httpsBanner) {
+      el.httpsBanner.style.display = 'none';
+    }
   }
 
   // ----------------------------------------------------------------------------
   // Camera & QR Scanner (Native getUserMedia + jsQR + Fallback)
   // ----------------------------------------------------------------------------
   async function startCamera() {
+    const isSecure = window.isSecureContext || location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    
+    // On iOS Safari, plain HTTP blocks getUserMedia
+    if (!isSecure) {
+      showToast('iOS requires HTTPS for camera. Tapping opens secure mode...', true);
+      setTimeout(() => {
+        location.href = 'https://' + location.hostname + ':8443' + location.pathname;
+      }, 1000);
+      return;
+    }
+
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      console.warn('Camera API not available. Using file capture fallback.');
+      showToast('Camera API not accessible. Opening photo capture.', true);
+      el.cameraFallbackInput.click();
       return;
     }
 
     try {
-      const constraints = {
-        video: {
-          facingMode: { ideal: 'environment' },
-          width: { ideal: 1280 },
-          height: { ideal: 720 }
+      showToast('Activating camera...');
+
+      // Progressive constraint fallback ladder
+      let stream = null;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 } }
+        });
+      } catch (e1) {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: { facingMode: 'environment' }
+          });
+        } catch (e2) {
+          stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
         }
-      };
-      state.cameraStream = await navigator.mediaDevices.getUserMedia(constraints);
-      el.scannerVideo.srcObject = state.cameraStream;
-      el.scannerVideo.setAttribute('playsinline', true);
+      }
+
+      state.cameraStream = stream;
+      el.scannerVideo.srcObject = stream;
+      el.scannerVideo.setAttribute('playsinline', '');
+      el.scannerVideo.setAttribute('webkit-playsinline', '');
+      el.scannerVideo.setAttribute('muted', '');
+      el.scannerVideo.setAttribute('autoplay', '');
+      
       await el.scannerVideo.play();
       state.cameraActive = true;
-      el.btnToggleCamera.textContent = 'Pause Cam';
+      el.btnToggleCamera.textContent = 'Stop Cam';
 
-      // Start frame scanning loop
+      if (el.cameraTapPrompt) el.cameraTapPrompt.style.display = 'none';
+      if (el.scannerPreviewImg) el.scannerPreviewImg.style.display = 'none';
+      el.scannerVideo.style.display = 'block';
+
+      showToast('Camera feed active! Center QR code in frame');
       startScanningLoop();
     } catch (err) {
-      console.warn('Live camera stream not permitted or insecure context:', err);
+      console.warn('Live camera stream error:', err);
       el.btnToggleCamera.textContent = 'Start Cam';
       state.cameraActive = false;
+
+      if (err.name === 'NotAllowedError') {
+        showToast('Camera permission denied in browser settings', true);
+      } else {
+        showToast('Camera unavailable. Tap "Snap Photo" below.', true);
+      }
     }
   }
 
@@ -218,6 +283,7 @@
     }
     state.cameraActive = false;
     el.btnToggleCamera.textContent = 'Start Cam';
+    if (el.cameraTapPrompt) el.cameraTapPrompt.style.display = 'block';
   }
 
   function startScanningLoop() {
@@ -268,6 +334,23 @@
     }
   }
 
+  // Viewport tap gestures
+  if (el.cameraTapPrompt) {
+    el.cameraTapPrompt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      startCamera();
+    });
+  }
+
+  if (el.scannerViewport) {
+    el.scannerViewport.addEventListener('click', (e) => {
+      if (e.target.closest('.camera-controls-overlay')) return;
+      if (!state.cameraActive) {
+        startCamera();
+      }
+    });
+  }
+
   // Camera Fallback: iPhone file input snap
   el.cameraFallbackInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -275,6 +358,13 @@
 
     const reader = new FileReader();
     reader.onload = (event) => {
+      const dataUrl = event.target.result;
+      if (el.scannerPreviewImg) {
+        el.scannerPreviewImg.src = dataUrl;
+        el.scannerPreviewImg.style.display = 'block';
+        if (el.cameraTapPrompt) el.cameraTapPrompt.style.display = 'none';
+      }
+
       const img = new Image();
       img.onload = () => {
         const canvas = el.scannerCanvas;
@@ -293,7 +383,7 @@
           }
         }
       };
-      img.src = event.target.result;
+      img.src = dataUrl;
     };
     reader.readAsDataURL(file);
   });

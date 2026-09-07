@@ -33,9 +33,10 @@ cd RubyChain
 ruby src/main.rb
 ```
 
-On launch, the server prints your local network address:
+On launch, the server spins up dual HTTP and HTTPS listeners:
 * **Local Desktop:** `http://localhost:4567`
-* **iPhone Safari / Mobile:** `http://<your-local-ip>:4567`
+* **iPhone Safari (HTTP):** `http://<your-local-ip>:4567`
+* **iPhone Safari Live Camera (HTTPS):** `https://<your-local-ip>:8443` *(Recommended for real-time video stream! Accept self-signed cert on first load)*
 * **Demo Packaging Sheet:** `http://localhost:4567/assets/demo_barcodes/print_sheet.html`
 
 Run the automated test suites:
