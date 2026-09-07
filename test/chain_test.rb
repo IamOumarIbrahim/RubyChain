@@ -31,11 +31,13 @@ abort("Test 1 Failed: Item not found") unless item_status
 abort("Test 1 Failed: Item should not be recalled") unless item_status['recalled'] == 0
 puts "✓ Reset baseline clean."
 
-puts "\n=== 2. Testing Certifier Pre-seeded Origin Proof ==="
+puts "\n=== 2. Testing Certifier Live Origin Proof Issuance ==="
+origin_res = CertifierNode.issue_origin_proof(barcode, 1)
+abort("Test 2 Failed: Certifier issue failed: #{origin_res[:error]}") unless origin_res[:success]
 origin_check = CertifierNode.verify(item_status['id'])
-abort("Test 2 Failed: Pre-seeded origin_proof missing") unless origin_check
+abort("Test 2 Failed: Origin proof missing after issuance") unless origin_check
 abort("Test 2 Failed: Signature hash empty") if origin_check['signature_hash'].to_s.empty?
-puts "✓ Origin proof present with SHA-256 hash: #{origin_check['signature_hash'][0..15]}..."
+puts "✓ Certifier issued origin_proof: #{origin_check['signature_hash'][0..15]}..."
 
 puts "\n=== 3. Testing Exporter Verification & Issuance ==="
 exp_result = ExporterNode.verify_and_issue(barcode, 2)

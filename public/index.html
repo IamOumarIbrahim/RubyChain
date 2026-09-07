@@ -37,16 +37,17 @@
           <h1 class="brand-title">RubyChain</h1>
         </div>
 
-        <!-- Role Grid Selector (Matching Mockup) -->
+        <!-- Role Grid Selector (Includes Certifier for live root issuance) -->
         <div class="role-grid-container">
+          <button type="button" class="role-btn active" data-role="certifier">Certifier</button>
           <button type="button" class="role-btn" data-role="exporter">Exporter</button>
-          <button type="button" class="role-btn active" data-role="carrier">Carrier</button>
+          <button type="button" class="role-btn" data-role="carrier">Carrier</button>
           <button type="button" class="role-btn" data-role="customs">Customs</button>
           <button type="button" class="role-btn" data-role="retailer">Retailer</button>
         </div>
 
         <div class="input-group">
-          <input type="text" id="username-input" class="input-pill" placeholder="Username" value="carrier" autocapitalize="none">
+          <input type="text" id="username-input" class="input-pill" placeholder="Username" value="certifier" autocapitalize="none">
         </div>
 
         <div class="input-group">
@@ -58,6 +59,7 @@
         <div class="demo-pills-row">
           <span>Quick Switch Demo Account:</span>
           <div class="demo-pills-container">
+            <button type="button" class="mini-pill" data-fill-role="certifier">Certifier</button>
             <button type="button" class="mini-pill" data-fill-role="exporter">Exporter</button>
             <button type="button" class="mini-pill" data-fill-role="carrier">Carrier</button>
             <button type="button" class="mini-pill" data-fill-role="customs">Customs</button>
@@ -129,7 +131,7 @@
           <div class="status-list">
             <div class="status-item">
               <span class="status-label">Certifier original credential :</span>
-              <span id="status-certifier" class="status-val val-verified">Verified</span>
+              <span id="status-certifier" class="status-val val-not-verified">Not Verified</span>
             </div>
 
             <div class="status-item">
@@ -151,8 +153,8 @@
 
         <!-- Action Segmented Toggle: Verify & Issue vs Recall -->
         <div class="action-toggle-container">
-          <button type="button" class="action-toggle-btn" data-action="verify_issue">Verify & Issue</button>
-          <button type="button" class="action-toggle-btn active" data-action="recall">Recall</button>
+          <button type="button" class="action-toggle-btn active" data-action="verify_issue">Verify & Issue</button>
+          <button type="button" class="action-toggle-btn" data-action="recall">Recall</button>
         </div>
 
         <!-- Confirm Action Button -->

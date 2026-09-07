@@ -43,18 +43,27 @@ begin
   abort("API Reset failed: #{body}") unless code == 200 && body['success']
   puts "✓ Reset successful."
 
-  puts "\n=== API Test 2: User Login ==="
-  code, body = post_json('/api/auth/login', { username: 'retailer', password: 'password123', role: 'retailer' })
+  puts "\n=== API Test 2: User Login & Auto-Signup ==="
+  code, body = post_json('/api/auth/login', { username: 'certifier', password: 'password123', role: 'certifier' })
   abort("API Login failed: #{body}") unless code == 200 && body['success']
-  puts "✓ Retailer login successful (User ID: #{body['user']['user_id']})."
+  cert_uid = body['user']['user_id']
+  puts "✓ Certifier login successful (User ID: #{cert_uid})."
 
-  puts "\n=== API Test 3: Item Status Query ==="
+  puts "\n=== API Test 3: Uncertified Item Status & Certifier Issuance ==="
   code, body = get_json('/api/item?barcode=5901234123457')
   abort("API Item Query failed: #{body}") unless code == 200 && body['success']
   abort("Expected chain_status Intact") unless body['chain_status'] == 'Intact'
-  abort("Expected origin verified true") unless body['credentials']['origin']['verified'] == true
+  abort("Expected origin verified false before certification") unless body['credentials']['origin']['verified'] == false
+
+  # Certifier issues origin_proof
+  code, body = post_json('/api/action/verify_issue', { barcode: '5901234123457', user_id: cert_uid, role: 'certifier' })
+  abort("Certifier verify_issue failed: #{body}") unless code == 200 && body['success']
+  puts "✓ Certifier issued origin_proof: #{body['message']}"
+
+  code, body = get_json('/api/item?barcode=5901234123457')
+  abort("Expected origin verified true after certification") unless body['credentials']['origin']['verified'] == true
   abort("Expected transit verified false") unless body['credentials']['transit']['verified'] == false
-  puts "✓ Item state verified: Origin Intact, downstream pending."
+  puts "✓ Item state verified: Origin Verified green, downstream pending."
 
   puts "\n=== API Test 4: Exporter Verify & Issue ==="
   code, body = post_json('/api/action/verify_issue', { barcode: '5901234123457', user_id: 2, role: 'exporter' })

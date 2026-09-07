@@ -4,8 +4,8 @@
 
   const state = {
     user: null,
-    selectedRole: 'carrier',
-    selectedAction: 'recall',
+    selectedRole: 'certifier',
+    selectedAction: 'verify_issue',
     scannedBarcode: null,
     cameraActive: false,
     cameraStream: null,
@@ -79,12 +79,12 @@
           state.user = data.user;
           localStorage.setItem('rubychain_user', JSON.stringify(data.user));
           showMain();
-          toast(`Signed in as ${data.user.role.toUpperCase()}`);
+          toast(data.created ? `Signed up as ${data.user.role.toUpperCase()}` : `Signed in as ${data.user.role.toUpperCase()}`);
         } else {
           toast(data.error || 'Login failed', true);
         }
       } catch (err) {
-        state.user = { user_id: 2, username, role: state.selectedRole };
+        state.user = { user_id: 1, username, role: state.selectedRole };
         showMain();
       }
     };
@@ -92,6 +92,7 @@
     document.getElementById('sign-out-btn').onclick = () => {
       stopCamera();
       state.user = null;
+      state.scannedBarcode = null;
       localStorage.removeItem('rubychain_user');
       el.mainView.classList.remove('active');
       el.loginView.classList.add('active');
@@ -215,6 +216,7 @@
         const cvs = el.scannerCanvas, ctx = cvs.getContext('2d');
         cvs.width = img.width; cvs.height = img.height;
         ctx.drawImage(img, 0, 0);
+        const code = window.jsQR ? window.jsQR(ctx.getImageData(0, 0, cvs.width, cvs.height).data, cvs.width, cvs.height) : null;
         if (code && code.data) {
           handleCode(code.data);
         } else {

@@ -51,14 +51,26 @@ def generate_cert
 end
 
 def mount_routes(server)
-  # 1. Login
+  # 1. Login (or Auto-Signup if new)
   server.mount_proc '/api/auth/login' do |req, res|
     d = parse_json(req)
-    u = RubyChainDB.connection.execute('SELECT * FROM users WHERE username = ?', [clean_str(d['username'])]).first
-    if u && u['password_hash'] == RubyChainDB.hash_password(clean_str(d['password']))
-      json_res(res, { success: true, user: { user_id: u['user_id'], username: u['username'], role: u['role'] } })
+    uname = clean_str(d['username'])
+    pwd = clean_str(d['password'])
+    role = clean_str(d['role'] || 'certifier')
+    db = RubyChainDB.connection
+    u = db.execute('SELECT * FROM users WHERE username = ?', [uname]).first
+    if u
+      if u['password_hash'] == RubyChainDB.hash_password(pwd)
+        json_res(res, { success: true, user: { user_id: u['user_id'], username: u['username'], role: u['role'] } })
+      else
+        json_res(res, { success: false, error: 'Invalid password' }, 401)
+      end
+    elsif !uname.empty? && !pwd.empty?
+      db.execute('INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)',
+                 [uname, RubyChainDB.hash_password(pwd), role])
+      json_res(res, { success: true, user: { user_id: db.last_insert_row_id, username: uname, role: role }, created: true })
     else
-      json_res(res, { success: false, error: 'Invalid credentials' }, 401)
+      json_res(res, { success: false, error: 'Username and password required' }, 400)
     end
   end
 
