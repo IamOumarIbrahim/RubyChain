@@ -228,18 +228,48 @@
     r.readAsDataURL(file);
   };
 
+  let currentChainData = null;
+
+  function showOffline() {
+    const elOff = document.getElementById('offline-indicator');
+    if (elOff) elOff.style.display = 'inline-block';
+  }
+
+  function hideOffline() {
+    const elOff = document.getElementById('offline-indicator');
+    if (elOff) elOff.style.display = 'none';
+  }
+
   // --- Chain Status & Actions ---
   async function fetchChain(barcode) {
     if (!barcode) return;
     try {
       const res = await fetch(`/api/item?barcode=${encodeURIComponent(barcode)}`);
       const data = await res.json();
-      if (data.success) renderChain(data);
-      else toast('Item not registered in chain', true);
-    } catch (e) {}
+      if (data.success) {
+        localStorage.setItem('rubychain_cache_' + barcode, JSON.stringify(data));
+        renderChain(data);
+        hideOffline();
+      } else {
+        toast('Item not registered in chain', true);
+      }
+    } catch (e) {
+      const cached = localStorage.getItem('rubychain_cache_' + barcode);
+      if (cached) {
+        try {
+          const data = JSON.parse(cached);
+          renderChain(data);
+          showOffline();
+          toast('⚡ Loaded from local offline cache');
+          return;
+        } catch (err) {}
+      }
+      toast('Network offline & no local cache found', true);
+    }
   }
 
   function renderChain(data) {
+    currentChainData = data;
     const broken = data.chain_status === 'Broken';
     const codeBadge = state.scannedBarcode ? `<span style="font-size:12px; font-weight:600; color:#374151; margin-left:6px; font-family:monospace; background:#e5e7eb; padding:2px 8px; border-radius:10px;">${state.scannedBarcode}</span>` : '';
     el.chainStatusHeader.innerHTML = `Chain Status: <span class="${broken ? 'status-broken' : 'status-intact'}">${broken ? 'Broken' : 'Intact'}</span>${codeBadge}`;
@@ -296,6 +326,26 @@
       if (state.scannedBarcode) fetchChain(state.scannedBarcode);
     };
   }
+
+  document.querySelectorAll('.status-item').forEach((item, idx) => {
+    item.onclick = () => {
+      if (!currentChainData || !currentChainData.credentials) return;
+      const keys = ['origin', 'transit', 'border', 'shelf'];
+      const names = ['Certifier Origin Proof', 'Exporter Custody Pass', 'Customs Border Clearance', 'Retailer Shelf Pass'];
+      const key = keys[idx];
+      const cred = currentChainData.credentials[key];
+      const drawer = document.getElementById('hash-audit-drawer');
+      const content = document.getElementById('audit-drawer-content');
+      if (!drawer || !content) return;
+      if (cred && cred.verified && cred.hash) {
+        drawer.style.display = 'block';
+        content.innerHTML = `<strong>${names[idx]}</strong><br>SHA-256: <span style="color:#851419;">${cred.hash}</span><br>Status: Cryptographically Intact ✓`;
+      } else {
+        drawer.style.display = 'block';
+        content.innerHTML = `<strong>${names[idx]}</strong><br>Status: Pending upstream handoff (Not Verified)`;
+      }
+    };
+  });
 
   initAuth();
 })();

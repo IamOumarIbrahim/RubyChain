@@ -136,6 +136,7 @@ body {
 /* Screen 2: Scanner & Status */
 .top-nav-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
 .role-title-wrap { display: flex; align-items: center; gap: 8px; }
+.offline-indicator { font-size: 11px; background: #fef3c7; color: #92400e; padding: 2px 7px; border-radius: 8px; font-weight: 700; }
 .nav-logo-img { width: 26px; height: 26px; object-fit: contain; display: block; }
 .role-title-text { font-size: 18px; font-weight: 700; }
 .signout-btn { background: #242426; color: #fff; border: none; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; }
@@ -202,11 +203,15 @@ body {
 .status-broken { color: var(--red); }
 
 .status-list { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
-.status-item { display: flex; justify-content: space-between; font-weight: 600; color: #374151; }
+.status-item { display: flex; justify-content: space-between; font-weight: 600; color: #374151; cursor: pointer; padding: 3px 6px; border-radius: 6px; transition: background 0.15s; }
+.status-item:hover { background: #f3f4f6; }
 .status-val { font-weight: 700; }
 .val-verified { color: var(--green); font-weight: 700; }
 .val-not-verified { color: #8e8e93; font-weight: 500; }
 .hash-tag { font-family: monospace; font-size: 11px; font-weight: 500; opacity: 0.85; margin-left: 3px; }
+.hash-audit-drawer { margin-top: 10px; padding: 8px 10px; background: #f9fafb; border-radius: 10px; border: 1px dashed #cbd5e1; font-size: 11.5px; }
+.audit-drawer-title { font-weight: 700; color: #374151; margin-bottom: 3px; }
+.audit-drawer-content { font-family: monospace; word-break: break-all; color: #4b5563; line-height: 1.4; }
 
 .action-toggle-container {
   background: #ebebee;

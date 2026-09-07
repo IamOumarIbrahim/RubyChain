@@ -7,6 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="/icon.png">
   <link rel="icon" type="image/png" href="/icon.png">
+  <link rel="manifest" href="/manifest.json">
   <title>RubyChain - Verifiable Supply Chain</title>
   <link rel="stylesheet" href="/style.css">
   <script src="/vendor/jsqr.js"></script>
@@ -78,6 +79,7 @@
           <div class="role-title-wrap">
             <img src="/assets/branding/icons/Simplified_transparent.png" alt="RubyChain Logo" class="nav-logo-img">
             <span id="role-title-text" class="role-title-text">Retailer View</span>
+            <span id="offline-indicator" class="offline-indicator" style="display: none;">Offline</span>
           </div>
           <button type="button" id="sign-out-btn" class="signout-btn">Sign Out</button>
         </div>
@@ -139,6 +141,12 @@
               <span class="status-label">Retailer shelf credential:</span>
               <span id="status-retailer" class="status-val val-not-verified">Not Verified</span>
             </div>
+          </div>
+
+          <!-- Interactive Cryptographic Hash Audit Drawer -->
+          <div id="hash-audit-drawer" class="hash-audit-drawer" style="display: none;">
+            <div class="audit-drawer-title">🔒 Cryptographic Proof Audit</div>
+            <div id="audit-drawer-content" class="audit-drawer-content">Tap any milestone above to inspect SHA-256 seal.</div>
           </div>
         </div>
 
