@@ -165,6 +165,23 @@ begin
   abort("Chain should be Intact after reset") unless body['chain_status'] == 'Intact'
   puts "✓ Demo batch restored to clean state."
 
+  puts "\n=== API Test 10: Verify Rapid Auto-Demo & Health Telemetry Benchmark ==="
+  code, body = post_json('/api/action/auto_demo', { barcode: '5901234123457' })
+  abort("Auto-Demo failed: #{body}") unless code == 200 && body['success']
+  code, item_body = get_json('/api/item?barcode=5901234123457')
+  abort("Auto-Demo failed to verify origin") unless item_body['credentials']['origin']['verified']
+  abort("Auto-Demo failed to verify shelf") unless item_body['credentials']['shelf']['verified']
+  puts "✓ Rapid 4-Node Auto-Demo executed successfully: full chain verified green."
+
+  code, health_body = get_json('/api/health')
+  abort("Health telemetry failed: #{health_body}") unless code == 200 && health_body['status'] == 'healthy'
+  abort("Expected version 10.0-competition-master") unless health_body['version'] == '10.0-competition-master'
+  abort("Expected benchmark time") if health_body['hash_benchmark_1000_ops_ms'].nil?
+  puts "✓ System Health & Cryptographic Benchmark operational: #{health_body['hash_benchmark_1000_ops_ms']}ms / 1000 SHA-256 ops."
+
+  # Final cleanup
+  post_json('/api/reset_demo', { barcode: '5901234123457' })
+
   puts "\n🎉 ALL API & ENDPOINT INTEGRATION TESTS PASSED! 🎉"
 ensure
   server.shutdown

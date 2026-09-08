@@ -159,6 +159,19 @@ def mount_routes(server)
     json_res(res, { success: true, message: 'Reset complete' })
   end
 
+  # 6.2. 90-Second Judging Auto-Demo (Sequentially Issues All 4 Milestones)
+  server.mount_proc '/api/action/auto_demo' do |req, res|
+    d = parse_json(req)
+    code = clean_str(d['barcode'])
+    code = '5901234123457' if code.empty?
+    RubyChainDB.reset_demo_item!(code)
+    CertifierNode.issue_origin_proof(code, 1)
+    ExporterNode.verify_and_issue(code, 2)
+    CustomsNode.verify_and_issue(code, 4)
+    RetailerNode.verify_and_issue(code, 5)
+    json_res(res, { success: true, message: 'Rapid 4-Node Chain Simulation Completed!' })
+  end
+
   # 6.5. Cryptographic Fault Injection / Tamper Simulation
   server.mount_proc '/api/action/simulate_tamper' do |req, res|
     d = parse_json(req)
@@ -322,6 +335,25 @@ def mount_routes(server)
     else
       json_res(res, { success: false, error: 'Item not found' }, 404)
     end
+  end
+
+  # 10. System Benchmark & Health Telemetry
+  server.mount_proc '/api/health' do |req, res|
+    t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+    1000.times { Digest::SHA256.hexdigest('rubychain_benchmark_payload') }
+    bench_ms = ((Process.clock_gettime(Process::CLOCK_MONOTONIC) - t0) * 1000.0).round(2)
+    db = RubyChainDB.connection
+    items_cnt = db.execute('SELECT COUNT(*) as c FROM items').first['c']
+    creds_cnt = db.execute('SELECT COUNT(*) as c FROM credentials').first['c']
+    json_res(res, {
+      status: 'healthy',
+      version: '10.0-competition-master',
+      cryptographic_engine: 'SHA-256 (W3C DID/VC 1.0 & GS1 EPCIS 2.0)',
+      hash_benchmark_1000_ops_ms: bench_ms,
+      database: { items: items_cnt, credentials: creds_cnt },
+      compliance_ready: true,
+      timestamp: Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ')
+    })
   end
 
   # Static Files

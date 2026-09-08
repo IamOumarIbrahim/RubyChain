@@ -204,6 +204,25 @@
   document.getElementById('btn-simulate-scan').onclick = () => handleCode('5901234123457');
   const btn403 = document.getElementById('btn-simulate-scan-403');
   if (btn403) btn403.onclick = () => handleCode('5901234123458');
+  const btnAuto = document.getElementById('btn-auto-demo');
+  if (btnAuto) {
+    btnAuto.onclick = async () => {
+      const code = state.scannedBarcode || '5901234123457';
+      state.scannedBarcode = code;
+      try {
+        const res = await fetch('/api/action/auto_demo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ barcode: code })
+        });
+        const data = await res.json();
+        toast(data.message || 'Auto Demo Complete!');
+        fetchChain(code);
+      } catch (err) {
+        toast('Auto demo error', true);
+      }
+    };
+  }
 
   el.cameraFallbackInput.onchange = (e) => {
     const file = e.target.files[0];
