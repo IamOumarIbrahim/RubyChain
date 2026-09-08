@@ -241,7 +241,7 @@ body {
 .toast-msg.danger { background: var(--crimson); }
 .toast-msg.success { background: #166534; }
 
-.bottom-utility-bar { margin-top: 12px; display: flex; justify-content: space-between; font-size: 11px; color: #6e6e73; }
+.bottom-utility-bar { margin-top: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; font-size: 11px; color: #6e6e73; }
 .utility-link { color: var(--crimson); text-decoration: none; cursor: pointer; font-weight: 600; }
 
 @media (max-width: 480px) {

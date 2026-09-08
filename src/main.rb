@@ -171,10 +171,11 @@ def mount_routes(server)
     end
   end
 
-  # 7. IDS W3C Verifiable Presentation Export
+  # 7. IDS W3C Verifiable Presentation Export (with Zero-Knowledge Selective Disclosure)
   server.mount_proc '/api/credentials' do |req, res|
     code = clean_str(req.query['barcode'])
     code = '5901234123457' if code.empty?
+    selective = ['1', 'true', 'yes'].include?(clean_str(req.query['selective']).downcase)
     db = RubyChainDB.connection
     item = db.execute('SELECT * FROM items WHERE barcode = ?', [code]).first
     if item
@@ -185,12 +186,30 @@ def mount_routes(server)
         '@context' => ['https://www.w3.org/2018/credentials/v1'],
         type: ['VerifiablePresentation', 'RubyChainProvenancePresentation'],
         barcode: code,
+        selectiveDisclosure: selective,
         verifiableCredential: creds.map do |c|
+          raw_commercial = { wholesalePrice: '$14.20/kg', supplierTaxId: 'ET-99421', fairTradePremium: '+$1.80/kg' }
+          commercial_hash = Digest::SHA256.hexdigest("SALT_COMMERCIAL_#{c['id']}_#{raw_commercial.to_json}")
+          subject_data = {
+            id: "urn:gtin:#{code}",
+            milestone: c['milestone'],
+            complianceCertified: true
+          }
+          if selective
+            subject_data[:commercialData] = {
+              status: 'REDACTED (Selective Disclosure)',
+              commitmentHash: commercial_hash,
+              disclosed: false
+            }
+          else
+            subject_data[:commercialData] = raw_commercial.merge(commitmentHash: commercial_hash, disclosed: true)
+          end
+
           {
             type: ['VerifiableCredential', c['milestone']],
             issuer: "did:rubychain:user:#{c['issued_by_user_id']}",
             issuanceDate: c['created_at'],
-            credentialSubject: { id: "urn:gtin:#{code}", milestone: c['milestone'] },
+            credentialSubject: subject_data,
             proof: { type: 'Sha256Signature2026', hash: c['signature_hash'] }
           }
         end,

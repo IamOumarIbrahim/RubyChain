@@ -99,6 +99,16 @@ begin
   abort("Expected cryptographic proof hash in credential") if body['verifiableCredential'].first['proof']['hash'].to_s.empty?
   puts "✓ W3C Verifiable Presentation schema validated: 4 cryptographic credentials included."
 
+  puts "\n=== API Test 7.5b: Verify Zero-Knowledge Selective Disclosure Mode ==="
+  code, body = get_json('/api/credentials?barcode=5901234123457&selective=1')
+  abort("API Selective Disclosure failed: #{body}") unless code == 200 && body['success']
+  abort("Expected selectiveDisclosure true") unless body['selectiveDisclosure'] == true
+  cred_subj = body['verifiableCredential'].first['credentialSubject']
+  abort("Expected commercialData redacted") unless cred_subj['commercialData']['status'].include?('REDACTED')
+  abort("Expected disclosed false") if cred_subj['commercialData']['disclosed']
+  abort("Expected commitmentHash present") if cred_subj['commercialData']['commitmentHash'].to_s.empty?
+  puts "✓ Zero-Knowledge Selective Disclosure validated: commercial data redacted with cryptographic commitment hash."
+
   puts "\n=== API Test 7.6: Verify GS1 EPCIS 2.0 Export ==="
   code, body = get_json('/api/epcis?barcode=5901234123457')
   abort("API EPCIS export failed: #{body}") unless code == 200 && body['success']

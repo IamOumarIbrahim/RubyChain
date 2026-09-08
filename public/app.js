@@ -299,6 +299,8 @@
 
     const vcLink = document.getElementById('btn-view-vc');
     if (vcLink && state.scannedBarcode) vcLink.href = `/api/credentials?barcode=${encodeURIComponent(state.scannedBarcode)}`;
+    const zkLink = document.getElementById('btn-view-zk');
+    if (zkLink && state.scannedBarcode) zkLink.href = `/api/credentials?barcode=${encodeURIComponent(state.scannedBarcode)}&selective=1`;
     const epcisLink = document.getElementById('btn-view-epcis');
     if (epcisLink && state.scannedBarcode) epcisLink.href = `/api/epcis?barcode=${encodeURIComponent(state.scannedBarcode)}`;
     const auditLink = document.getElementById('btn-view-audit');
