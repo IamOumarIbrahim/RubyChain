@@ -26,20 +26,23 @@ class RubyChainDB
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         barcode TEXT UNIQUE NOT NULL,
         name TEXT NOT NULL,
-        recalled INTEGER DEFAULT 0
+        recalled INTEGER DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       );
       CREATE TABLE IF NOT EXISTS credentials (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         item_id INTEGER REFERENCES items(id),
         milestone TEXT NOT NULL,
         issued_by_user_id INTEGER,
-        signature_hash TEXT NOT NULL
+        signature_hash TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       );
       CREATE TABLE IF NOT EXISTS recalls (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         item_id INTEGER REFERENCES items(id),
         issued_by_user_id INTEGER,
-        reason TEXT
+        reason TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       );
     SQL
     seed_defaults!

@@ -246,6 +246,65 @@ def mount_routes(server)
     end
   end
 
+  # 9. Regulatory Audit Trail CSV / JSON Export (FDA FSMA 204 & EUDR)
+  server.mount_proc '/api/audit' do |req, res|
+    code = clean_str(req.query['barcode'])
+    code = '5901234123457' if code.empty?
+    format = clean_str(req.query['format']).downcase
+    db = RubyChainDB.connection
+    item = db.execute('SELECT * FROM items WHERE barcode = ?', [code]).first
+    if item
+      creds = db.execute('SELECT c.*, u.username, u.role FROM credentials c LEFT JOIN users u ON c.issued_by_user_id = u.user_id WHERE c.item_id = ? ORDER BY c.id ASC', [item['id']])
+      recalls = db.execute('SELECT r.*, u.username, u.role FROM recalls r LEFT JOIN users u ON r.issued_by_user_id = u.user_id WHERE r.item_id = ?', [item['id']])
+      integrity = RubyChainDB.verify_chain_integrity(code)
+
+      if format == 'csv'
+        res.status = 200
+        res['Content-Type'] = 'text/csv'
+        res['Content-Disposition'] = "attachment; filename=\"rubychain_audit_#{code}.csv\""
+        csv_lines = ["Barcode,Event,Milestone,Timestamp,Actor,Role,ProofHash,ChainIntegrity"]
+        creds.each do |c|
+          csv_lines << "#{code},CREDENTIAL_ISSUED,#{c['milestone']},#{c['created_at']},#{c['username']},#{c['role']},#{c['signature_hash']},#{integrity[:valid] ? 'INTACT' : 'TAMPERED'}"
+        end
+        recalls.each do |r|
+          csv_lines << "#{code},RECALL_TRIGGERED,RECALL,#{r['created_at']},#{r['username']},#{r['role']},\"#{r['reason']}\",BROKEN"
+        end
+        res.body = csv_lines.join("\n") + "\n"
+      else
+        json_res(res, {
+          success: true,
+          barcode: code,
+          item_name: item['name'],
+          regulatory_standard: 'FDA FSMA 204 / EUDR Deforestation Compliance',
+          generated_at: Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
+          chain_status: item['recalled'] == 1 ? 'Broken' : (integrity[:valid] ? 'Intact' : 'Tampered'),
+          events_count: creds.size + recalls.size,
+          audit_trail: creds.map do |c|
+            {
+              event: 'CREDENTIAL_ISSUED',
+              milestone: c['milestone'],
+              timestamp: c['created_at'],
+              actor: c['username'],
+              role: c['role'],
+              signature_hash: c['signature_hash']
+            }
+          end + recalls.map do |r|
+            {
+              event: 'RECALL_TRIGGERED',
+              milestone: 'RECALL',
+              timestamp: r['created_at'],
+              actor: r['username'],
+              role: r['role'],
+              reason: r['reason']
+            }
+          end
+        })
+      end
+    else
+      json_res(res, { success: false, error: 'Item not found' }, 404)
+    end
+  end
+
   # Static Files
   server.mount '/', WEBrick::HTTPServlet::FileHandler, PUBLIC_DIR
   server.mount '/assets', WEBrick::HTTPServlet::FileHandler, ASSETS_DIR

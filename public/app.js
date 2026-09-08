@@ -301,6 +301,8 @@
     if (vcLink && state.scannedBarcode) vcLink.href = `/api/credentials?barcode=${encodeURIComponent(state.scannedBarcode)}`;
     const epcisLink = document.getElementById('btn-view-epcis');
     if (epcisLink && state.scannedBarcode) epcisLink.href = `/api/epcis?barcode=${encodeURIComponent(state.scannedBarcode)}`;
+    const auditLink = document.getElementById('btn-view-audit');
+    if (auditLink && state.scannedBarcode) auditLink.href = `/api/audit?barcode=${encodeURIComponent(state.scannedBarcode)}&format=csv`;
   }
 
   function setBadge(elm, ok, hash) {

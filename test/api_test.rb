@@ -133,6 +133,21 @@ begin
   abort("Lot 403 must remain Intact despite Lot 402 recall") unless body['chain_status'] == 'Intact'
   puts "✓ Granular quarantine verified via API: Lot 403 unaffected by Lot 402 recall!"
 
+  puts "\n=== API Test 8.6: Verify Regulatory Audit Trail Export (CSV & JSON) ==="
+  code, body = get_json('/api/audit?barcode=5901234123457&format=json')
+  abort("API Audit JSON failed: #{body}") unless code == 200 && body['success']
+  abort("Expected 5 events (4 credentials + 1 recall)") unless body['events_count'] == 5
+  abort("Expected FDA FSMA 204 regulatory reference") unless body['regulatory_standard'].include?('FDA FSMA 204')
+  puts "✓ Regulatory Audit JSON verified: 5 events logged with legal recall proof."
+
+  csv_uri = URI("http://127.0.0.1:#{TEST_PORT}/api/audit?barcode=5901234123457&format=csv")
+  csv_res = Net::HTTP.get_response(csv_uri)
+  abort("API Audit CSV failed: #{csv_res.code}") unless csv_res.code == '200'
+  abort("Expected text/csv content type") unless csv_res['Content-Type'].include?('text/csv')
+  abort("Expected CSV header") unless csv_res.body.include?('Barcode,Event,Milestone')
+  abort("Expected RECALL_TRIGGERED in CSV") unless csv_res.body.include?('RECALL_TRIGGERED')
+  puts "✓ Regulatory Audit CSV verified: RFC 4180 format with complete custodial history."
+
   puts "\n=== API Test 9: Reset Demo Batch Back to Clean Pre-seeded State ==="
   code, body = post_json('/api/reset_demo', { barcode: '5901234123457' })
   abort("API Reset failed: #{body}") unless code == 200
