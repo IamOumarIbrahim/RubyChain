@@ -273,12 +273,30 @@
   function renderChain(data) {
     currentChainData = data;
     const broken = data.chain_status === 'Broken';
+    const tampered = data.chain_status === 'Tampered' || data.tampered;
     const codeBadge = state.scannedBarcode ? `<span style="font-size:12px; font-weight:600; color:#374151; margin-left:6px; font-family:monospace; background:#e5e7eb; padding:2px 8px; border-radius:10px;">${state.scannedBarcode}</span>` : '';
-    el.chainStatusHeader.innerHTML = `Chain Status: <span class="${broken ? 'status-broken' : 'status-intact'}">${broken ? 'Broken' : 'Intact'}</span>${codeBadge}`;
+    
+    let statusBadge = `<span class="status-intact">Intact</span>`;
+    if (broken) {
+      statusBadge = `<span class="status-broken">Broken</span>`;
+    } else if (tampered) {
+      statusBadge = `<span class="status-tampered">⚠️ Tampered</span>`;
+    }
+
+    el.chainStatusHeader.innerHTML = `Chain Status: ${statusBadge}${codeBadge}`;
     setBadge(el.statusCertifier, data.credentials.origin.verified, data.credentials.origin.hash);
     setBadge(el.statusExporter, data.credentials.transit.verified, data.credentials.transit.hash);
     setBadge(el.statusCustoms, data.credentials.border.verified, data.credentials.border.hash);
     setBadge(el.statusRetailer, data.credentials.shelf.verified, data.credentials.shelf.hash);
+
+    const drawer = document.getElementById('hash-audit-drawer');
+    const drawerContent = document.getElementById('audit-drawer-content');
+    if (tampered && drawer && drawerContent) {
+      drawer.style.display = 'block';
+      const detail = data.tamper_details || {};
+      drawerContent.innerHTML = `<span style="color:#b91c1c; font-weight:bold;">⚠️ CRYPTOGRAPHIC INTEGRITY BREACH!</span><br>Milestone: <strong>${detail.milestone || 'Chain link'}</strong><br>Hash seal mismatch. Downstream custodial verification blocked.`;
+    }
+
     const vcLink = document.getElementById('btn-view-vc');
     if (vcLink && state.scannedBarcode) vcLink.href = `/api/credentials?barcode=${encodeURIComponent(state.scannedBarcode)}`;
     const epcisLink = document.getElementById('btn-view-epcis');
@@ -328,6 +346,30 @@
       await fetch('/api/reset_demo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ barcode: code }) });
       toast('Demo reset to initial clean state');
       if (state.scannedBarcode) fetchChain(state.scannedBarcode);
+    };
+  }
+
+  const tamperBtn = document.getElementById('btn-simulate-tamper');
+  if (tamperBtn) {
+    tamperBtn.onclick = async (e) => {
+      e.preventDefault();
+      const code = state.scannedBarcode || '5901234123457';
+      try {
+        const res = await fetch('/api/action/simulate_tamper', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ barcode: code })
+        });
+        const data = await res.json();
+        if (data.success) {
+          toast('⚠️ Cryptographic fault injected! Hash seal corrupted.', true);
+        } else {
+          toast(data.error || 'Tamper injection failed', true);
+        }
+        fetchChain(code);
+      } catch (err) {
+        toast('Network error', true);
+      }
     };
   }
 

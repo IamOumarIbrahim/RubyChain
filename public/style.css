@@ -201,6 +201,7 @@ body {
 .chain-status-header { text-align: center; font-size: 16px; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #f1f3f5; }
 .status-intact { color: var(--green); }
 .status-broken { color: var(--red); }
+.status-tampered { background: #fee2e2; color: #b91c1c; border: 1px solid #f87171; border-radius: 12px; padding: 2px 8px; font-weight: 700; font-size: 13px; }
 
 .status-list { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
 .status-item { display: flex; justify-content: space-between; font-weight: 600; color: #374151; cursor: pointer; padding: 3px 6px; border-radius: 6px; transition: background 0.15s; }

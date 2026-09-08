@@ -96,14 +96,28 @@ def mount_routes(server)
     if item
       creds = db.execute('SELECT * FROM credentials WHERE item_id = ?', [item['id']]).to_h { |c| [c['milestone'], c] }
       broken = (item['recalled'] == 1)
+      integrity = RubyChainDB.verify_chain_integrity(code)
+      tampered = !integrity[:valid]
+
+      status = if broken
+                 'Broken'
+               elsif tampered
+                 'Tampered'
+               else
+                 'Intact'
+               end
+
       json_res(res, {
         success: true, item: item,
-        chain_status: broken ? 'Broken' : 'Intact',
+        chain_status: status,
+        recalled: broken,
+        tampered: tampered,
+        tamper_details: tampered ? integrity : nil,
         credentials: {
-          origin: { verified: !creds['origin_proof'].nil? && !broken, hash: creds.dig('origin_proof', 'signature_hash') },
-          transit: { verified: !creds['transit_proof'].nil? && !broken, hash: creds.dig('transit_proof', 'signature_hash') },
-          border: { verified: !creds['border_proof'].nil? && !broken, hash: creds.dig('border_proof', 'signature_hash') },
-          shelf: { verified: !creds['shelf_proof'].nil? && !broken, hash: creds.dig('shelf_proof', 'signature_hash') }
+          origin: { verified: !creds['origin_proof'].nil? && !broken && !tampered, hash: creds.dig('origin_proof', 'signature_hash') },
+          transit: { verified: !creds['transit_proof'].nil? && !broken && !tampered, hash: creds.dig('transit_proof', 'signature_hash') },
+          border: { verified: !creds['border_proof'].nil? && !broken && !tampered, hash: creds.dig('border_proof', 'signature_hash') },
+          shelf: { verified: !creds['shelf_proof'].nil? && !broken && !tampered, hash: creds.dig('shelf_proof', 'signature_hash') }
         }
       })
     else
@@ -145,6 +159,18 @@ def mount_routes(server)
     json_res(res, { success: true, message: 'Reset complete' })
   end
 
+  # 6.5. Cryptographic Fault Injection / Tamper Simulation
+  server.mount_proc '/api/action/simulate_tamper' do |req, res|
+    d = parse_json(req)
+    code = clean_str(d['barcode'])
+    code = '5901234123457' if code.empty?
+    if RubyChainDB.simulate_tamper!(code)
+      json_res(res, { success: true, message: 'Cryptographic fault injected! SHA-256 seal corrupted.' })
+    else
+      json_res(res, { success: false, error: 'No credentials present to tamper. Issue at least one milestone first.' }, 400)
+    end
+  end
+
   # 7. IDS W3C Verifiable Presentation Export
   server.mount_proc '/api/credentials' do |req, res|
     code = clean_str(req.query['barcode'])
@@ -153,6 +179,7 @@ def mount_routes(server)
     item = db.execute('SELECT * FROM items WHERE barcode = ?', [code]).first
     if item
       creds = db.execute('SELECT * FROM credentials WHERE item_id = ? ORDER BY id ASC', [item['id']])
+      integrity = RubyChainDB.verify_chain_integrity(code)
       json_res(res, {
         success: true,
         '@context' => ['https://www.w3.org/2018/credentials/v1'],
@@ -167,7 +194,9 @@ def mount_routes(server)
             proof: { type: 'Sha256Signature2026', hash: c['signature_hash'] }
           }
         end,
-        recalled: item['recalled'] == 1
+        recalled: item['recalled'] == 1,
+        tampered: !integrity[:valid],
+        integrityCheck: integrity
       })
     else
       json_res(res, { success: false, error: 'Item not found' }, 404)
@@ -183,6 +212,7 @@ def mount_routes(server)
     if item
       creds = db.execute('SELECT * FROM credentials WHERE item_id = ? ORDER BY id ASC', [item['id']])
       broken = (item['recalled'] == 1)
+      integrity = RubyChainDB.verify_chain_integrity(code)
       biz_map = {
         'origin_proof' => ['commissioning', 'urn:epcglobal:cbv:bizstep:commissioning', 'urn:epc:id:sgln:origin.farm.001'],
         'transit_proof' => ['shipping', 'urn:epcglobal:cbv:bizstep:shipping', 'urn:epc:id:sgln:exporter.port.002'],
@@ -197,7 +227,7 @@ def mount_routes(server)
           epcList: ["urn:epc:id:sgtin:#{code}.001"],
           action: 'OBSERVE',
           bizStep: step_info[1],
-          disposition: broken ? 'urn:epcglobal:cbv:disp:recalled' : 'urn:epcglobal:cbv:disp:active',
+          disposition: broken ? 'urn:epcglobal:cbv:disp:recalled' : (integrity[:valid] ? 'urn:epcglobal:cbv:disp:active' : 'urn:epcglobal:cbv:disp:tampered'),
           readPoint: { id: step_info[2] },
           proofHash: c['signature_hash']
         }
@@ -208,7 +238,8 @@ def mount_routes(server)
         schemaVersion: '2.0',
         creationDate: Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
         epcisBody: { eventList: events },
-        recalled: broken
+        recalled: broken,
+        tampered: !integrity[:valid]
       })
     else
       json_res(res, { success: false, error: 'Item not found' }, 404)

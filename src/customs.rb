@@ -13,6 +13,9 @@ class CustomsNode
     transit = db.execute("SELECT * FROM credentials WHERE item_id = ? AND milestone = 'transit_proof'", [item['id']]).first
     return { valid: false, error: 'Dual-pass missing: requires origin + transit' } unless origin && transit
 
+    integrity = RubyChainDB.verify_chain_integrity(barcode)
+    return { valid: false, error: "TAMPER DETECTED: Hash mismatch at #{integrity[:milestone]}" } unless integrity[:valid]
+
     { valid: true, item: item, prev: transit }
   end
 

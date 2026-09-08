@@ -14,6 +14,9 @@ class RetailerNode
     border = db.execute("SELECT * FROM credentials WHERE item_id = ? AND milestone = 'border_proof'", [item['id']]).first
     return { valid: false, error: 'Chain incomplete' } unless origin && transit && border
 
+    integrity = RubyChainDB.verify_chain_integrity(barcode)
+    return { valid: false, error: "TAMPER DETECTED: Hash mismatch at #{integrity[:milestone]}" } unless integrity[:valid]
+
     { valid: true, item: item, prev: border }
   end
 

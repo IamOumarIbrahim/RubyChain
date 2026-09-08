@@ -82,9 +82,27 @@ control_barcode = '5901234123458'
 abort("Test 7.5 Failed: Lot 403 should NOT be recalled") if RecallProcedure.recalled?(control_barcode)
 puts "✓ Granular isolation verified: Lot 402 quarantined without affecting compliant Lot 403!"
 
+puts "\n=== 7.6 Testing Cryptographic Tamper Detection & Fault Injection ==="
+CertifierNode.issue_origin_proof(control_barcode, 1)
+ExporterNode.verify_and_issue(control_barcode, 2)
+pre_tamper = RubyChainDB.verify_chain_integrity(control_barcode)
+abort("Test 7.6 Failed: Fresh chain should be valid") unless pre_tamper[:valid]
+
+RubyChainDB.simulate_tamper!(control_barcode)
+post_tamper = RubyChainDB.verify_chain_integrity(control_barcode)
+abort("Test 7.6 Failed: Tamper should be detected!") if post_tamper[:valid]
+abort("Test 7.6 Failed: Expected tampered true") unless post_tamper[:tampered]
+puts "✓ Cryptographic fault injection caught at milestone: #{post_tamper[:milestone]}"
+
+customs_tamper_check = CustomsNode.verify(control_barcode)
+abort("Test 7.6 Failed: Customs should reject tampered upstream chain") if customs_tamper_check[:valid]
+abort("Test 7.6 Failed: Error message should cite TAMPER DETECTED") unless customs_tamper_check[:error].include?('TAMPER DETECTED')
+puts "✓ Customs node actively rejected tampered chain: #{customs_tamper_check[:error]}"
+
 puts "\n=== 8. Resetting for Live Demo ==="
 RubyChainDB.reset_demo_item!
 abort("Test 8 Failed: Reset failed") if RecallProcedure.recalled?(barcode)
+abort("Test 8 Failed: Reset failed for control") if RubyChainDB.connection.execute('SELECT COUNT(*) as c FROM credentials').first['c'] > 0
 puts "✓ Reset restored item to pre-seeded clean state."
 
 puts "\n🎉 ALL AUTOMATED CHAIN TESTS PASSED SUCCESSFULLY! 🎉"

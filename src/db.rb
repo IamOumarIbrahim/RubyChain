@@ -80,4 +80,51 @@ class RubyChainDB
       db.execute('UPDATE items SET recalled = 0 WHERE id = ?', [item['id']])
     end
   end
+
+  def self.verify_chain_integrity(barcode)
+    db = connection
+    item = db.execute('SELECT * FROM items WHERE barcode = ?', [barcode]).first
+    return { valid: false, error: 'Item not found' } unless item
+
+    creds = db.execute('SELECT * FROM credentials WHERE item_id = ? ORDER BY id ASC', [item['id']])
+    return { valid: true, count: 0 } if creds.empty?
+
+    prev_hash = nil
+    creds.each do |c|
+      expected = case c['milestone']
+                 when 'origin_proof'
+                   Digest::SHA256.hexdigest("ORIGIN:#{item['id']}:#{barcode}|#{c['issued_by_user_id']}")
+                 when 'transit_proof'
+                   Digest::SHA256.hexdigest("PREV:#{prev_hash}|TRANSIT|#{c['issued_by_user_id']}")
+                 when 'border_proof'
+                   Digest::SHA256.hexdigest("PREV:#{prev_hash}|BORDER|#{c['issued_by_user_id']}")
+                 when 'shelf_proof'
+                   Digest::SHA256.hexdigest("PREV:#{prev_hash}|SHELF|#{c['issued_by_user_id']}")
+                 end
+
+      if expected && c['signature_hash'] != expected
+        return {
+          valid: false,
+          tampered: true,
+          milestone: c['milestone'],
+          expected_hash: expected,
+          actual_hash: c['signature_hash']
+        }
+      end
+      prev_hash = c['signature_hash']
+    end
+
+    { valid: true, tampered: false, count: creds.size }
+  end
+
+  def self.simulate_tamper!(barcode)
+    db = connection
+    item = db.execute('SELECT id FROM items WHERE barcode = ?', [barcode]).first
+    return false unless item
+    cred = db.execute('SELECT id, signature_hash FROM credentials WHERE item_id = ? ORDER BY id ASC LIMIT 1', [item['id']]).first
+    return false unless cred
+    db.execute('UPDATE credentials SET signature_hash = ? WHERE id = ?',
+               ['TAMPERED_SIG_' + cred['signature_hash'][0..15], cred['id']])
+    true
+  end
 end

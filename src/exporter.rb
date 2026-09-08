@@ -12,6 +12,9 @@ class ExporterNode
     origin = db.execute("SELECT * FROM credentials WHERE item_id = ? AND milestone = 'origin_proof'", [item['id']]).first
     return { valid: false, error: 'Origin pass missing' } unless origin
 
+    integrity = RubyChainDB.verify_chain_integrity(barcode)
+    return { valid: false, error: "TAMPER DETECTED: Hash mismatch at #{integrity[:milestone]}" } unless integrity[:valid]
+
     { valid: true, item: item, prev: origin }
   end
 

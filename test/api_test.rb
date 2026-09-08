@@ -107,6 +107,17 @@ begin
   abort("Expected bizStep in first event") if body['epcisBody']['eventList'].first['bizStep'].to_s.empty?
   puts "✓ GS1 EPCIS 2.0 schema validated: 4 supply chain CTE events exported."
 
+  puts "\n=== API Test 7.7: Verify Cryptographic Fault Injection & Tamper Detection ==="
+  code, body = post_json('/api/action/simulate_tamper', { barcode: '5901234123457' })
+  abort("API Tamper simulation failed: #{body}") unless code == 200 && body['success']
+  puts "✓ Fault injected: #{body['message']}"
+
+  code, body = get_json('/api/item?barcode=5901234123457')
+  abort("Expected chain_status Tampered after fault injection") unless body['chain_status'] == 'Tampered'
+  abort("Expected tampered true") unless body['tampered'] == true
+  abort("Downstream credentials should be unverified upon tamper") if body['credentials']['shelf']['verified']
+  puts "✓ API status flipped to Tampered with active cryptographic mismatch reporting!"
+
   puts "\n=== API Test 8: Trigger Recall & Verify Circuit Breaker ==="
   code, body = post_json('/api/action/recall', { barcode: '5901234123457', user_id: 5, reason: 'Aflatoxin contamination' })
   abort("API Recall failed: #{body}") unless code == 200 && body['success']
